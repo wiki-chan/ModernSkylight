@@ -64,24 +64,6 @@ $wgResourceModules['skins.modern-skylight.mainpage'] = array(
 	'localBasePath' => dirname(__FILE__)
 );
 
-# 포탈 카테고리에서 작동
-$wgResourceModules['skins.modern-skylight.portal'] = array(
-	'scripts' => array(
-			"modern-skylight.portal.js"
-		),
-	'styles' => array(
-			"modern-skylight.portal.css" => array('screen')
-		),
-	'dependencies' => array(
-			'mediawiki.util',
-			'jquery',
-			'jquery.json'
-		),
-	'remoteBasePath' => $wgStylePath,
-	'remoteExtPath' => $wgStylePath,
-	'localBasePath' => dirname(__FILE__)
-);
-
 # 일반 문서 페이지에서 작동
 $wgResourceModules['skins.modern-skylight.article'] = array(
 	'scripts' => array(
