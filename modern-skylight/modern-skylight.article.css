@@ -1,0 +1,695 @@
+/*==================
+	가로로 긴 상자
+==================*/
+.plainbox {
+	width: 100%;
+	position: relative;
+}
+
+.plainbox > .left {
+	float: left;
+	margin: 0 8px 0 0;
+}
+.plainbox > .right {
+	float: right;
+}
+
+.plainbox p {
+	margin: 0 !important;
+}
+.plainbox p + p {
+	margin: .5em 0 0 0 !important;
+}
+
+.plainbox .right ul {
+	list-style: none !important;
+	margin: .2em 0 .3em 1em !important;
+}
+.plainbox .right ul > li {
+	/* @embed */
+	background: url(images/arrow-right.png) no-repeat 2px 7px;
+	padding-left: 12px;
+	list-style: none !important; /* fallback */
+}
+
+.plainbox .upload-file {
+	text-align: center;
+}
+.plainbox .upload-file a:not(.new) {
+	display: block;
+	line-height: 0;
+}
+
+/*================
+	{{정보상자}}
+================*/
+.infobox {
+	margin: 10px 0;
+}
+
+/* 그림 영역 */
+.infobox .img {
+	width: 200px;
+	/* border: 1px solid #ddd; */
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+}
+.infobox .img a:not(.new) {
+	overflow: hidden;
+	height: auto;
+	max-height: 350px; /* 정보상자에 첨부되는 그림은 세로 350px가 최대 */
+}
+
+/* 그림 밑에 영역을 추가 */
+.infobox .left .ext {
+	margin-top: 10px;
+	text-align: center;
+}
+.infobox .left .ext + .ext {
+	margin-top: 5px;
+}
+
+/* {{정보상자 링크칸}} */
+.infobox .bookmark {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+}
+.infobox .bookmark > div {
+	width: 32px;
+	height: 32px;
+	overflow: hidden;
+}
+.infobox .bookmark + .bookmark {
+	margin-left: 12px;
+}
+
+.bookmark.official img { margin: 0; }
+.bookmark.blog img { margin: -32px 0 0 0; }
+.bookmark.twitter img { margin: -64px 0 0 0; }
+.bookmark.youtube img { margin: -96px 0 0 0; }
+.bookmark.wikipedia img { margin: -128px 0 0 0; }
+
+.bookmark.official-inactive img { margin: 0 0 0 -32px; }
+.bookmark.blog-inactive img { margin: -32px 0 0 -32px; }
+.bookmark.twitter-inactive img { margin: -64px 0 0 -32px; }
+.bookmark.youtube-inactive img { margin: -96px 0 0 -32px; }
+.bookmark.wikipedia-inactive img { margin: -128px 0 0 -32px; }
+
+.bookmark a {
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.bookmark a:hover {
+	-moz-opacity: 0.8;
+	opacity: 0.8;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha"(Opacity=80);
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=80);
+}
+
+/* 프로필 영역 */
+.infobox .right {
+	width: 500px; /* 710 - left(212) - margin(8) */
+	border-top: 1px solid #dadada;
+	border-bottom: 1px solid #dadada;
+	padding: 2px 0;
+}
+
+/* 프로필 헤더 */
+.infobox .right .header {
+	background: #f0f0f0;
+	padding: 5px 8px;
+	text-align: center;
+	margin-bottom: 2px;
+}
+.infobox .right .header .title {
+	font-size: 17px;
+	line-height: 19px;
+	font-weight: bold;
+	padding: 2px 0 4px;
+}
+.infobox .right .header .subtitle {
+	font-size: 12px;
+	line-height: 140%;
+}
+.infobox .right .header span.category + span.genre:before {
+	display: inline;
+	content: "\00a0\00a0|\00a0\00a0";
+	color: #c9c9c9;
+}
+
+/* 프로필 내용 */
+.infobox .right .rows {
+}
+.infobox .right .info {
+	clear: both;
+	line-height: 170%;
+}
+.infobox .right .info .param {
+	float: left;
+	text-align: right;
+	padding-right: 5px;
+	width: 100px;
+	font-weight: bold;
+}
+.infobox .right .info .value {
+	float: left;
+	width: 390px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.infobox .right .section-title {
+	background: #f0f0f0;
+	text-align: center;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 180%;
+	margin: 2px 0;
+}
+.infobox .right .info .value ul {
+	margin: 0 !important;
+}
+
+/* 스테이터스칸 */
+.status-bar {
+	overflow: visible;
+}
+.status-bar .cap {
+	float: left;
+	width: 60px;
+	margin-right: 5px;
+	text-align: right;
+	font-size: 12px;
+	line-height: 22px;
+}
+.status-bar .track {
+	float: left;
+	background: url(images/status-bar-bg.gif) repeat-x left center;
+	width: 110px;
+	height: 22px;
+	text-align: left;
+	white-space: nowrap;
+	overflow: visible;
+}
+.status-bar .bar {
+	display: inline-block;
+	background: url(images/status-bar.gif) repeat-x left center;
+	width: 1px; /* 틀에서 HTML 태그로 크기 조절 */
+	height: 100%;
+}
+.status-bar .val {
+	display: inline-block;
+	font-family: '맑은 고딕';
+	font-size: 12px;
+	line-height: 22px;
+	margin-left: 3px;
+	max-width: 32px;
+	white-space: nowrap;
+	overflow: hidden;
+	padding-right: 1px;
+}
+.status-caption {
+	padding: 0 5px;
+	font-size: 12px;
+	line-height: 18px;
+	text-align: center;
+	margin-top: 5px;
+}
+
+/* 음반 상자 */
+.infobox.discography .left {
+
+}
+.infobox.discography .right {
+	min-height: 200px;
+}
+
+/* 슬라이더와 병용할 때 */
+.infobox.switchable .left {
+	width: 200px;
+}
+.infobox.switchable .right {
+	width: 475px;
+}
+.infobox.switchable .right .info .value {
+	width: 367px;
+}
+.infobox.switchable .slider-control {
+	position: absolute;
+	top: 0;
+	left: 208px;
+}
+
+/* 최소 크기 */
+.infobox.min-height .right {
+	min-height: 240px;
+}
+
+/*=================
+	각종 정보 틀
+=================*/
+.simplebox {
+	margin: .3em auto .8em;
+}
+.simplebox .title {
+	font-weight: bold;
+}
+.simplebox .subtitle {
+	margin-left: 1em;
+}
+.simplebox .text {
+	margin: .4em 0 .5em;
+}
+
+/* 틀:등장인물 */
+.simplebox.character .left {
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	/* border: 1px solid #ddd; */
+}
+.simplebox.character .right {
+	width: 600px;
+	min-height: 100px;
+}
+.simplebox.character .text {
+	margin: .2em 0 0;
+}
+
+/* 틀:등장인물/하위 */
+.simplebox.character.indent {
+	width: 676px;
+	margin-left: 24px;
+	border-left: 3px solid #eee;
+	padding-left: 7px;
+}
+.simplebox.character.indent .right {
+	width: 566px; /* 600 - 34px */
+}
+
+/* 틀:단행본 */
+.simplebox.book {
+	width: 690px;
+}
+.simplebox.book .left {
+	width: 150px;
+	min-height: 200px;
+	/* border: 1px solid #ddd; */
+}
+.simplebox.book .right {
+	width: 530px;
+}
+
+/* 틀:드라마 CD */
+.simplebox.dramacd {
+	width: 690px;
+	margin: 0 auto;
+}
+.simplebox.dramacd .left {
+	width: 170px;
+	min-height: 120px;
+	/* border: 1px solid #ddd; */
+}
+.simplebox.dramacd .right {
+	width: 510px;
+}
+
+/* 틀:블루레이 */
+.simplebox.bluray {
+	width: 700px;
+	margin-bottom: 0.5em !important;
+}
+.simplebox.bluray .left {
+	width: 152px;
+}
+.simplebox.bluray .left .img {
+	width: 150px;
+	min-height: 150px;
+	/* border: 1px solid #ddd; */
+}
+.simplebox.bluray .left  .img + .img {
+	margin-left: 0;
+}
+.simplebox.bluray .right {
+	width: 512px;
+}
+.simplebox.bluray .slider-control {
+	position: absolute;
+	top: 0;
+	left: 160px;
+}
+
+/* 틀:에피소드 */
+.episode {
+	width: 630px;
+	margin: 0 auto 10px;
+}
+.episode .upper {
+	padding: 0px 25px;
+	margin-bottom: 10px;
+}
+.episode .upper .img {
+	float: left;
+	width: 280px;
+	text-align: center;
+	line-height: 0;
+	/* border: 1px solid #ddd; */
+}
+.episode .img + .img {
+	margin-left: 16px;
+}
+.episode > .lower {
+	clear: both;
+}
+.episode .info .title {
+	font-weight: bold;
+	margin-bottom: .6em;
+}
+.episode .info p {
+	margin: 0 !important;
+}
+.episode .info p + p {
+	margin: .5em 0 0 0 !important;
+}
+
+/*=================
+	슬라이더, 탭
+=================*/
+/* 컨테이터 */
+.slider-container, .tabs-container {
+	width: 700px;
+	margin: 0 auto 10px;
+	overflow: hidden;
+}
+
+/* 바디 */
+.slider {
+	width: 100000px;
+	list-style: none !important;
+	margin: 0 !important;
+	position: relative;
+}
+.slider li {
+	display: block;
+	float: left;
+	margin: 0;
+}
+.slider.docs li { width: 700px; }
+.slider.pics li { width: 320px; text-align: center; line-height: 0; }
+.slider.pics li:first-child { margin-left: 190px; }
+.slider.pics li img { border: 2px solid #dadada; }
+.slider.pics li.active img { border-color: #60b9e2; }
+.slider.pics li div { padding: 2px 0 4px; line-height: 24px; }
+.slider.pics .upload-file > a.new {
+	position: relative;
+	display: block;
+	height: 100px;
+	margin: 0 15px;
+}
+
+/* 컨트롤 */
+.slider-control, .tabs-control {
+	text-align: center !important;
+}
+.slider-control li, .tabs-control div {
+	display: inline-block;
+	font-family: '맑은 고딕';
+	background: #e0e0e0;
+	color: #111;
+	padding: 4px 6px 5px;
+	margin: 0 0 3px;
+	cursor: pointer;
+	-webkit-transition: all .1s linear;
+	-moz-transition: all .1s linear;
+	transition: all .1s linear;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+.tabs-control {
+	margin-bottom: 10px;
+}
+.tabs-content > div:not(:first-child) {
+	display: none;
+}
+
+.slider-control li.selected, .slider-control li:hover,
+.tabs-control div.selected, .tabs-control div:hover {
+	background: #444;
+	color: #fff;
+}
+.slider-control li + li, .tabs-control div + div {
+	margin-left: 2px;
+}
+
+/* plainbox에 쓰일 때 */
+.switchable .slider-control li {
+	display: block;
+	width: 18px;
+	padding: 0;
+	margin: 1px 0 3px;
+}
+
+/*================
+	TEMPLATES
+  ================*/
+/* 틀:인용 */
+#quotation {
+	border: none;
+	background: transparent;
+	padding: 0;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	quotes: "\201C" "\201D";
+}
+#quotation p { text-indent: 0 !important; }
+#quotation p:before, #quotation p:after {
+	font: bold 24px/1px Times, serif;
+	position:absolute;
+}
+#quotation p:first-child:before { content: open-quote; }
+#quotation p:last-child:after { content: close-quote; }
+
+#quotation.double p { quotes: "“" "”"; }
+#quotation.single p { quotes: "‘" "’"; }
+
+#quotation.double p:first-child:before { margin: 8px 0 0 -15px; }
+#quotation.double p:last-child:after { margin: 18px 0 0 5px; }
+
+#quotation.single p:first-child:before { margin: 8px 0 0 -11px; }
+#quotation.single p:last-child:after { margin: 18px 0 0 3px; }
+
+/* <poem /> */
+.poem p {
+	text-indent: 0 !important;
+	margin: 0 !important;
+}
+
+/* 틀:접기 */
+.toggle {
+	cursor: pointer;
+	margin-bottom: .2em;
+}
+.toggle-caption {
+	position: relative;
+	padding-right: 24px;
+}
+.toggle-caption:hover {
+	background: #efefef;
+}
+.toggle-caption:after {
+	display: block;
+	content: ' ';
+	position: absolute;
+	top: 1px;
+	right: 2px;
+	width: 16px;
+	height: 16px;
+	background-image: url('images/ui-expand-collapse-empty.png');
+	background-repeat: no-repeat;
+	background-position: 0 0px;
+}
+.toggle.visible:after {
+	background-position: 0 -16px;
+}
+
+/* 틀:네타 시작, 틀:네타 끝 */
+span.netabare {
+	color: transparent;
+	border-bottom: 1px dotted #bbb;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	cursor: pointer;
+}
+span.netabare *:not(.alt) {
+	visibility: hidden;
+}
+span.netabare span.alt {
+	font-size: 12px;
+	font-weight: bold;
+	color: #444;
+	cursor: pointer;
+	visibility: visible !important;
+}
+span.netabare.show {
+	color: #444;
+}
+span.netabare.show *:not(.alt) {
+	visibility: visible;
+}
+
+/* 틀:안내 */
+.information {
+	margin: .8em .5em;
+	padding-left: 21px;
+	position: relative;
+}
+.information + .information {
+	margin-top: -.6em;
+}
+.information:before {
+	display: inline-block;
+	content: "";
+	background: url(images/ui-menu-ico.png) no-repeat 0 -96px;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	top: 2px;
+	left: 0;
+}
+
+/* 나열된 요소 사이마다 쉼표를 찍음 */
+span.item + span.item:before {
+	display: inline;
+	content: ",\00a0";
+	white-space: normal;
+}
+
+/* 틀:단행본의 국기 부분 */
+.flag {
+	padding: 0 12px;
+	margin-right: 5px;
+	line-height: 0;
+	position: relative;
+}
+.flag img {
+	position: absolute;
+	top: -2px;
+	left: 0;
+}
+
+/* 틀:덧 */
+.media-tag {
+	font-size: 12px;
+	color: #34ac98;
+	margin-left: 2px;
+}
+.media-tag:before {
+	content: '[';
+	padding-right: 1px;
+}
+.media-tag:after {
+	content: ']';
+	padding-left: 1px;
+}
+
+/* 틀:명의 */
+.name-tag {
+	background: #e5e5e5;
+	padding: 0 4px 0 3px;
+	font-size: 12px;
+	line-height: 0;
+	position: relative;
+	top: -1px;
+	cursor: help;
+}
+
+/* 링크 아이콘 | 틀:이벤트 */
+.link-tag a {
+	background: #e5e5e5;
+	padding: 0 4px 0 3px;
+	font-size: 12px;
+	line-height: 0;
+	color: #333 !important;
+	position: relative;
+	top: -1px;
+	white-space: nowrap;
+	text-shadow: none;
+}
+.link-tag a:hover {
+	color: #fff !important;
+	background: #444;
+}
+.link-tag a:after {
+	display: none !important;
+}
+
+/* 틀:노래, 틀:타이업 */
+.listlike ul {
+	list-style: none !important;
+	margin: 0 !important;
+}
+.listlike p, .listlike li {
+	background: url(images/arrow-right.png) no-repeat 2px 7px;
+	padding-left: 12px;
+	text-indent: 0 !important;
+	text-align: left !important;
+}
+.listlike.padded p, .listlike.padded li {
+	margin: 0 0 0 15px;
+}
+
+/* 작은 들여쓰기 */
+.ind {
+	margin-left: 5px;
+}
+
+/* 텍스트 정렬 */
+.text-left {
+	text-align: left;
+}
+.text-center {
+	text-align: center;
+}
+.text-right {
+	text-align: right;
+}
+.text-justify {
+	text-align: justify;
+}
+
+/* 틀:별점 */
+.rating {
+	background: url(images/star.png) repeat-x 0 0;
+	display: inline-block;
+	width: 18px;
+	height: 16px;
+	vertical-align: text-top;
+	margin-right: 2px;
+}
+.rating + .value {
+	font: normal 14px/16px '맑은 고딕';
+	letter-spacing: 0;
+	margin: 0 2px;
+}
+
+/* 틀:제목 */
+.copipe {
+	cursor: pointer;
+}
+
+/* 연습장:봇쨩을 대문처럼 alpha 스타일로 */
+body.page-연습장_봇쨩 .article {
+	width: 100%;
+	padding: 0;
+	border: none;
+}
+body.page-연습장_봇쨩 h1#firstheading {
+	margin-top: 0;
+}
+body.page-연습장_봇쨩 .sidebar, body.page-연습장_봇쨩 #toc {
+	display: none;
+}

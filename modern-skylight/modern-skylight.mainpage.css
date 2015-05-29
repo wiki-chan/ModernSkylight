@@ -1,0 +1,307 @@
+.content .article.alpha {
+	width: auto !important;
+	border: none !important;
+	padding: 0 !important;
+}
+
+/* 문서 이름, 분류 감춤 */
+.action-view h1#firstheading, .action-submit h1#firstheading {
+	display: none;
+}
+.catlinks {
+	display: none !important;
+}
+
+/* 링크에 롤오버 언더라인 삭제 */
+a:hover {
+	text-decoration: none !important;
+}
+
+/*=================
+	Notification
+  =================*/
+#notification {
+	position: absolute;
+	z-index: 65535;
+	top: 40px;
+	left: 0;
+	right: 0;
+	background: #FDE073;
+	text-align: center;
+	line-height: 2.5;
+	margin: 0 -10px;
+	overflow: hidden;
+	-webkit-transform: translateY(-50px);
+	-webkit-animation: slideDown 2.5s 1.0s 1 ease forwards;
+	-moz-transform: translateY(-50px);
+	-moz-animation: slideDown 2.5s 1.0s 1 ease forwards;
+}
+
+/*=================
+	Upper Layer
+  =================*/
+.navi {
+	margin-bottom: 15px;
+}
+
+/* 사이트 로고 */
+.site-logo {
+	float: left;
+	display: block;
+	width: 320px;
+	height: 80px;
+}
+
+/* 내비게이션 */
+.navi-menu {
+	float: right;
+}
+.navi-menu li {
+	float: left;
+	margin-left: 5px;
+}
+.navi-menu li a {
+	display: block;
+	width: 80px;
+	height: 80px;
+	position: relative;
+}
+
+/* 내비게이션의 그림 아이콘 */
+.navi-menu span.icon {
+	content: '';
+	display: block;
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 18px;
+	left: 24px;
+	/* @embed */
+	background-image: url(images/navi-icons.png);
+	background-repeat: no-repeat;
+}
+.navi-menu span.random {
+	background-position: 0 0;
+}
+.navi-menu span.sandbox {
+	background-position: 0 -32px;
+}
+.navi-menu span.tool {
+	background-position: 0 -64px;
+}
+.navi-menu span.tutorial {
+	background-position: 0 -96px;
+}
+.navi-menu span.sample {
+	background-position: 0 -128px;
+}
+.navi-menu span.help {
+	background-position: 0 -160px;
+}
+
+/* 내비게이션의 글자 */
+.navi-menu span.caption {
+	position: absolute;
+	bottom: 3px;
+	left: 6px;
+	color: #fff !important;
+	font-size: 12px;
+}
+
+/*==================
+	Acordion Menu
+  ==================*/
+.accordion {
+	list-style: none !important;
+	padding: 0 !important;
+	margin: 12px 0 10px !important;
+}
+
+.accordion li > a {
+	padding: 0 10px 0 14px;
+	display: block;
+	position: relative;
+	min-width: 110px;
+	height: 40px;
+	font-size: 14px;
+	line-height: 40px;
+	background: #529cff;
+	-webkit-box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .2), 0px 1px 0px 0px rgba(0,0,0, .2);
+	-moz-box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .2), 0px 1px 0px 0px rgba(0,0,0, .2);
+	box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .2), 0px 1px 0px 0px rgba(0,0,0, .2);
+}
+.accordion > li > a {
+	color: #fdfdfd !important;
+}
+.accordion > li:hover > a, .accordion > li:target > a, .accordion > li > a.active {
+	background: #008ccf;
+}
+
+/* 하위 메뉴 */
+.sub-menu li a {
+	padding: 0 10px 0 40px;
+	background: #fff;
+	/* border-bottom: 1px solid #dfdfdf; */
+	height: 33px;
+	font-size: 13px;
+	line-height: 33px;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #f3f3f3, 0px 1px 0px 0px rgba(0,0,0, .1);
+	-moz-box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .1), 0px 1px 0px 0px rgba(0,0,0, .1);
+	box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .1), 0px 1px 0px 0px rgba(0,0,0, .1);
+}
+.sub-menu li:nth-child(even) a {
+	background: #f2f2f2;
+}
+.sub-menu li:hover a {
+	background: #eed;
+	color: #777 !important;
+}
+
+/* 숫자 (왼쪽, 오른쪽) */
+.sub-menu span.num {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-left: 14px;
+	color: #a6a6a6;
+	font-size: 13px;
+	line-height: 33px;
+	font-style: normal;
+}
+.sub-menu span.val {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 10px;
+	color: #797979;
+	font-size: 13px;
+	line-height: 33px;
+}
+
+/* 토글 */
+.accordion li > .sub-menu {
+	display: none;
+} 
+.accordion li:target > .sub-menu {
+	display: block;
+}
+
+/*=============
+	Projects
+  =============*/
+.projects li {
+	float: left;
+	width: 145px;
+	height: 72px;
+}
+
+.projects li:first-child {
+	margin: 0 5px 5px 0;
+}
+.projects li:nth-child(2) {
+	margin: 0 0 5px 5px;
+}
+.projects li:nth-child(3) {
+	margin: 5px 5px 0 0;
+}
+.projects li:last-child {
+	margin: 5px 0 0 5px;
+}
+
+.projects li:first-child, .projects li:last-child {
+	background: #57BAE8;
+}
+.projects li:nth-child(2), .projects li:nth-child(3) {
+	background: #50A9D2;
+}
+
+.projects a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: #fff !important;
+	position: relative;
+}
+.projects span.alt {
+	font-size: 13px;
+	line-height: 20px;
+	position: absolute;
+	left: 8px;
+	bottom: 6px;
+}
+    
+/*=================
+	Components
+  =================*/
+.component {
+	background: #fff;
+	margin-bottom: 10px;
+}
+.component-head {
+	line-height: 40px;
+	position: relative;
+}
+.component-head span.title {
+	color: #202020;
+	font-size: 20px;
+}
+.component-head span.more {
+	position: absolute;
+	right: 0;
+	top: 8px;
+}
+.component-head span.more a {
+	display: block;
+	width: 24px;
+	height: 24px;
+	/* @embed */
+	background: url(images/expand-collapse.png) no-repeat 0 0;
+	text-indent: -9999px;
+}
+.component-body {
+	padding: 5px 0;
+}
+
+/*=================
+	Createbox
+  =================*/
+/* 너비 fix */
+input.createboxInput {
+	width: 220px;
+}
+
+/* 토글 */
+.createform .default {
+	margin-bottom: 3px;
+}
+.createform .hidden {
+	height: 137px;
+}
+.createform span.more a.open {
+	background-position: 0 -24px;
+}
+
+/*=====================
+	Responsive Settings
+  =====================*/
+
+/* width < 480 */
+@media screen and (max-width: 479px) {
+	
+}
+
+/* 480 =< width < 600 */
+@media screen and (min-width: 480px) and (max-width: 599px) {
+	
+}
+
+/* 600 =< width < 800 */
+@media screen and (min-width: 600px) and (max-width: 799px) {
+	
+}
+
+/* 800 =< width < 1000 */
+@media screen and (min-width: 800px) and (max-width: 999px) {
+	
+}

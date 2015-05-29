@@ -1,0 +1,74 @@
+/*
+ * 이 CSS는 wikichan 스킨의 분류 문서에서만 적용됩니다.
+ * 다음은 간단한 섹션 구분법입니다.
+ * #mw-subcategories -> 속해 있는 하위 분류
+ * #mw-pages -> 속해 있는 문서
+ * #mw-category-media -> 속해 있는 파일
+ * .content-section -> 하위 분류, 문서 박스의 inner wrapper
+ */
+
+#mw-subcategories, #mw-pages, #mw-category-media {
+	border: 1px solid #dedede;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 2px 2px 2px #ddd;
+	-moz-box-shadow: 2px 2px 2px #ddd;
+	box-shadow: 2px 2px 2px #ddd;
+	margin: 1em 0 1.5em;
+	overflow: hidden;
+}
+.content-section {
+	padding: 0 10px 10px;	
+}
+
+#mw-subcategories h2, #mw-pages h2, #mw-category-media h2 {
+	width: 100%;
+	background: #e5e5e5;
+	margin: 0;
+	padding: 7px 10px;
+	border: none;
+}
+#mw-subcategories h2:before, #mw-pages h2:before, #mw-category-media h2:before {
+	display: none !important;
+}
+
+h2 .count-message {
+	font-size: 12px;
+	font-weight: normal;
+}
+
+#mw-subcategories ul, #mw-pages ul {
+	list-style: none;
+	margin: 0;
+}
+#mw-subcategories li, #mw-pages li {
+	text-align: left !important;
+}
+#mw-subcategories ul + h3:before, #mw-pages ul + h3:before {
+	content: '';
+	display: block;
+	border-top: 1px solid #ddd;
+	margin-bottom: 1em;
+}
+
+/* 포함 문서, 파일, 분류 갯수 */
+.CategoryTreeItem > span:not([class]) {
+	font-size: 12px;
+	color: #999;
+}
+/* 자식 트리에 bullet 붙임 */
+.CategoryTreeChildren .CategoryTreeItem:before {
+	content: "";
+	display: inline-block;
+	width: 6px;
+	height: 20px;
+	/* @embed */
+	background: url(images/arrow-right.png) no-repeat center left;
+	vertical-align: text-top;
+}
+
+/* 갤러리 fix */
+#mw-category-media .gallery {
+	text-align: left;
+}

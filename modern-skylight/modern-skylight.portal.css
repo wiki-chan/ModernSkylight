@@ -1,0 +1,719 @@
+#cactions {
+	float: none;
+	margin: 0;
+	position: absolute;
+	right: 0;
+	top: 10px;
+}
+
+/*===================
+	내비게이션 메뉴
+====================*/
+/* 사각 버튼 */
+ul.navi-menu {
+	list-style: none !important;
+	margin: 0 auto !important;
+	font-family: '맑은 고딕';
+}
+ul.navi-menu > li {
+	float: left;
+	background: #57bae8;
+	color: #fff;
+	width: 60px;
+	height: 60px;
+	font-size: 15px;
+	line-height: 60px;
+	text-align: center;
+	cursor: pointer;
+	margin: 3px;
+}
+ul.navi-menu > li.selected, ul.navi-menu > li:hover {
+	background: #008ccf;
+	-moz-box-shadow: inset 0px 0px 4px rgba(144, 167, 177, 0.3);
+	-webkit-box-shadow: inset 0px 0px 4px rgba(144, 167, 177, 0.3);
+	box-shadow: inset 0px 0px 4px rgba(144, 167, 177, 0.3);
+}
+
+/* 체크박스 버튼 */
+ul.checkbox-menu {
+	width: 100%;
+	height: 28px;
+	text-align: center;
+}
+ul.checkbox-menu li {
+	display: inline-block;
+	cursor: pointer;
+	margin: 3px;
+}
+ul.checkbox-menu li + li {
+	margin-left: 8px;
+}
+ul.checkbox-menu li span {
+	display: block;
+	float: left;
+	margin-left: 5px;
+}
+ul.checkbox-menu li span.box {
+	width: 18px;
+	height: 18px;
+	background: url(images/checkbox-menu.png) no-repeat 0 0;
+	position: relative;
+	top: 2px;
+}
+ul.checkbox-menu li.checked span.box {
+	background-position: 0 -18px;
+}
+ul.checkbox-menu span.num {
+	color: #aaa;
+}
+ul.checkbox-menu span.num:before {
+	content: '(';
+}
+ul.checkbox-menu span.num:after {
+	content: ')';
+}
+ul.checkbox-menu.invisible {
+	visibility: hidden;
+}
+
+/*==============
+	편성표
+==============*/
+/* 토글 메뉴 */
+.timetable-control {
+	border: 0;
+	margin: 0 auto 1em;
+}
+.timetable-control span {
+	padding: 5px 15px;
+	color: #fff;
+	cursor: pointer;
+}
+.timetable-control a {
+	color: #fff !important;
+	text-decoration: none !important;
+}
+
+/* 시간표 전체 */
+.timetable {
+	clear: both;
+	width: 942px;
+	margin: 0 auto;
+	position: relative;
+}
+
+/* 각 요일 */
+.timetable-column {
+	float: left;
+	width: 130px;
+	margin-bottom: 2em;
+	text-align: center;
+}
+.timetable > div + div {
+	margin-left: 5px;
+}
+
+/* 제목 '월요일 ~ 토요일' */
+.timetable-column .heading {
+	font-size: 140%;
+	padding: .4em 0 .2em;
+}
+
+/* 각 시간대 */
+.timetable-column .timeline {
+	padding: 12px 6px;
+	word-wrap: break-word;
+}
+.timetable-column .timeline:nth-child(odd) {
+	background: #efefef;
+}
+.timetable-column .timeline:nth-child(even) {
+	background: #ccd4c7;
+}
+
+/* 현재 요일을 강조 */
+.timetable-column.currentday {
+	background: #29abb8;
+	color: #fff;
+	border: 1px solid #9bd1fd;
+}
+.timetable-column.currentday .timeline:nth-child(odd) {
+	background: #29abb8;
+	color: #fff;
+}
+.timetable-column.currentday .timeline:nth-child(even) {
+	background: #198893;
+	color: #fff;
+}
+
+/* 타임라인 : 시간대별 바탕색
+.timeline.night {
+	background: #666;
+	color: #eee;
+}
+.timeline.day {
+	background: #efefef;
+}
+.timeline.evening {
+	background: #d5d5d5;
+}
+.timeline.undefined {
+	background: url(images/messagebox.png) repeat-x;
+}
+*/
+
+/* 타임라인 : 시간대 토글 */
+.timetable.otaku-friendly .day {
+	display: none;
+}
+
+/* 신작에 체크마크 */
+.timeline.new > span:not([class]):before {
+	display: inline-block;
+	content: '';
+	background: url(images/new.png) no-repeat;
+	width: 16px;
+	height: 16px;
+	vertical-align: text-top;
+	position: relative;
+	top: 1px;
+	margin-right: 2px;
+}
+
+/* 타임라인 (타임라인 툴팁의 부모)  */
+.timeline {
+	cursor: pointer;
+	position: relative;
+}
+
+/* 타임라인 툴팁 */
+.timeline-tooltip {
+	display: none;
+	position: absolute;
+	top: -5px;
+	left: 125px;
+	color: #444;
+	background: #fff;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+	box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+	width: 420px;
+	padding: 10px 8px;
+	font-size: 12px;
+	text-align: center;
+	z-index: 9999;
+	cursor: auto;
+}
+.timeline-tooltip.flipped-x {
+	left: auto;
+	right: 126px;
+}
+.timeline-tooltip.flipped-y {
+	top: auto;
+	left: -5px;
+}
+.timeline-tooltip.flipped-x.flipped-y {
+	top: auto;
+	left: auto;
+	right: -5px;
+}
+
+/* 툴팁의 화살표 */
+.timeline-tooltip:before {
+	position: absolute;
+	top: 24px;
+	left: -7px;
+	display: inline-block;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-right: 7px solid #c5c5c5;
+	content: '';
+	z-index: 10000;
+}
+.timeline-tooltip:after {
+	position: absolute;
+	top: 25px;
+	left: -6px;
+	display: inline-block;
+	border-top: 6px solid transparent;
+	border-bottom: 6px solid transparent;
+	border-right: 6px solid #fff;
+	content: '';
+	z-index: 10000;
+}
+.timeline-tooltip.flipped-x:before {
+	left: auto;
+	right: -7px;
+	border-right: none;
+	border-left: 7px solid #c5c5c5;
+}
+.timeline-tooltip.flipped-x:after {
+	left: auto;
+	right: -6px;
+	border-right: none;
+	border-left: 6px solid #fff;
+}
+.timeline-tooltip.flipped-y:before {
+	top: auto;
+	bottom: -7px;
+	left: 24px;
+	border-left: 7px solid transparent !important;
+	border-right: 7px solid transparent !important;
+	border-top: 7px solid #c5c5c5 !important;
+	border-bottom: none !important;
+}
+.timeline-tooltip.flipped-y:after {
+	top: auto;
+	bottom: -6px;
+	left: 25px;
+	border-left: 6px solid transparent !important;
+	border-right: 6px solid transparent !important;
+	border-top: 6px solid #fff !important;
+	border-bottom: none !important;
+}
+.timeline-tooltip.flipped-x.flipped-y:before {
+	top: auto;
+	right: 24px;
+	bottom: -7px;
+	left: auto;
+}
+.timeline-tooltip.flipped-x.flipped-y:after {
+	top: auto;
+	right: 25px;
+	bottom: -6px;
+	left: auto;
+}
+
+/* 신작만 나열했을 때 툴팁의 스타일 */
+.profiles-sortable {
+	clear: both;
+	width: 904px;
+	margin: 10px auto 0;
+	display: none;
+}
+.profile {
+	float: left;
+	position: relative;
+	color: #444;
+	background: #fff;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+	box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+	width: 420px;
+	padding: 10px;
+	font-size: 12px;
+	text-align: center;
+	margin: 0 5px 10px;
+}
+.profile.selected {
+	border-color: #ffa500;
+	-webkit-box-shadow: 0 3px 8px rgba(255,165,0,0.25), 0 0 1px 1px rgba(255, 165, 0, 0.3) inset;
+	-moz-box-shadow: 0 3px 8px rgba(255,165,0,0.25), 0 0 1px 1px rgba(255, 165, 0, 0.3) inset;
+	box-shadow: 0 3px 8px rgba(255,165,0,0.25), 0 0 1px 1px rgba(255, 165, 0, 0.3) inset;
+}
+
+/* 툴팁의 사진 부분 */
+.tooltip-thumb {
+	float: left;
+	width: 180px;
+	min-height: 100px;
+	position: relative;
+}
+.tooltip-thumbcap {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 180px;
+	background: rgba(0,0,0,0.6);
+	color: #fff;
+	font-size: 12px;
+	line-height: 16px;
+	padding: 5px 0;
+	text-align: center;
+}
+
+/* 툴팁의 글자 부분 */
+.tooltip-info {
+	float: left;
+	width: 230px;
+	margin-left: 10px;
+}
+
+/* 사진을 세로 260px로 제한 */
+.timeline-tooltip a.image, .profile a.image {
+	display: block;
+	overflow: hidden;
+	max-height: 300px;
+	line-height: 0;
+}
+
+/* 구분 */
+.timeline-tooltip .title, .profile .category {
+	margin-bottom: 2px;
+}
+
+/* 작품명 */
+.timeline-tooltip .title, .profile .title {
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 2px;
+}
+
+/* 원제 */
+.timeline-tooltip .subtitle, .profile .subtitle {
+	font-size: 12px;
+	line-height: 18px;
+	color: #aaa;
+	margin-bottom: 2px;
+	cursor: auto;
+}
+
+.profile .title, .profile .subtitle {
+	width: 200px;
+	margin: 0 auto 2px;
+}
+
+/* 캐스트 */
+.timeline-tooltip ul, .profile ul {
+	list-style: none !important;
+	margin: 5px 0 0 !important;
+	padding: 0 !important;
+	text-align: center;
+}
+
+/* 너무 긴 이름일 경우 알아서 줄바꿈 */
+.timeline-tooltip li a, .profile li a {
+	white-space: nowrap;
+}
+
+/* 캐릭터 + 캐스트 구분선 */
+.timeline-tooltip li a:last-child:before, .profile li a:last-child:before {
+	content: "|";
+	color: #ccc ;
+	display: inline-block;
+	padding: 0 .35em 0 .25em;
+}
+
+/* 닫기 버튼 */
+.timeline-tooltip .close {
+	display: none;
+}
+
+.profiles .profile .close {
+	outline: none;
+	color: #bbb;
+	font-size: 20px;
+	position: absolute;
+	top: 2px;
+	right: 6px;
+	cursor: pointer;
+}
+.profiles .profile .close:hover {
+	color: #999;
+}
+
+/*==============
+	캘린더
+==============*/
+.calendar-control {
+	position: relative;
+}
+
+/* 슬라이드 쇼 & 플레인 모드 */
+.calendar-mode {
+	position: absolute;
+	top: 17px;
+	right: 8px;
+	width: 32px;
+	height: 32px;
+	background: url(images/view-mode.png) no-repeat 0 0;
+	cursor: pointer;
+}
+.calendar-mode.plain {
+	background-position: 0 -32px;
+}
+
+/* 캘린더의 스위치 버튼 */
+.calendar-navi {
+	width: 792px;
+	padding: 0 0 30px !important;
+	position: relative;
+}
+.calendar-navi ul.days {
+	display: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 792px;
+	text-align: center;
+}
+.calendar-navi ul.days li {
+	display: inline-block;
+	padding: 0 6px;
+	color: #555;
+}
+.calendar-navi ul.days li:hover {
+	color: #00A6BC;
+	text-decoration: underline;
+}
+.calendar-navi li.selected ul.days {
+	display: block;
+}
+
+/* 캘린더의 컨테이너 */
+.calendar-container {
+	position: relative;
+	margin-bottom: 10px;
+}
+#calendar {
+	width: 920px;
+	min-height: 237px;
+	padding-top: 25px; /* 편집 버튼을 위한 공간 */
+	margin: auto;
+	background: url(images/throbber.gif) no-repeat center center;
+	position: relative;
+	overflow-x: hidden;
+}
+#calendar-prev, #calendar-next {
+	font: bold 48px/225px Arial;
+	text-align: center;
+	width: 25px;
+	height: 225px;
+	color: #fff;
+	background: #57bae8;
+	cursor: pointer;
+	position: absolute;
+	top: 25px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+#calendar-prev:hover, #calendar-next:hover {
+	background: #008ccf;
+}
+#calendar-prev { left: 0; }
+#calendar-next { right: 0; }
+
+#calendar .editsection {
+	float: none !important;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+p .editsection {
+	display: none;
+}
+
+/* 캘린더 */
+.calendar {
+	background: #fff;
+}
+#calendar:not(.plain) .calendar {
+	width: 10000px;
+	height: 237px;
+	position: absolute;
+	top: 25px;
+	left: 920px;
+}
+
+.calendar .day {
+	float: left;
+	min-width: 100px;
+	height: 200px;
+	padding: 35px 2px 2px;
+	position: relative;
+}
+.calendar .day .head {
+	font: bold 15px/20px '맑은 고딕';
+	padding: 5px;
+	position: absolute;
+	top: 0;
+	left: 2px;
+	right: 2px;
+	background: #eaeaea;
+}
+.calendar .day .body {
+	padding: 10px;
+	height: 180px;
+}
+.calendar.current .today .head, .calendar.current .today .body {
+	background: #dcecfc;
+}
+
+/* 생일인 사람의 사진과 캡션 */
+.birth-profile {
+	float: left;
+	width: 120px;
+	height: 180px;
+	overflow: hidden;
+	text-align: center;
+	position: relative;
+}
+.birth-profile + .birth-profile {
+	margin-left: 5px;
+}
+.birth-profile > a.image {
+	line-height: 0;
+}
+.birth-profile > a.new {
+	bottom: 45px;
+}
+.birth-caption {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 120px;
+	background: rgba(87, 186, 232, 0.87);
+	font-size: 12px;
+	line-height: 16px;
+	padding: 5px 0;
+	text-align: center;
+}
+.calendar.current .today .birth-caption {
+	background: rgba(0, 140, 207, 0.87);
+}
+.birth-caption a {
+	color: #fff !important;
+}
+
+/*===============
+	게임 발매표
+   ===============*/
+/* 소트 메뉴 + 토글 메뉴 */
+.release-chart-nav {
+	margin: auto;
+}
+
+/* 토글 메뉴 */
+.release-chart-control {
+	width: 280px;
+	margin: 0 auto !important;
+}
+.release-chart-control li {
+	float: left;
+	width: 134px;
+	padding: 4px 0;
+	margin: 0 3px;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+}
+.release-chart-control a {
+	color: #fff !important;
+	text-decoration: none !important;
+}
+
+/* 발매표 달력 */
+.release-chart {
+	clear: both;
+}
+.release-chart .month  {
+	float: left;
+	width: 300px;
+	padding: 10px;
+	position: relative;
+}
+.release-chart .month + .month {
+	margin-left: 10px;
+}
+.release-chart .month.current {
+	background: #d9f2fa;
+}
+.release-chart .month.profiles {
+	width: 960px;
+}
+.release-chart .month.profiles .list {
+	padding-left: 28px;
+}
+
+/* 1월 ~ 12월 글자 */
+.release-chart .caption {
+	font: normal 20px/24px '맑은 고딕';
+	margin-bottom: 10px;
+	position: relative;
+}
+
+/* 펼치기 접기 버튼 */
+.release-chart span.more {
+	display: block;
+	width: 24px;
+	height: 24px;
+	/* @embed */
+	background: url(images/expand-collapse.png) no-repeat 0 0;
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+.release-chart .month.profiles span.more {
+	background-position: 0 -24px;
+}
+
+/* 게임의 목록 */
+.release-chart .list:nth-child(odd) {
+	background-color: #efefef;
+}
+.release-chart .month.current .list:nth-child(odd) {
+	background-color: transparent;
+}
+.release-chart .list:hover {
+	background-color: #eed;
+}
+.release-chart .month.current .list:hover {
+	background-color: #a3dff3;
+}
+.release-chart .otome.hide-otome,
+.release-chart .bl.hide-bl,
+.release-chart .allages.hide-allages,
+.release-chart .mature.hide-mature {
+	display: none;
+}
+
+/* 각 목록의 구성 */
+.release-chart .link {
+	line-height: 26px;
+	padding-left: 20px;
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+.release-chart .list.otome .link {
+	background-image: url(images/bullet-pink.png);
+}
+.release-chart .list.bl .link {
+	background-image: url(images/bullet-red.png);
+}
+.release-chart .link span.date {
+	float: left;
+	display: block;
+	width: 57px;
+	font-size: 12px;
+	font-family: 'Segoe UI', arial, sans-serif;
+	letter-spacing: 0;
+	color: #aaa;
+	margin-right: 4px;
+}
+.release-chart .link a {
+	float: left;
+	display: block;
+	width: 205px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.release-chart .link a.new {
+	color: #303030 !important;
+}
+
+/* 기본적으로 모든 프로필은 보이지 않게 */
+.month .profile {
+	display: none;
+}
