@@ -1,17 +1,17 @@
 /*===============
 	기초 설정
   ===============*/
-body {
+html, body {
 	font-size: 13px;
 	letter-spacing: -1px;
 	color: #101010;
 	margin: 0;
 }
-body, textarea, pre, input, select, option {
-	font-family: 'メイリオ', 'Meiryo', '맑은 고딕', 'Malgun Gothic', sans-serif;
-	-moz-tab-size: 16;
-	-o-tab-size: 16;
-	tab-size: 16;
+html, textarea, pre, input, select, option {
+	font-family: 'Meiryo', 'Malgun Gothic', sans-serif;
+	-moz-tab-size: 15;
+	-o-tab-size: 15;
+	tab-size: 15;
 }
 
 textarea#wpTextbox1 {
@@ -25,13 +25,17 @@ textarea#wpTextbox1 {
 	text-shadow: none;
 }
 
+.group:after {
+	display: table;
+	content: '';
+	clear: both;
+}
 .clear:after {
 	clear: both;
-	content: ".";
+	content: "";
 	display: block;
 	height: 0;
 	visibility: hidden;
-	font-size: 0;
 }
 
 /* Chrome outline 제거 */
@@ -40,9 +44,8 @@ textarea:focus, input:focus, select:focus {
 }
 
 /* 언어 블럭 */
-:lang(ja) {
-	cursor: pointer; /* modern-skylight.article.js의 오토 셀렉트 참조 */
-}
+*:lang(ja) { cursor: pointer; } /* wikichan.article.js의 오토 셀렉트 참조 */
+*:lang(ja):hover { color: #888 !important; }
 
 /*=================
 	그리드 레이아웃
@@ -169,7 +172,7 @@ textarea:focus, input:focus, select:focus {
 
 /* 줄 간격, 양쪽 정렬 */
 .content p, .content ul, .content ol, .content dl {
-	line-height: 170%;
+	line-height: 1.8;
 	text-align: justify;
 }
 
@@ -1100,50 +1103,34 @@ ul.top-menu > li:hover > a {
 
 /* 문서 제목 */
 h1#firstheading {
-	margin: .5em 0 .6em 0;
+	float: left;
 	font-size: 25px;
-	line-height: 31px;
-	border: none;
-	font-family: '맑은 고딕';
-}
-/*
-h1#firstheading {
-	max-width: 400px;
-}
-.article.alpha h1#firstheading {
-	max-width: 660px;
-}
-*/
-.action-edit h1#firstheading {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	line-height: normal;
+	border: 0;
+	margin: 15px 15px 10px 0;
+	font-family: '맑은 고딕', sans-serif;
 }
 
 /* 보기 ~ 새로고침 버튼 */
 #cactions {
 	float: right;
-	margin: 0 0 1em;
+	margin: 15px 0 5px 30px;
 }
-#cactions li {
-	float: left;
-	margin: 0 0 0 1px;
-}
+#cactions li { display: inline-block; }
 
 /* 버튼의 색상과 형태 */
 #cactions li a {
-	display: block;
+	display: inline-block;
 	background: #5bc0de;
 	border: 1px solid #46b8da;
 	color: #fff !important;
-	width: 24px;
-	font-size: 95%;
-	padding: 8px;
+	font-size: 1rem;
+	width: 38px;
+	line-height: 38px;
 	text-align: center;
-	text-decoration: none !important;
 	white-space: nowrap;
-	overflow: hidden;
 	position: relative;
+	text-decoration: none !important;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -1335,13 +1322,6 @@ div#contentSub2 {
 div#bodyContent{
 	clear: both;
 	position: relative;
-}
-
-/* 원본 주소 */
-@media screen {
-	.printfooter {
-		display: none;
-	}
 }
 
 /** 푸터 **/
@@ -1691,6 +1671,70 @@ span.ui-empty {
 	background-position: 0 -32px;
 }
 
+/*====================
+	MODAL WINDOW
+====================*/
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgb(0,0,0);
+	z-index: 1000;
+	display: none;
+	opacity: 0;
+}
+.modal-container {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	display: none;
+	z-index: 1000;
+}
+.modal {
+	max-width: 550px;
+	margin: 0 auto;
+	background: #fff;
+	position: relative;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+.modal .head {
+	padding: 20px 50px 10px;
+	border-bottom: 1px dotted #eaeaea;
+	text-align: center;
+}
+.modal .body {
+	padding: 20px 30px;
+}
+.modal .foot {
+	padding: 10px 30px 15px;
+	border-top: 1px dotted #eaeaea;
+	text-align: center;
+}
+
+.modal-close {
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	top: 15px;
+	right: 25px;
+	font: bold 30px/1 'Arial';
+	background: none !important;
+	border: 0 !important;
+	color: rgba(0,0,0, .15);
+	cursor: pointer;
+}
+.modal-close:hover { color: rgba(0,0,0, .4); }
+
+body.modal-open { overflow: hidden; }
+
 /* Scroll to top */
 #toTop {
 	position: fixed;
@@ -2031,10 +2075,34 @@ table.wikitable.focusable tr:hover td {
 	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
 }
 
+span.kbd {
+	display: inline-block;
+	padding: 0.2em 0.6em;
+	margin: 0 0.1em;
+	border: 1px solid #ccc;
+	font-family: Arial,sans-serif;
+	background-color: #f7f7f7;
+	color: #333;
+	-moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+	-webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+	box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	text-shadow: 0 1px 0 #fff;
+	line-height: 1.4;
+	white-space: nowrap;
+}
+
 /* ReCaptcha */
 #recaptcha_area {
 	margin: auto;
 }
 form#editform > p {
 	margin: 0 auto !important;
+}
+
+/* Miscellaneous */
+@media screen {
+	.printfooter { display: none; }
 }

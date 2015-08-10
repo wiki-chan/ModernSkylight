@@ -15,10 +15,10 @@
 }
 
 .plainbox p {
-	margin: 0 !important;
+	margin: .4em 0 0 !important;
 }
 .plainbox p + p {
-	margin: .5em 0 0 0 !important;
+	margin: .8em 0 0 !important;
 }
 
 .plainbox .right ul {
@@ -44,7 +44,7 @@
 	{{정보상자}}
 ================*/
 .infobox {
-	margin: 10px 0;
+	margin: 1em 0 2em;
 }
 
 /* 그림 영역 */
@@ -251,7 +251,7 @@
 	각종 정보 틀
 =================*/
 .simplebox {
-	margin: .3em auto .8em;
+	margin: .3em auto 1em;
 }
 .simplebox .title {
 	font-weight: bold;

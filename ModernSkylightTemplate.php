@@ -3,8 +3,6 @@
  * Modern Skylight - Modern skin for Mediawiki Engine
  * http://wiki-chan.net
  * 
- * @file
- * @ingroup Skins
  * @author Fenet (http://wiki-chan.net / stuff.ifenet@gmail.com)
  * @author cafeinlove (http://wiki-chan.net / cafeinlovekr@gmail.com)
  */
@@ -13,107 +11,32 @@ if( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
 }
 
-/**
- * SkinTemplate class for Vector skin
- * @ingroup Skins
- */
-class SkinWikiChan extends SkinTemplate {
-
-	var $skinname = 'modern-skylight', $stylename = 'modern-skylight',
-		$template = 'ModernSkylightTemplate', $useHeadElement = true;
-
-	/**
-	 * Initializes output page and sets up skin-specific parameters
-	 * @param $out OutputPage object to initialize
-	 */
-	public function initPage( OutputPage $out ) {
-		global $wgLocalStylePath;
-
-		parent::initPage( $out );
-
-		// Append CSS which includes IE only behavior fixes for hover support -
-		// this is better than including this in a CSS file since it doesn't
-		// wait for the CSS file to load before fetching the HTC file.
-		$min = $this->getRequest()->getFuzzyBool( 'debug' ) ? '' : '.min';
-		$out->addHeadItem( 'csshover',
-			'<!--[if lt IE 7]><style type="text/css">body{behavior:url("' .
-				htmlspecialchars( $wgLocalStylePath ) .
-				"/{$this->stylename}/csshover{$min}.htc\")}</style><![endif]-->");
-
-		// tab-size가 듣지 않는 IE를 위해 글꼴 강제 수정
-		$out->addHeadItem( 'fontoverride',
-			'<!--[if IE]><style type="text/css">pre{font-family:굴림,Gulrim !important;}</style><![endif]-->'
-		);
-
-		$out->addModuleScripts( 'skins.modern-skylight' );
-		if ($out->getTitle()->isMainPage()) {
-			$out->addModuleScripts( 'skins.modern-skylight.mainpage' );
-			$out->addModuleScripts( 'skins.modern-skylight.sidebar' );
-		}
-
-		switch ($out->getTitle()->getNamespace()) {
-			case NS_MAIN:
-			case NS_SANDBOX:
-			case NS_PROJECT:
-			case NS_IMAGE:
-			case NS_TEMPLATE:
-			case NS_HELP:
-			case NS_CATEGORY:
-				$out->addModuleScripts( 'skins.modern-skylight.article' );
-				break;
-			case NS_PORTAL:
-				$out->addModuleScripts( 'skins.modern-skylight.portal' );
-				break;
-			case NS_USER:
-				$out->addModuleScripts( 'skins.modern-skylight.userpage' );
-				break;
-		}
-	}
-
-	function setupSkinUserCss( OutputPage $out ){
-		global $wgStylePath;
-
-		parent::setupSkinUserCss( $out );
-
-		$out->addModuleStyles( 'skins.modern-skylight' );
-		if ($out->getTitle()->isMainPage()) {
-			$out->addModuleStyles( 'skins.modern-skylight.mainpage' );
-			$out->addModuleStyles( 'skins.modern-skylight.sidebar' );
-		}
-
-		switch ($out->getTitle()->getNamespace()) {
-			case NS_MAIN:
-			case NS_SANDBOX:
-			case NS_PROJECT:
-			case NS_IMAGE:
-			case NS_TEMPLATE:
-			case NS_HELP:
-				$out->addModuleStyles( 'skins.modern-skylight.article' );
-				break;
-			case NS_PORTAL:
-				$out->addModuleStyles( 'skins.modern-skylight.portal' );
-				break;
-			case NS_CATEGORY:
-				$out->addModuleStyles( 'skins.modern-skylight.article' );
-				$out->addModuleStyles( 'skins.modern-skylight.catpage' );
-		}
-	}
+// 네임스페이스 체크
+if( !defined( 'NS_BOARD' ) ) {
+	define('NS_BOARD', -10000);
 }
 
-class WikiChanTemplate extends BaseTemplate {
+if( !defined( 'NS_PORTAL' ) ) {
+	define('NS_PORTAL', -10000);
+}
 
-	/* Functions */
+class ModernSkylightTemplate extends BaseTemplate {
+
+	// Functions
 	private function getUrl($pagename) {
 		global $wgArticlePath;
 		return str_replace("$1", $pagename, $wgArticlePath);
 	}
 
-	/**
-	 * Outputs the entire contents of the (X)HTML page
-	 */
+	private function getData($data) {
+
+	}
+
+	// 전체 화면을 구성함
 	public function execute() {
 		global $wgArticlePath;
 
+		// 여기는 구 Vector에서 그대로 가져옴
 		// Build additional attributes for navigation urls
 		$nav = $this->data['content_navigation'];
 
@@ -152,8 +75,6 @@ class WikiChanTemplate extends BaseTemplate {
 		$c_mainpage = Title::newMainPage();
 
 		$use_sidebar = false;
-		$hook_args = array( $c_page, $c_namespace, $c_maainpage, &$use_sidebar);
-
 		if (   ( $c_namespace >= 0 )
 			&& ( $c_namespace != NS_USER ) // User
 			&& ( $c_namespace != NS_FILE ) // File
@@ -164,7 +85,8 @@ class WikiChanTemplate extends BaseTemplate {
 			) $use_sidebar = true;
 
 		// check other extensions
-		wfRunHooks( 'wikichanUseRightSidebar', $hook_args );
+		$hook_args = array( $c_page, $c_namespace, $c_mainpage, &$use_sidebar);
+		Hooks::run( 'ModernSkylightUseRightSidebar', $hook_args );
 
 		$this->data['useRightSidebar'] = $use_sidebar;
 
@@ -175,11 +97,12 @@ class WikiChanTemplate extends BaseTemplate {
 		# Make custom Notice
 		global $wgWikichanCustomNotice;
 		if (isset($wgWikichanCustomNotice)) $this->data['customNotice'] = "<p>" . $wgWikichanCustomNotice . "</p>";
+		else $this->data['customNotice'] = '';
 
 		# 로그인 부분 컨트롤
 		$PersonalTools = $this->getPersonalTools();
 		//로그인 안한 상태에서 로그인 주소에 접근하지 못하는 버그 fix
-		if (!isset($PersonalTools['login'])) $PersonalTools['login'] = $PersonalTools['anonlogin'];
+		if (!isset($PersonalTools['login']) && isset($PersonalTools['anonlogin'])) $PersonalTools['login'] = $PersonalTools['anonlogin'];
 
 		# 개인 연습장 만들기
 		if ($this->data['skin']->loggedin) {
@@ -209,10 +132,9 @@ class WikiChanTemplate extends BaseTemplate {
 			$this->data['isadmin'] = true;
 		else
 			$this->data['isadmin'] = false;
-
-		// Output HTML Page
-		$this->html( 'headelement' );
 ?>
+		<?php $this->html( 'headelement' ); ?>
+
 		<div id="header" role="header">
 			<div class="holder clear">
 				<div id="header-tools" role="navigation">
@@ -228,7 +150,9 @@ class WikiChanTemplate extends BaseTemplate {
 								<li><a href="<?=$this->getUrl("특수기능:사용자")?>">모든 회원 목록</a></li>
 								<li><a href="<?=$this->getUrl("특수기능:활동적인사용자")?>">활동적인 회원 목록</a></li>
 								<hr>
+								<?php if ($toolList['whatlinkshere']) : ?>
 								<li><a href="<?=$toolList['whatlinkshere']['href']?>" accesskey="b">여기를 가리키는 문서 <span class="shortcut">b</span></a></li>
+								<?php endif; ?>
 								<li><a href="<?=$this->getUrl("특수기능:파일올리기")?>">파일 업로드</a></li>
 								<hr>
 								<li><a href="<?=$this->getUrl("특수기능:새문서")?>">새로 등록된 문서</a></li>
@@ -276,8 +200,8 @@ class WikiChanTemplate extends BaseTemplate {
 								</ul>
 							</li>
 						<?php else : ?>
-							<li><a href="<?php echo $PersonalTools['login']['links'][0]['href']; ?>&#38;type=signup">회원가입</a></li>
-							<li><a href="<?php echo $PersonalTools['login']['links'][0]['href']; ?>">로그인</a></li>
+							<li id="pt-createaccount"><a href="<?php echo $PersonalTools['login']['links'][0]['href']; ?>&#38;type=signup">회원가입</a></li>
+							<li id="pt-login"><a href="<?php echo $PersonalTools['login']['links'][0]['href']; ?>">로그인</a></li>
 						<?php endif; ?>	
 					</ul>
 				</div>
@@ -296,7 +220,7 @@ class WikiChanTemplate extends BaseTemplate {
 		<div id="rsp-header" class="rsp clear">
 			<div class="rsp-logo">
 				<a href="<?=$this->getUrl("대문")?>">
-					<img src="/skins/modern-skylight/images/modern-skylight-logo-s.png" alt="대문" />
+					<img src="/skins/ModernSkylight/resources/images/modern-skylight-logo-s.png" alt="대문" />
 				</a>
 			</div>
 			<div class="rsp-nav tools"><a id="r-tools">메뉴</a></div>

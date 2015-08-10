@@ -40,73 +40,58 @@ a:hover {
 /*=================
 	Upper Layer
   =================*/
-.navi {
-	margin-bottom: 15px;
-}
-
 /* 사이트 로고 */
-.site-logo {
-	float: left;
+#logo {
+	width: auto;
+	height: 35px;
+}
+#logo a {
 	display: block;
+	line-height: 0; /* fix */
 	width: 320px;
 	height: 80px;
+	position: absolute;
+	top: -50px;
 }
 
-/* 내비게이션 */
-.navi-menu {
+/*
+.nav-menu {
 	float: right;
 }
-.navi-menu li {
+.nav-menu li {
 	float: left;
 	margin-left: 5px;
 }
-.navi-menu li a {
+.nav-menu li a {
 	display: block;
 	width: 80px;
 	height: 80px;
 	position: relative;
+	color: #fff !important;
 }
 
-/* 내비게이션의 그림 아이콘 */
-.navi-menu span.icon {
-	content: '';
-	display: block;
-	width: 32px;
-	height: 32px;
+.nav-menu i {
+	font: normal normal 26px/1 'FontAwesome';
+	display: inline-block;
 	position: absolute;
+	width: 80px;
 	top: 18px;
-	left: 24px;
-	/* @embed */
-	background-image: url(images/navi-icons.png);
-	background-repeat: no-repeat;
+	left: 0;
+	text-align: center;
 }
-.navi-menu span.random {
-	background-position: 0 0;
-}
-.navi-menu span.sandbox {
-	background-position: 0 -32px;
-}
-.navi-menu span.tool {
-	background-position: 0 -64px;
-}
-.navi-menu span.tutorial {
-	background-position: 0 -96px;
-}
-.navi-menu span.sample {
-	background-position: 0 -128px;
-}
-.navi-menu span.help {
-	background-position: 0 -160px;
-}
+.nav-menu i.random:before { content: '\f074'; }
+.nav-menu i.sandbox:before { content: '\f1b2'; }
+.nav-menu i.tutorial:before { content: '\f12e'; }
+.nav-menu i.sample:before {content: '\f133'; }
+.nav-menu i.help:before { content: '\f069'; }
+.nav-menu i.shortcuts:before { content: '\f05b'; }
 
-/* 내비게이션의 글자 */
-.navi-menu span.caption {
+.nav-menu span {
 	position: absolute;
 	bottom: 3px;
-	left: 6px;
-	color: #fff !important;
-	font-size: 12px;
+	left: 7px;
 }
+*/
 
 /*==================
 	Acordion Menu
@@ -255,9 +240,20 @@ a:hover {
 	display: block;
 	width: 24px;
 	height: 24px;
-	/* @embed */
-	background: url(images/expand-collapse.png) no-repeat 0 0;
 	text-indent: -9999px;
+	line-height: 0;
+}
+.component-head span.more a:after {
+	font: normal normal 18px/1 'FontAwesome';
+	content: '\f067';
+	color: #373737;
+	text-indent: 0px;
+	display: block;
+	line-height: 24px;
+	text-align: center;
+}
+.component-head span.more a.open:after {
+	content: '\f068';
 }
 .component-body {
 	padding: 5px 0;
@@ -272,36 +268,5 @@ input.createboxInput {
 }
 
 /* 토글 */
-.createform .default {
-	margin-bottom: 3px;
-}
-.createform .hidden {
-	height: 137px;
-}
-.createform span.more a.open {
-	background-position: 0 -24px;
-}
-
-/*=====================
-	Responsive Settings
-  =====================*/
-
-/* width < 480 */
-@media screen and (max-width: 479px) {
-	
-}
-
-/* 480 =< width < 600 */
-@media screen and (min-width: 480px) and (max-width: 599px) {
-	
-}
-
-/* 600 =< width < 800 */
-@media screen and (min-width: 600px) and (max-width: 799px) {
-	
-}
-
-/* 800 =< width < 1000 */
-@media screen and (min-width: 800px) and (max-width: 999px) {
-	
-}
+#createform-default { margin-bottom: 3px; }
+#createform-hidden { display: none; }

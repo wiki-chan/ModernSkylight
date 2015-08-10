@@ -1,0 +1,120 @@
+{
+	"name": "Modern Skylight",
+	"version": "1.0",
+	"author": [
+		"Fenet",
+		"cafeinlove"
+	],
+	"url": "https://github.com/wiki-chan/modern-skylight",
+	"descriptionmsg": "modern-skylight-desc",
+	"namemsg": "skinname-modern-skylight",
+	"type": "skin",
+	"ValidSkinNames": {
+		"modernskylight": "ModernSkylight"
+	},
+	"AutoloadClasses": {
+		"SkinModernSkylight": "SkinModernSkylight.php",
+		"ModernSkylightTemplate": "ModernSkylightTemplate.php"
+	},
+	"license": "BSD-2",
+	"ResourceModules": {
+		"skins.modern-skylight": {
+			"scripts": [
+				"resources/modern-skylight.js",
+				"resources/editWarning.js",
+				"resources/modern-skylight.responsive.js"
+			],
+			"styles": {
+				"resources/font-awesome.css": {
+					"media": "screen"
+				},
+				"resources/modern-skylight.css": {
+					"media": "screen"
+				},
+				"resources/modern-skylight.responsive.css": {
+					"media": "screen"
+				}
+			},
+			"dependencies": [
+				"mediawiki.util",
+				"jquery",
+				"jquery.async",
+				"jquery.cookie",
+				"jquery.json",
+				"jquery.makeCollapsible",
+				"jquery.mwExtension",
+				"jquery.ui.tabs.js",
+				"jquery.ui.widget.js",
+				"skins.modern-skylight.simplesearch"
+			],
+			"messages": [
+				"modern-skylight-editwarning"
+			]
+		},
+		"skins.modern-skylight.sidebar": {
+			"scripts": [
+				"resources/modern-skylight.sidebar.js"
+			],
+			"styles": {
+				"resources/modern-skylight.sidebar.css": {
+					"media": "screen"
+				}
+			},
+			"dependencies": [
+				"jquery"
+			]
+		},
+		"skins.modern-skylight.mainpage": {
+			"scripts": [
+				"resources/modern-skylight.mainpage.js"
+			],
+			"styles": {
+				"resources/modern-skylight.mainpage.css": {
+					"media": "screen"
+				}
+			},
+			"dependencies": [
+				"mediawiki.util",
+				"jquery",
+				"jquery.json",
+				"skins.modern-skylight.sidebar"
+			]
+		},
+		"skins.modern-skylight.article": {
+			"scripts": [
+				"resources/modern-skylight.article.js"
+			],
+			"styles": {
+				"resources/modern-skylight.article.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"skins.modern-skylight.catpage": {
+			"styles": {
+				"resources/modern-skylight.catpage.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"skins.modern-skylight.simplesearch": {
+			"scripts": "resources/modern-skylight.simpleSearch.js",
+			"dependencies": [
+				"jquery.autoEllipsis",
+				"jquery.client",
+				"jquery.placeholder",
+				"jquery.suggestions",
+				"mediawiki.legacy.mwsuggest"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteSkinPath": "ModernSkylight"
+	},
+	"config": {
+		"MessageDirs": {
+			"ModernSkylight": "i18n"
+		}
+	}
+}

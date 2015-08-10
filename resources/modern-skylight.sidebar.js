@@ -104,5 +104,5 @@ $(function () {
 	});
 
 	// 로그인 상태가 아닐 경우 스위치를 숨김 (by 페네트-)
-	if (!wgUserName) $('.infowidget-switch').hide();
+	if (!mw.config.wgUserName) $('.infowidget-switch').hide();
 });

@@ -17,7 +17,7 @@ $(function() {
 	});
 
 	// 맨 위로 스크롤
-	if (wgNamespaceNumber != 2) {
+	if (mw.config.wgNamespaceNumber != 2) {
 		$('body').append('<a id="toTop">↑</a>');
 		$(window).scroll(function() {
 			if($(this).scrollTop() > 400) {

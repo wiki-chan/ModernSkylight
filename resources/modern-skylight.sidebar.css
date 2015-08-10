@@ -1,47 +1,15 @@
 /*=================
-	Components
-  =================*/
-/** DUPLICATED with modern-skylight.mainpage.css! **/
-.component {
-	background: #fff;
-	margin-bottom: 10px;
-}
-.component-head {
-	line-height: 40px;
-	position: relative;
-}
-.component-head span.title {
-	color: #202020;
-	font-size: 20px;
-}
-.component-head span.more {
-	position: absolute;
-	right: 0;
-	top: 8px;
-}
-.component-head span.more a {
-	display: block;
-	width: 24px;
-	height: 24px;
-	/* @embed */
-	background: url(images/expand-collapse.png) no-repeat 0 0;
-	text-indent: -9999px;
-}
-.component-body {
-	padding: 5px 0;
-}
-
-/*=================
 	InfoWidgets
   =================*/
 .infowidget {
 	width: 300px;
-	height: 250px;
+	min-height: 550px;
+}
+.infowidget.loading {
 	background: url(images/throbber.gif) no-repeat center center;
 }
 .infowidget ul {
 	background: #fff;
-	min-height: 250px;
 }
 .infowidget li:nth-child(odd) {
 	background: #efefef;
@@ -59,16 +27,16 @@
 	text-overflow: ellipsis;
 	position: relative;
 }
-.infowidget a.new { background: #f8e0df; }
+.infowidget a.new { background: #ffeedc; }
 .infowidget a.new:after {
 	position: absolute;
 	right: 7px;
 	top: 0;
 	font-size: 90%;
-	color: #d2322d;
-	content: '추가';
+	color: #ff6c00;
+	content: '새글';
 }
-.infowidget a.new:hover { background: #f4ccca; }
+.infowidget a.new:hover { background: #ffe6ca; }
 
 /* 모든 문서, 주시한 문서 스위치 */
 .infowidget-switch {
