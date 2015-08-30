@@ -40,12 +40,10 @@ $wgResourceModules['skins.modern-skylight'] = array(
 	'scripts' => array(
 			"resources/modern-skylight.js",
 			"resources/editWarning.js",
-			"resources/modern-skylight.responsive.js"
 		),
 	'styles' => array(
 			"resources/font-awesome.css" => array('media' => 'screen'),
 			"resources/modern-skylight.css" => array('media' => 'screen'),
-			"resources/modern-skylight.responsive.css" => array('media' => 'screen')
 		),
 	'dependencies' => array(
 			'mediawiki.util',
