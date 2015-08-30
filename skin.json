@@ -14,24 +14,21 @@
 	},
 	"AutoloadClasses": {
 		"SkinModernSkylight": "SkinModernSkylight.php",
-		"ModernSkylightTemplate": "ModernSkylightTemplate.php"
+		"ModernSkylightTemplate": "ModernSkylightTemplate.php",
+		"ModernSkylightMenubar": "ModernSkylightMenubar.php"
 	},
 	"license": "BSD-2",
 	"ResourceModules": {
 		"skins.modern-skylight": {
 			"scripts": [
 				"resources/modern-skylight.js",
-				"resources/editWarning.js",
-				"resources/modern-skylight.responsive.js"
+				"resources/editWarning.js"
 			],
 			"styles": {
 				"resources/font-awesome.css": {
 					"media": "screen"
 				},
 				"resources/modern-skylight.css": {
-					"media": "screen"
-				},
-				"resources/modern-skylight.responsive.css": {
 					"media": "screen"
 				}
 			},
@@ -114,7 +111,7 @@
 	},
 	"config": {
 		"MessageDirs": {
-			"ModernSkylight": "i18n"
+			"ModernSkylight": "/var/www/html/skins/ModernSkylight/i18n"
 		}
 	}
 }

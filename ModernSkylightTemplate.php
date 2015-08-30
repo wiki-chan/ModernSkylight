@@ -132,6 +132,9 @@ class ModernSkylightTemplate extends BaseTemplate {
 			$this->data['isadmin'] = true;
 		else
 			$this->data['isadmin'] = false;
+
+		# 메뉴바 데이터 가져오기
+		$this->data['menubar'] = ModernSkylightMenubar::getMenubar();
 ?>
 		<?php $this->html( 'headelement' ); ?>
 
@@ -139,48 +142,7 @@ class ModernSkylightTemplate extends BaseTemplate {
 			<div class="holder clear">
 				<div id="header-tools" role="navigation">
 					<ul class="top-menu nolist clear">
-						<li><a href="<?=$this->getUrl("대문")?>" accesskey="z">대문으로</a></li>
-						<li><a href="<?=$this->getUrl("특수기능:임의문서")?>" accesskey="x">랜덤 읽기</a></li>
-						<li class="dropdown">
-							<a href="<?=$this->getUrl("특수기능:특수문서")?>" accesskey="t">도구</a>
-							<ul class="dropdown-menu lefted">
-								<li><a href="<?=$this->getUrl("특수기능:최근바뀜")?>" accesskey="r">모든 문서의 바뀜 <span class="shortcut">r</span></a></li>
-								<li><a href="<?=$this->getUrl("특수기능:주시문서목록")?>" accesskey="l">주시 문서의 바뀜 <span class="shortcut">l</span></a></li>
-								<hr>
-								<li><a href="<?=$this->getUrl("특수기능:사용자")?>">모든 회원 목록</a></li>
-								<li><a href="<?=$this->getUrl("특수기능:활동적인사용자")?>">활동적인 회원 목록</a></li>
-								<hr>
-								<?php if ($toolList['whatlinkshere']) : ?>
-								<li><a href="<?=$toolList['whatlinkshere']['href']?>" accesskey="b">여기를 가리키는 문서 <span class="shortcut">b</span></a></li>
-								<?php endif; ?>
-								<li><a href="<?=$this->getUrl("특수기능:파일올리기")?>">파일 업로드</a></li>
-								<hr>
-								<li><a href="<?=$this->getUrl("특수기능:새문서")?>">새로 등록된 문서</a></li>
-								<li><a href="<?=$this->getUrl("특수기능:새파일")?>">새로 등록된 파일</a></li>
-								<li><a href="<?=$this->getUrl("특수기능:분류안된문서")?>">분류되지 않은 문서</a></li>
-								<li><a href="<?=$this->getUrl("특수기능:분류안된파일")?>">분류되지 않은 파일</a></li>
-								<li><a href="<?=$this->getUrl("특수기능:필요한분류")?>">필요한 분류 목록</a></li>
-								<li><a href="<?=$this->getUrl("특수기능:끊긴넘겨주기")?>">끊긴 넘겨주기 문서</a></li>
-							</ul>
-						</li>
-						<?php if ($this->data['isadmin']) : ?>
-							<li class="dropdown">
-								<a href="<?=$this->getUrl("특수기능:특수문서")?>">관리</a>
-								<ul class="dropdown-menu lefted">
-									<li><a href="<?=$this->getUrl("특수기능:멀티업로드")?>">여러 파일 올리기</a></li>
-									<li><a href="<?=$this->getUrl("특수기능:찾아바꾸기")?>">찾아 바꾸기</a></li>
-									<hr>
-									<li><a href="<?=$this->getUrl("특수기능:일괄삭제")?>">문서 일괄 삭제</a></li>
-									<li><a href="<?=$this->getUrl("특수기능:문서대량삭제")?>">문서 패턴 삭제</a></li>
-									<hr>
-									<li><a href="<?=$this->getUrl("특수기능:이름바꾸기")?>">계정 이름 변경</a></li>
-									<li><a href="<?=$this->getUrl("특수기능:사용자병합")?>">사용자 병합</a></li>
-									<li><a href="<?=$this->getUrl("특수기능:차단")?>">사용자 차단</a></li>
-									<li><a href="<?=$this->getUrl("특수기능:차단해제")?>">사용자 차단 해제</a></li>
-									<li><a href="<?=$this->getUrl("특수기능:차단된사용자")?>">차단된 사용자 목록</a></li>
-								</ul>
-							</li>
-						<?php endif; ?>
+						<?php $this->renderMenubar($this->data['menubar']); ?>
 					</ul>
 				</div>
 				<div id="header-account" role="navigation">
@@ -350,6 +312,41 @@ class ModernSkylightTemplate extends BaseTemplate {
 	</body>
 </html>
 <?php
+	}
+
+	private function renderMenubar($items) {
+		foreach ($items as $menu) {
+			if ($menu["delimiter"]) {
+				echo "<hr>";
+				continue;
+			}
+
+			// admin이 아니라면 건너뜀
+			if ( isset($menu["admin"]) && $menu["admin"] && !$this->data['isadmin'] ) continue;
+
+			if ( !isset($menu["child"]) || count($menu["child"]) == 0 ) {
+				echo '<li>';
+			} else {
+				echo '<li class="dropdown">' . "\n";
+			}
+
+			$text = '<a href="' . $menu["href"] . '"';
+			if (isset($menu["accesskey"])) $text .= ' accesskey="' . $menu["accesskey"] . '"';
+			$text .= '>' . $menu["text"];
+
+			if (isset($menu["shortcut"])) $text .= ' <span class="shortcut">' . $menu["shortcut"] . "</span>";
+
+			$text .= '</a>';
+			echo $text;
+
+			if ( !isset($menu["child"]) || count($menu["child"]) != 0 ) {
+				echo '<ul class="dropdown-menu lefted">' . "\n";
+				$this->renderMenubar($menu["child"]);
+				echo '</ul>' . "\n";
+			}
+
+			echo '</li>';
+		}
 	}
 
 	private function renderNavigations($namespace) {

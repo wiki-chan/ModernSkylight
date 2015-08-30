@@ -30,6 +30,7 @@ $wgValidSkinNames['modernskylight'] = 'ModernSkylight';
 // autoload classes
 $wgAutoloadClasses['SkinModernSkylight'] = __DIR__ . '/SkinModernSkylight.php';
 $wgAutoloadClasses['ModernSkylightTemplate'] = __DIR__ . '/ModernSkylightTemplate.php';
+$wgAutoloadClasses['ModernSkylightMenubar'] = __DIR__ . '/ModernSkylightMenubar.php';
 
 // i18n setting
 $wgMessageDirs['ModernSkylight'] = __DIR__ . '/i18n';

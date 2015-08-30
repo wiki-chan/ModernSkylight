@@ -15,3 +15,17 @@ git clone git@github.com:wiki-chan/ModernSkylight.git
 ```php
 wfLoadSkin( 'ModernSkylight' );
 ```
+
+## 상단 메뉴 설정하기
+`미디어위키:ModernSkylightMenubar` 문서를 사용하여 메뉴를 만들 수 있습니다. 일반적으로 `텍스트 | 링크 | 옵션` 의 형식을 갖추고, `*` 기호로 목록을 만들면 됩니다. 또한 `-` 기호로 구분선을 넣을 수 있습니다. 다음 예시를 참고하여 작성하시기 바랍니다.
+```
+* 대문으로 | 대문 | accesskey=z
+* 랜덤 읽기 | 특수:임의문서 | accesskey=x
+* 도구 | 특수:특수문서
+** 모든 문서의 바뀜 | 특수:최근바뀜 | shortcut=r
+** 주시 문서의 바뀜 | 특수:주시문서목록 | shortcut=l
+** -
+** 모든 회원 목록 | 특수:사용자
+** -
+** 여기를 가리키는 문서 | | shortcut=b&backlink=yes
+```
