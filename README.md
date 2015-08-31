@@ -19,13 +19,27 @@ wfLoadSkin( 'ModernSkylight' );
 Modern Skylight은 Mediawiki 1.25+ 버전 이상에서 사용할 수 있습니다. 만약 사용하고 있는 미디어위키 버전이 낮다면, 위의 코드 대신 다음 코드를 추가해 보십시오.
 
 ```php
-require_once 'extension/ModernSkylight/ModernSkylight-Legacy.php';
+require_once 'skins/ModernSkylight/ModernSkylight-Legacy.php';
 ```
 
 위 레거시 코드는 1.24 버전 이하와의 호환성을 위하여 유지하고 있지만, 정상 작동은 보장하지 않습니다. 만일 문제가 발생하면 [이슈 트래커](https://github.com/wiki-chan/ModernSkylight/issues)에 리포트해 주시기 바랍니다.
 
 ## 상단 메뉴 설정하기
-`미디어위키:ModernSkylightMenubar` 문서를 사용하여 메뉴를 만들 수 있습니다. 일반적으로 `텍스트 | 링크 | 옵션` 의 형식을 갖추고, `*` 기호로 목록을 만들면 됩니다. 또한 `-` 기호로 구분선을 넣을 수 있습니다. 다음 예시를 참고하여 작성하시기 바랍니다.
+`미디어위키:ModernSkylightMenubar` 문서를 사용하여 메뉴를 만들 수 있습니다. 일반적으로 `텍스트 | 링크 | 옵션` 의 형식을 갖추고, `*` 기호로 목록을 만들면 됩니다. 하위 목록은 드롭다운으로 표시되며, 현재는 2단계 목록까지만 사용 가능합니다. 또한 `-` 기호로 구분선을 넣을 수 있습니다.
+
+### 옵션
+다음과 같은 옵션을 사용할 수 있습니다.
+* accesskey={key}<br>
+  키보드 단축키를 지정합니다. 일반적으로 Alt + 단축키로 접근할 수 있습니다.
+* shortcut={key}<br>
+  키보드 단축키에 대한 안내를 표시합니다. accesskey가 같이 적용됩니다.
+* backlink=yes<br>
+  '여기를 가리키는 문서' 링크를 만들 수 있습니다. 링크 옵션을 무시합니다.
+* admin=yes<br>
+  관리자에게만 보이는 메뉴를 만듭니다.
+
+옵션은 & 기호로 여러 옵션을 지정할 수 있습니다.
+다음 예시를 참고하여 작성하시기 바랍니다.
 ```
 * 대문으로 | 대문 | accesskey=z
 * 랜덤 읽기 | 특수:임의문서 | accesskey=x
@@ -36,4 +50,5 @@ require_once 'extension/ModernSkylight/ModernSkylight-Legacy.php';
 ** 모든 회원 목록 | 특수:사용자
 ** -
 ** 여기를 가리키는 문서 | | shortcut=b&backlink=yes
+** 계정 이름 변경 | 특수:이름바꾸기 | admin=yes
 ```
