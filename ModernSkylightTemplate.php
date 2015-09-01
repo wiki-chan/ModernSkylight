@@ -40,39 +40,6 @@ class ModernSkylightTemplate extends BaseTemplate {
 
 		$useDebugInfo = false;
 
-		// 여기는 구 Vector에서 그대로 가져옴
-		// Build additional attributes for navigation urls
-		$nav = $this->data['content_navigation'];
-
-		$xmlID = '';
-		foreach ( $nav as $section => $links ) {
-			foreach ( $links as $key => $link ) {
-				if ( $section == 'views' && !( isset( $link['primary'] ) && $link['primary'] ) ) {
-					$link['class'] = rtrim( 'collapsible ' . $link['class'], ' ' );
-				}
-
-				$xmlID = isset( $link['id'] ) ? $link['id'] : 'ca-' . $xmlID;
-				$nav[$section][$key]['attributes'] =
-					' id="' . Sanitizer::escapeId( $xmlID ) . '"';
-				if ( $link['class'] ) {
-					$nav[$section][$key]['attributes'] .=
-						' class="' . htmlspecialchars( $link['class'] ) . '"';
-					unset( $nav[$section][$key]['class'] );
-				}
-				if ( isset( $link['tooltiponly'] ) && $link['tooltiponly'] ) {
-					$nav[$section][$key]['key'] =
-						Linker::tooltip( $xmlID );
-				} else {
-					$nav[$section][$key]['key'] =
-						Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID ) );
-				}
-			}
-		}
-		$this->data['namespace_urls'] = $nav['namespaces'];
-		$this->data['view_urls'] = $nav['views'];
-		$this->data['action_urls'] = $nav['actions'];
-		$this->data['variant_urls'] = $nav['variants'];
-
 		# Check using right sidebar
 		$c_page = $skin->getTitle();
 		$c_namespace = $c_page->getNamespace();
@@ -366,28 +333,17 @@ class ModernSkylightTemplate extends BaseTemplate {
 	}
 
 	private function renderNavigations($namespace) {
-		if ( isset($this->data['view_urls']) && $this->data['view_urls']['view'] != NULL) $this->data['view_urls']['view']['key'] = 'title="문서를 읽습니다."';
-?>
-		<?php
-		// 읽기, 편집, 역사, 섹션 추가(+)
-		foreach ( $this->data['view_urls'] as $link ): ?>
-			<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-		<?php endforeach; ?>
+		$navi = array_merge($this->data['content_navigation']['views'], $this->data['content_navigation']['actions']);
+		if ( isset($navi['view']) ) $navi['view']['key'] = 'title="문서를 읽습니다."';
 
-		<?php
-		// 삭제, 이동, 보호, 주시
-		foreach ( $this->data['action_urls'] as $link ): ?>
-			<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-		<?php endforeach; ?>
-		<?php
-		// 새로고침
-		?>
-		<? if ($namespace != NS_SPECIAL) : ?>
-			<li id="ca-purge">
-				<a href="<?php echo $this->data['skin']->getTitle()->getFullURL('action=purge'); ?>" accesskey="p" title="페이지를 새로 읽어들입니다. [p]">갱신</a>
-			</li>
-		<? endif; ?>
-<?php
+		foreach( $navi as $link ) {
+			if (!isset($link['key'])) $link['key'] = Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $link['id'] ) );
+			$link['attributes'] = " id=\"{$link['id']}\"";
+			if ($link['class'] != false && $link['class'] != "")
+				$link['attributes'] .= " class=\"{$link['class']}\"";
+			?>
+				<li<?=$link['attributes']?>><a href="<?=$link['href']?>" <?=$link['key']?>><?=htmlspecialchars( $link['text'] )?></a></li>
+			<?php
+		}
 	}
-
 }
