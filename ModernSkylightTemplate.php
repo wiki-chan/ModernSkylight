@@ -38,6 +38,8 @@ class ModernSkylightTemplate extends BaseTemplate {
 
 		$skin = $this->data['skin'];
 
+		$useDebugInfo = false;
+
 		// 여기는 구 Vector에서 그대로 가져옴
 		// Build additional attributes for navigation urls
 		$nav = $this->data['content_navigation'];
@@ -103,6 +105,10 @@ class ModernSkylightTemplate extends BaseTemplate {
 
 		# 로그인 부분 컨트롤
 		$PersonalTools = $this->getPersonalTools();
+
+		# 회원가입 텍스트 변경 (TEMP. 너즁애 wfMessage로 변경할 것)
+		$PersonalTools['createaccount']['links'][0]['text'] = "회원가입";
+
 		//로그인 안한 상태에서 로그인 주소에 접근하지 못하는 버그 fix
 		if (!isset($PersonalTools['login']) && isset($PersonalTools['anonlogin'])) $PersonalTools['login'] = $PersonalTools['anonlogin'];
 
@@ -144,29 +150,28 @@ class ModernSkylightTemplate extends BaseTemplate {
 			<div class="holder clear">
 				<!-- menubar -->
 				<div id="header-tools" role="navigation">
-					<?php $this->renderMenubar($this->data['menubar']); ?>
+					<ul class="top-menu nolist clear">
+						<?php $this->renderMenubar( $this->data['menubar'] ); ?>
+					</ul>
 				</div>
 				<!-- account -->
 				<div id="header-account" role="navigation">
 					<ul class="top-menu nolist clear">
-						<?php if ($skin->loggedin) : ?>
-							<li class="dropdown">
-								<a href="<?php echo $PersonalTools['userpage']['links'][0]['href'] ?>">
-									<?php echo $PersonalTools['userpage']['links'][0]['text'] ?>
-									<span id="alarm-container"></span>
-								</a>
-								<ul class="dropdown-menu righted">
-								<?php
-									echo $this->makeListItem( "preferences", $PersonalTools["preferences"]);
-									echo $this->makeListItem( "sandbox", $PersonalTools["sandbox"]);
-									echo $this->makeListItem( "logout", $PersonalTools["logout"]);
-								?>
-								</ul>
-							</li>
-						<?php else : ?>
-							<li id="pt-createaccount"><a href="<?php echo $PersonalTools['login']['links'][0]['href']; ?>&#38;type=signup">회원가입</a></li>
-							<li id="pt-login"><a href="<?php echo $PersonalTools['login']['links'][0]['href']; ?>">로그인</a></li>
-						<?php endif; ?>	
+						<?php
+						if ($skin->loggedin) :
+							echo '<li class="dropdown">';
+							echo 	$this->makeLink( "userpage", $PersonalTools['userpage']['links'][0] );
+							echo 	'<ul class="dropdown-menu righted">';
+							echo		$this->makeListItem( "preferences", $PersonalTools["preferences"] );
+							echo		$this->makeListItem( "sandbox", $PersonalTools["sandbox"] );
+							echo		$this->makeListItem( "logout", $PersonalTools["logout"] );
+							echo	'</ul>';
+							echo '</li>';
+						else :
+							echo $this->makeListItem( "createaccount", $PersonalTools['createaccount'] );
+							echo $this->makeListItem( "login", $PersonalTools['login'] );
+						endif;
+						?>
 					</ul>
 				</div>
 				<!-- search -->
@@ -179,6 +184,7 @@ class ModernSkylightTemplate extends BaseTemplate {
 						</div>
 					</form>
 				</div>
+
 			</div>
 		</div>
 		</div>
@@ -238,10 +244,11 @@ class ModernSkylightTemplate extends BaseTemplate {
 
 					<div class="visualClear"></div>
 
+					<?php if ($useDebugInfo) : ?>
 					<!-- debughtml -->
 					<?php $this->html( 'debughtml' ); ?>
 					<!-- /debughtml -->
-
+					<?php endif; ?>
 				</div>
 				<!-- /bodyContent -->
 			</div>
