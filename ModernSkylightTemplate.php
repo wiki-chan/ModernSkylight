@@ -241,44 +241,7 @@ class ModernSkylightTemplate extends BaseTemplate {
 			<div class="footer-collapse holder center">클릭하면 안내문이 나타납니다.</div>
 			<div class="footer-expand">
 				<div class="holder clear">
-					<div class="column">
-						<div class="column-head">Head Here</div>
-						<div class="column-body">
-							<div class="entry">
-								<a href="<?=$this->getUrl("대문")?>" class="page">Title Here</a>
-								<p>Lorem ipsum dolor sit amet, at vim prima nominati. Has augue repudiare urbanitas cu, ne pro appareat expetenda intellegebat.</p>
-							</div>
-							<div class="entry">
-								<a href="<?=$this->getUrl("Link")?>" class="page">Title Here</a>
-								<p>Vidisse equidem copiosae eum ad, ludus delectus sea eu, in sit liber facilisis.</p>
-							</div>
-						</div>
-					</div>
-					<div class="column">
-						<div class="column-head">Head Here</div>
-						<div class="column-body">
-							<div class="entry">
-								<a href="<?=$this->getUrl("Link")?>" class="page">Title Here</a>
-								<p>Vidit hendrerit tincidunt vis ei, mel reprehendunt concludaturque et.</p>
-							</div>
-							<div class="entry">
-								<a href="<?=$this->getUrl("Link")?>" class="page">Title Here</a>
-								<p>Id cum semper timeam, quo ei simul utinam, dicunt eripuit mediocrem ei mel.</p>
-							</div>
-						</div>
-					</div>
-					<div class="column">
-						<div class="column-head">Head Here</div>
-						<div class="column-body">
-							<div class="entry">
-								<a href="<?=$this->getUrl("Link")?>" class="page">Title Here</a>
-								<p>Has augue repudiare urbanitas cu, ne pro appareat expetenda intellegebat. Usu cu purto iuvaret deleniti.</p>
-							</div>
-							<div class="entry">
-								<p>Eum alienum adversarium in. Tantas suavitate maiestatis nec no, cibo facer eruditi ut sed.</p>
-							</div>
-						</div>
-					</div>
+					<?=wfMessage( 'ModernSkylightFooter' )->parse()?>
 				</div>
 			</div>
 		</div>
