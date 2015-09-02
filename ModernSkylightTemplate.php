@@ -36,41 +36,12 @@ class ModernSkylightTemplate extends BaseTemplate {
 	public function execute() {
 		global $wgArticlePath;
 
-		// 여기는 구 Vector에서 그대로 가져옴
-		// Build additional attributes for navigation urls
-		$nav = $this->data['content_navigation'];
+		$skin = $this->data['skin'];
 
-		$xmlID = '';
-		foreach ( $nav as $section => $links ) {
-			foreach ( $links as $key => $link ) {
-				if ( $section == 'views' && !( isset( $link['primary'] ) && $link['primary'] ) ) {
-					$link['class'] = rtrim( 'collapsible ' . $link['class'], ' ' );
-				}
-
-				$xmlID = isset( $link['id'] ) ? $link['id'] : 'ca-' . $xmlID;
-				$nav[$section][$key]['attributes'] =
-					' id="' . Sanitizer::escapeId( $xmlID ) . '"';
-				if ( $link['class'] ) {
-					$nav[$section][$key]['attributes'] .=
-						' class="' . htmlspecialchars( $link['class'] ) . '"';
-					unset( $nav[$section][$key]['class'] );
-				}
-				if ( isset( $link['tooltiponly'] ) && $link['tooltiponly'] ) {
-					$nav[$section][$key]['key'] =
-						Linker::tooltip( $xmlID );
-				} else {
-					$nav[$section][$key]['key'] =
-						Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID ) );
-				}
-			}
-		}
-		$this->data['namespace_urls'] = $nav['namespaces'];
-		$this->data['view_urls'] = $nav['views'];
-		$this->data['action_urls'] = $nav['actions'];
-		$this->data['variant_urls'] = $nav['variants'];
+		$useDebugInfo = false;
 
 		# Check using right sidebar
-		$c_page = $this->data['skin']->getTitle();
+		$c_page = $skin->getTitle();
 		$c_namespace = $c_page->getNamespace();
 		$c_mainpage = Title::newMainPage();
 
@@ -101,12 +72,16 @@ class ModernSkylightTemplate extends BaseTemplate {
 
 		# 로그인 부분 컨트롤
 		$PersonalTools = $this->getPersonalTools();
+
+		# 회원가입 텍스트 변경 (TEMP. 너즁애 wfMessage로 변경할 것)
+		$PersonalTools['createaccount']['links'][0]['text'] = "회원가입";
+
 		//로그인 안한 상태에서 로그인 주소에 접근하지 못하는 버그 fix
 		if (!isset($PersonalTools['login']) && isset($PersonalTools['anonlogin'])) $PersonalTools['login'] = $PersonalTools['anonlogin'];
 
 		# 개인 연습장 만들기
-		if ($this->data['skin']->loggedin) {
-			$PersonalTools['sandbox']['links'][0]['href'] = $this->getUrl("연습장:" . $this->data['skin']->getUser()->mName);
+		if ($skin->loggedin) {
+			$PersonalTools['sandbox']['links'][0]['href'] = $this->getUrl("연습장:" . $skin->getUser()->mName);
 			$PersonalTools['sandbox']['links'][0]['text'] = "연습장";
 			$PersonalTools['sandbox']['id'] = 'pt-sandbox';
 		}
@@ -128,7 +103,7 @@ class ModernSkylightTemplate extends BaseTemplate {
 			$this->data['title'] = substr($this->data['title'], strpos($this->data['title'], ':') + 1 );
 
 		# 현재 유저가 어드민 그룹에 속해있는지 검사
-		if ( in_array('sysop', $this->data['skin']->getUser()->getEffectiveGroups() ) )
+		if ( in_array('sysop', $skin->getUser()->getEffectiveGroups() ) )
 			$this->data['isadmin'] = true;
 		else
 			$this->data['isadmin'] = false;
@@ -140,33 +115,33 @@ class ModernSkylightTemplate extends BaseTemplate {
 
 		<div id="header" role="header">
 			<div class="holder clear">
+				<!-- menubar -->
 				<div id="header-tools" role="navigation">
 					<ul class="top-menu nolist clear">
-						<?php $this->renderMenubar($this->data['menubar']); ?>
+						<?php $this->renderMenubar( $this->data['menubar'] ); ?>
 					</ul>
 				</div>
+				<!-- account -->
 				<div id="header-account" role="navigation">
 					<ul class="top-menu nolist clear">
-						<?php if ($this->data['skin']->loggedin) : ?>
-							<li class="dropdown">
-								<a href="<?php echo $PersonalTools['userpage']['links'][0]['href'] ?>">
-									<?php echo $PersonalTools['userpage']['links'][0]['text'] ?>
-									<span id="alarm-container"></span>
-								</a>
-								<ul class="dropdown-menu righted">
-								<?php
-									echo $this->makeListItem( "preferences", $PersonalTools["preferences"]);
-									echo $this->makeListItem( "sandbox", $PersonalTools["sandbox"]);
-									echo $this->makeListItem( "logout", $PersonalTools["logout"]);
-								?>
-								</ul>
-							</li>
-						<?php else : ?>
-							<li id="pt-createaccount"><a href="<?php echo $PersonalTools['login']['links'][0]['href']; ?>&#38;type=signup">회원가입</a></li>
-							<li id="pt-login"><a href="<?php echo $PersonalTools['login']['links'][0]['href']; ?>">로그인</a></li>
-						<?php endif; ?>	
+						<?php
+						if ($skin->loggedin) :
+							echo '<li class="dropdown">';
+							echo 	$this->makeLink( "userpage", $PersonalTools['userpage']['links'][0] );
+							echo 	'<ul class="dropdown-menu righted">';
+							echo		$this->makeListItem( "preferences", $PersonalTools["preferences"] );
+							echo		$this->makeListItem( "sandbox", $PersonalTools["sandbox"] );
+							echo		$this->makeListItem( "logout", $PersonalTools["logout"] );
+							echo	'</ul>';
+							echo '</li>';
+						else :
+							echo $this->makeListItem( "createaccount", $PersonalTools['createaccount'] );
+							echo $this->makeListItem( "login", $PersonalTools['login'] );
+						endif;
+						?>
 					</ul>
 				</div>
+				<!-- search -->
 				<div id="header-search" role="search">
 					<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
 						<div id="simpleSearch">
@@ -176,6 +151,7 @@ class ModernSkylightTemplate extends BaseTemplate {
 						</div>
 					</form>
 				</div>
+
 			</div>
 		</div>
 		</div>
@@ -193,11 +169,11 @@ class ModernSkylightTemplate extends BaseTemplate {
 				<h1 id="firstheading" class="firstheading"<?php if($this->data['hideH1Toolbar']) echo " style=\"display:none;\""; ?>><?php $this->html( 'title' ) ?></h1>
 				<!-- /firstHeading -->
 
-				<!-- actions -->
 				<?php if (!$this->data['hideH1Toolbar']) : ?>
+				<!-- actions -->
 				<ul id="cactions" class="cactions nolist clear"><?php $this->renderNavigations($c_namespace); ?></ul>
-				<?php endif; ?>
 				<!-- /actions -->
+				<?php endif; ?>
 
 				<?php if ( $this->data['undelete'] ): ?>
 				<!-- undelete -->
@@ -213,9 +189,6 @@ class ModernSkylightTemplate extends BaseTemplate {
 
 				<!-- bodyContent -->
 				<div id="bodyContent">
-					<?php if ( $this->data['isarticle'] ): ?>
-					<?php endif; ?>
-				
 					<!-- subtitle -->
 					<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
 					<!-- /subtitle -->
@@ -238,10 +211,11 @@ class ModernSkylightTemplate extends BaseTemplate {
 
 					<div class="visualClear"></div>
 
+					<?php if ($useDebugInfo) : ?>
 					<!-- debughtml -->
 					<?php $this->html( 'debughtml' ); ?>
 					<!-- /debughtml -->
-
+					<?php endif; ?>
 				</div>
 				<!-- /bodyContent -->
 			</div>
@@ -267,44 +241,7 @@ class ModernSkylightTemplate extends BaseTemplate {
 			<div class="footer-collapse holder center">클릭하면 안내문이 나타납니다.</div>
 			<div class="footer-expand">
 				<div class="holder clear">
-					<div class="column">
-						<div class="column-head">Head Here</div>
-						<div class="column-body">
-							<div class="entry">
-								<a href="<?=$this->getUrl("대문")?>" class="page">Title Here</a>
-								<p>Lorem ipsum dolor sit amet, at vim prima nominati. Has augue repudiare urbanitas cu, ne pro appareat expetenda intellegebat.</p>
-							</div>
-							<div class="entry">
-								<a href="<?=$this->getUrl("Link")?>" class="page">Title Here</a>
-								<p>Vidisse equidem copiosae eum ad, ludus delectus sea eu, in sit liber facilisis.</p>
-							</div>
-						</div>
-					</div>
-					<div class="column">
-						<div class="column-head">Head Here</div>
-						<div class="column-body">
-							<div class="entry">
-								<a href="<?=$this->getUrl("Link")?>" class="page">Title Here</a>
-								<p>Vidit hendrerit tincidunt vis ei, mel reprehendunt concludaturque et.</p>
-							</div>
-							<div class="entry">
-								<a href="<?=$this->getUrl("Link")?>" class="page">Title Here</a>
-								<p>Id cum semper timeam, quo ei simul utinam, dicunt eripuit mediocrem ei mel.</p>
-							</div>
-						</div>
-					</div>
-					<div class="column">
-						<div class="column-head">Head Here</div>
-						<div class="column-body">
-							<div class="entry">
-								<a href="<?=$this->getUrl("Link")?>" class="page">Title Here</a>
-								<p>Has augue repudiare urbanitas cu, ne pro appareat expetenda intellegebat. Usu cu purto iuvaret deleniti.</p>
-							</div>
-							<div class="entry">
-								<p>Eum alienum adversarium in. Tantas suavitate maiestatis nec no, cibo facer eruditi ut sed.</p>
-							</div>
-						</div>
-					</div>
+					<?=wfMessage( 'ModernSkylightFooter' )->parse()?>
 				</div>
 			</div>
 		</div>
@@ -316,7 +253,8 @@ class ModernSkylightTemplate extends BaseTemplate {
 
 	private function renderMenubar($items) {
 		foreach ($items as $menu) {
-			if ($menu["delimiter"]) {
+			// 구분선 출력
+			if ( isset($menu["delimiter"]) && $menu["delimiter"] ) {
 				echo "<hr>";
 				continue;
 			}
@@ -324,22 +262,30 @@ class ModernSkylightTemplate extends BaseTemplate {
 			// admin이 아니라면 건너뜀
 			if ( isset($menu["admin"]) && $menu["admin"] && !$this->data['isadmin'] ) continue;
 
-			if ( !isset($menu["child"]) || count($menu["child"]) == 0 ) {
-				echo '<li>';
-			} else {
-				echo '<li class="dropdown">' . "\n";
+			// 드롭다운 여부 체크
+			$use_dropdown = false;
+			if ( isset($menu["child"]) && count($menu["child"]) != 0 ) {
+				$use_dropdown = true;
 			}
 
-			$text = '<a href="' . $menu["href"] . '"';
-			if (isset($menu["accesskey"])) $text .= ' accesskey="' . $menu["accesskey"] . '"';
-			$text .= '>' . $menu["text"];
+			// li 목록 만들기
+			if ( $use_dropdown ) {
+				echo '<li class="dropdown">';
+			} else {
+				echo '<li>';
+			}
 
+			// 링크 텍스트 생성
+			$accesskey = '';
+			if (isset($menu["accesskey"])) $accesskey = ' accesskey="' . $menu["accesskey"] . '"';
+			$text = $menu["text"];
 			if (isset($menu["shortcut"])) $text .= ' <span class="shortcut">' . $menu["shortcut"] . "</span>";
 
-			$text .= '</a>';
-			echo $text;
+			// 링크 항목 출력
+			echo "<a href=\"{$menu["href"]}\"{$accesskey}>{$text}</a>";
 
-			if ( !isset($menu["child"]) || count($menu["child"]) != 0 ) {
+			// 하위 목록 출력
+			if ( $use_dropdown ) {
 				echo '<ul class="dropdown-menu lefted">' . "\n";
 				$this->renderMenubar($menu["child"]);
 				echo '</ul>' . "\n";
@@ -350,28 +296,17 @@ class ModernSkylightTemplate extends BaseTemplate {
 	}
 
 	private function renderNavigations($namespace) {
-		if ($this->data['view_urls']['view'] != NULL) $this->data['view_urls']['view']['key'] = 'title="문서를 읽습니다."';
-?>
-		<?php
-		// 읽기, 편집, 역사, 섹션 추가(+)
-		foreach ( $this->data['view_urls'] as $link ): ?>
-			<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-		<?php endforeach; ?>
+		$navi = array_merge($this->data['content_navigation']['views'], $this->data['content_navigation']['actions']);
+		if ( isset($navi['view']) ) $navi['view']['key'] = 'title="문서를 읽습니다."';
 
-		<?php
-		// 삭제, 이동, 보호, 주시
-		foreach ( $this->data['action_urls'] as $link ): ?>
-			<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-		<?php endforeach; ?>
-		<?php
-		// 새로고침
-		?>
-		<? if ($namespace != NS_SPECIAL) : ?>
-			<li id="ca-purge">
-				<a href="<?php echo $this->data['skin']->getTitle()->getFullURL('action=purge'); ?>" accesskey="p" title="페이지를 새로 읽어들입니다. [p]">갱신</a>
-			</li>
-		<? endif; ?>
-<?php
+		foreach( $navi as $link ) {
+			if (!isset($link['key'])) $link['key'] = Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $link['id'] ) );
+			$link['attributes'] = " id=\"{$link['id']}\"";
+			if ($link['class'] != false && $link['class'] != "")
+				$link['attributes'] .= " class=\"{$link['class']}\"";
+			?>
+				<li<?=$link['attributes']?>><a href="<?=$link['href']?>" <?=$link['key']?>><?=htmlspecialchars( $link['text'] )?></a></li>
+			<?php
+		}
 	}
-
 }
