@@ -24,10 +24,30 @@ require_once 'skins/ModernSkylight/ModernSkylight-Legacy.php';
 
 위 레거시 코드는 1.24 버전 이하와의 호환성을 위하여 유지하고 있지만, 정상 작동은 보장하지 않습니다. 만일 문제가 발생하면 [이슈 트래커](https://github.com/wiki-chan/ModernSkylight/issues)에 리포트해 주시기 바랍니다.
 
-## 상단 메뉴 설정하기
+## 스킨 커스터마이징
+스킨을 사이트의 특성에 맞게 커스터마이징 할 수 있습니다. 커스텀 extension을 사용해 우측 사이드바나 우상단 메뉴를 변경할 수 있고, 미디어위키 문서를 활용하여 상단 메뉴와 하단 푸터를 설정할 수 있습니다.
+
+### 사용 가능한 Hook
+사용할 수 있는 hook은 다음과 같은 것이 있습니다.
+* ModernSkylightNavigation
+
+  우측 상단의 내비게이션 메뉴를 수정할 수 있습니다. `$navi` 변수에 메뉴 정보가 배열로 들어 있습니다. 다음 코드로 Hook을 추가할 수 있습니다.
+  ```php
+public static function onNavigation( $namespace, &$navi ) { ... }
+$wgHooks['ModernSkylightNavigation'][] = 'MyExtensionHooks::onNavigation';
+```
+* ModernSkylightUseRightSidebar
+
+  오른쪽의 사이드바를 가릴 수 있습니다. `$use_sidebar` 변수에 사이드바 사용 여부를 나타내는 boolean 값을 사용할 수 있습니다. 다음 코드로 Hook을 추가할 수 있습니다.
+  ```php
+public static function onRightSidebar( $c_page, $c_namespace, $c_mainpage, &$use_sidebar ) { ... }
+$wgHooks['ModernSkylightRightSidebar'][] = 'MyExtensionHooks::onRightSidebar';
+```
+
+### 상단 메뉴 설정하기
 `미디어위키:ModernSkylightMenubar` 문서를 사용하여 메뉴를 만들 수 있습니다. 일반적으로 `텍스트 | 링크 | 옵션` 의 형식을 갖추고, `*` 기호로 목록을 만들면 됩니다. 하위 목록은 드롭다운으로 표시되며, 현재는 2단계 목록까지만 사용 가능합니다. 또한 `-` 기호로 구분선을 넣을 수 있습니다.
 
-### 옵션
+#### 옵션
 다음과 같은 옵션을 사용할 수 있습니다.
 * accesskey={key}<br>
   키보드 단축키를 지정합니다. 일반적으로 Alt + 단축키로 접근할 수 있습니다.
@@ -51,4 +71,22 @@ require_once 'skins/ModernSkylight/ModernSkylight-Legacy.php';
 ** -
 ** 여기를 가리키는 문서 | | shortcut=b&backlink=yes
 ** 계정 이름 변경 | 특수:이름바꾸기 | admin=yes
+```
+
+### 하단 푸터 설정하기
+`미디어위키:ModernSidebarFooter` 문서를 사용하여 하단 푸터를 설정할 수 있습니다.  `column` class를 사용하여 3등분된 컬럼을 나눌 수 있으며, `column-head` class로 타이틀을, `column-body` class로 본문을 나타낼 수 있습니다. 본문 부분에는 `entry` class로 여러 내용을 적을 수 있습니다. 다음 예시를 참고하여 작성하시기 바랍니다.
+```html
+<div class="column">
+	<div class="column-head">Title here</div>
+	<div class="column-body">
+		<div class="entry">
+			[[Main page|Main link here]]
+			<p>Description about your site</p>
+		</div>
+		<div class="entry">
+			[[Page A|Another link here]]
+			<p>Description about your site</p>
+		</div>
+	</div>
+</div>
 ```
