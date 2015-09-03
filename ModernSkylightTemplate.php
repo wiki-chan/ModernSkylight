@@ -56,7 +56,7 @@ class ModernSkylightTemplate extends BaseTemplate {
 			) $use_sidebar = true;
 
 		// check other extensions
-		$hook_args = array( $c_page, $c_namespace, $c_mainpage, &$use_sidebar);
+		$hook_args = array( $c_page, $c_namespace, $c_mainpage, &$use_sidebar );
 		Hooks::run( 'ModernSkylightUseRightSidebar', $hook_args );
 
 		$this->data['useRightSidebar'] = $use_sidebar;
@@ -297,7 +297,9 @@ class ModernSkylightTemplate extends BaseTemplate {
 
 	private function renderNavigations($namespace) {
 		$navi = array_merge($this->data['content_navigation']['views'], $this->data['content_navigation']['actions']);
-		if ( isset($navi['view']) ) $navi['view']['key'] = 'title="문서를 읽습니다."';
+
+		// check other extensions
+		Hooks::run( 'ModernSkylightNavigation', array( $namespace, &$navi ) );
 
 		foreach( $navi as $link ) {
 			if (!isset($link['key'])) $link['key'] = Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $link['id'] ) );
