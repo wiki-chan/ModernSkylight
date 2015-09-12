@@ -11,6 +11,10 @@ if( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
 }
 
+if( !defined( 'NS_SANDBOX' ) ) {
+	define('NS_SANDBOX', -10000);
+}
+
 class SkinModernSkylight extends SkinTemplate {
 
 	var $skinname = 'modernskylight', $stylename = 'ModernSkylight',
@@ -47,12 +51,12 @@ class SkinModernSkylight extends SkinTemplate {
 
 		switch ($out->getTitle()->getNamespace()) {
 			case NS_MAIN:
-			case NS_SANDBOX:
 			case NS_PROJECT:
 			case NS_IMAGE:
 			case NS_TEMPLATE:
 			case NS_HELP:
 			case NS_CATEGORY:
+			default:
 				$out->addModuleScripts( 'skins.modern-skylight.article' );
 				break;
 			case NS_USER:
@@ -74,16 +78,17 @@ class SkinModernSkylight extends SkinTemplate {
 
 		switch ($out->getTitle()->getNamespace()) {
 			case NS_MAIN:
-			case NS_SANDBOX:
 			case NS_PROJECT:
 			case NS_IMAGE:
 			case NS_TEMPLATE:
 			case NS_HELP:
+			default:
 				$out->addModuleStyles( 'skins.modern-skylight.article' );
 				break;
 			case NS_CATEGORY:
 				$out->addModuleStyles( 'skins.modern-skylight.article' );
 				$out->addModuleStyles( 'skins.modern-skylight.catpage' );
+				break;
 		}
 	}
 }
