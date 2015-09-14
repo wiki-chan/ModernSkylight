@@ -52,7 +52,6 @@ class SkinModernSkylight extends SkinTemplate {
 			case NS_TEMPLATE:
 			case NS_HELP:
 			case NS_CATEGORY:
-			default:
 				$out->addModuleScripts( 'skins.modern-skylight.article' );
 				break;
 			case NS_USER:
@@ -78,7 +77,6 @@ class SkinModernSkylight extends SkinTemplate {
 			case NS_IMAGE:
 			case NS_TEMPLATE:
 			case NS_HELP:
-			default:
 				$out->addModuleStyles( 'skins.modern-skylight.article' );
 				break;
 			case NS_CATEGORY:
