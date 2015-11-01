@@ -176,14 +176,6 @@ textarea:focus, input:focus, select:focus {
 	text-align: justify;
 }
 
-/* 문단 들여쓰기 */
-.content p {
-	text-indent: 0.5em;
-}
-.ns-special .content p {
-	text-indent: 0;
-}
-
 /* 각종 목록 태그 */
 ul:not([class]) {
 	list-style: disc;
@@ -590,56 +582,16 @@ textarea {
 	line-height: 145%;
 }
 
-/* 경고문 */
-#editpage-copywarn {
-	padding: 0 1em .5em;
-	font-size: 12px;
-}
-
-/* 각종 경고문의 여백 줄임 */
-#editpage-copywarn p, .hiddencats p {
-	margin: 0;
-}
-.previewnote h2, .previewnote hr {
-	display: none;
-}
-
 /* 편집 옵션 */
 .editOptions {
 	position: relative;
-	margin-bottom: .5em;
-}
-.editOptions:after {
-	clear: both;
-	content: ".";
-	display: block;
-	height: 0;
-	visibility: hidden;
-	font-size: 0;
+	margin: .5em 0;
 }
 
 /* 편집 요약 */
-.editOptions #wpSummaryLabel {
-	float: left;
-	font-size: 13px;
-	padding: 4px 0;
-	margin: 2px 5px 2px 0;
-}
-.editOptions #wpSummary {
-	float: left;
-	width: 45% !important;
-	font-size: 13px;
-	padding: 3px;
+#wpSummary {
 	font-family: inherit;
-	letter-spacing: -1px;
-	border: 1px solid #ccc;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
-	margin: 2px 0;
-}
-body.action-submit #wpSummary {
-	width: 80% !important;
 }
 
 /* 편집 요약 미리 보기 */
@@ -649,16 +601,22 @@ body.action-submit #wpSummary {
 	margin-left: 10px;
 }
 
-/* 사소한 편집, 이 문서 주시하기 */
+/* 각종 경고문의 여백 줄임 */
+#editpage-copywarn p, .hiddencats p { margin: 0; }
+.previewnote h2, .previewnote hr { display: none; }
+
+/* 사소한 편집, 이 문서 주시하기 : 업데이트되면서 없어짐
 .editOptions .editCheckboxes {
 	float: right;
 	padding: 5px 0;
 	margin-right: 10px;
-}
+} */
 
 /* 저장, 미리보기, 차이보기 */
 .editOptions .editButtons {
-	float: right;
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 
 /*====================
