@@ -17,7 +17,12 @@
 		"ModernSkylightTemplate": "ModernSkylightTemplate.php",
 		"ModernSkylightMenubar": "ModernSkylightMenubar.php"
 	},
-	"license": "BSD-2",
+	"license-name": "BSD-2",
+	"MessagesDirs": {
+		"ModernSkylight": [
+			"i18n"
+		]
+	},
 	"ResourceModules": {
 		"skins.modern-skylight": {
 			"scripts": [
@@ -110,8 +115,5 @@
 		"remoteSkinPath": "ModernSkylight"
 	},
 	"config": {
-		"MessageDirs": {
-			"ModernSkylight": "/var/www/html/skins/ModernSkylight/i18n"
-		}
 	}
 }
