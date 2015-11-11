@@ -605,20 +605,6 @@ textarea {
 #editpage-copywarn p, .hiddencats p { margin: 0; }
 .previewnote h2, .previewnote hr { display: none; }
 
-/* 사소한 편집, 이 문서 주시하기 : 업데이트되면서 없어짐
-.editOptions .editCheckboxes {
-	float: right;
-	padding: 5px 0;
-	margin-right: 10px;
-} */
-
-/* 저장, 미리보기, 차이보기 */
-.editOptions .editButtons {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-}
-
 /*====================
 	목차 (RightSidebar)
   ====================*/
