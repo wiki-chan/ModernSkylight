@@ -102,7 +102,7 @@ $(function(){
 
 	// {{네타}}
 	var $netabox = $('blockquote.netabare');
-	if ( $netabox.length == 0 || mw.config.wgNamespaceNumber == 10 ) return;
+	if ( $netabox.length == 0 || mw.config.get("wgNamespaceNumber") == 10 ) return;
 
 	$netabox .each(function(){
 		var $self = $(this); // {{네타}}
@@ -203,7 +203,7 @@ jQuery(function(){
 window.pg || $(document).ready(function ($) {
 
 	// Make sure we are in article, project, or help namespace
-	var wgCanonicalNamespace = mw.config.wgCanonicalNamespace;
+	var wgCanonicalNamespace = mw.config.get("wgCanonicalNamespace");
 	if (wgCanonicalNamespace === '' || wgCanonicalNamespace === 'Project' || wgCanonicalNamespace === 'Help') {
 		function toggleRT(o) {
 			mw.loader.using("jquery.cookie", function () {
