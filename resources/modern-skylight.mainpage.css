@@ -4,43 +4,13 @@
 	padding: 0 !important;
 }
 
-/* 문서 이름, 분류 감춤 */
-.action-view h1#firstheading, .action-submit h1#firstheading {
-	display: none;
-}
-.catlinks {
-	display: none !important;
-}
+/* Fix */
+.action-view h1#firstheading, .action-submit h1#firstheading, .catlinks { display: none !important; }
+a:hover { text-decoration: none !important; }
 
-/* 링크에 롤오버 언더라인 삭제 */
-a:hover {
-	text-decoration: none !important;
-}
-
-/*=================
-	Notification
-  =================*/
-#notification {
-	position: absolute;
-	z-index: 65535;
-	top: 40px;
-	left: 0;
-	right: 0;
-	background: #FDE073;
-	text-align: center;
-	line-height: 2.5;
-	margin: 0 -10px;
-	overflow: hidden;
-	-webkit-transform: translateY(-50px);
-	-webkit-animation: slideDown 2.5s 1.0s 1 ease forwards;
-	-moz-transform: translateY(-50px);
-	-moz-animation: slideDown 2.5s 1.0s 1 ease forwards;
-}
-
-/*=================
-	Upper Layer
-  =================*/
-/* 사이트 로고 */
+/**************
+ *	Logo
+ **************/
 #logo {
 	width: auto;
 	height: 35px;
@@ -54,59 +24,19 @@ a:hover {
 	top: -50px;
 }
 
-/*
-.nav-menu {
-	float: right;
-}
-.nav-menu li {
-	float: left;
-	margin-left: 5px;
-}
-.nav-menu li a {
-	display: block;
-	width: 80px;
-	height: 80px;
-	position: relative;
-	color: #fff !important;
-}
-
-.nav-menu i {
-	font: normal normal 26px/1 'FontAwesome';
-	display: inline-block;
-	position: absolute;
-	width: 80px;
-	top: 18px;
-	left: 0;
-	text-align: center;
-}
-.nav-menu i.random:before { content: '\f074'; }
-.nav-menu i.sandbox:before { content: '\f1b2'; }
-.nav-menu i.tutorial:before { content: '\f12e'; }
-.nav-menu i.sample:before {content: '\f133'; }
-.nav-menu i.help:before { content: '\f069'; }
-.nav-menu i.shortcuts:before { content: '\f05b'; }
-
-.nav-menu span {
-	position: absolute;
-	bottom: 3px;
-	left: 7px;
-}
-*/
-
-/*==================
-	Acordion Menu
-  ==================*/
-.accordion {
+/***********************
+ *	Accordion Menu
+ ***********************/
+#accordion {
 	list-style: none !important;
 	padding: 0 !important;
-	margin: 12px 0 10px !important;
+	margin: 10px 0 !important;
 }
 
-.accordion li > a {
+#accordion li > a {
 	padding: 0 10px 0 14px;
 	display: block;
 	position: relative;
-	min-width: 110px;
 	height: 40px;
 	font-size: 14px;
 	line-height: 40px;
@@ -115,18 +45,18 @@ a:hover {
 	-moz-box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .2), 0px 1px 0px 0px rgba(0,0,0, .2);
 	box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .2), 0px 1px 0px 0px rgba(0,0,0, .2);
 }
-.accordion > li > a {
-	color: #fdfdfd !important;
-}
-.accordion > li:hover > a, .accordion > li:target > a, .accordion > li > a.active {
-	background: #008ccf;
-}
+#accordion > li > a { color: #fdfdfd !important; }
+#accordion > li:hover > a, #accordion > li:target > a, #accordion > li > a.active { background: #008ccf; }
 
-/* 하위 메뉴 */
-.sub-menu li a {
+/* Collapsible items */
+#accordion .sub-menu {
+	list-style: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+#accordion .sub-menu a {
 	padding: 0 10px 0 40px;
 	background: #fff;
-	/* border-bottom: 1px solid #dfdfdf; */
 	height: 33px;
 	font-size: 13px;
 	line-height: 33px;
@@ -134,16 +64,15 @@ a:hover {
 	-moz-box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .1), 0px 1px 0px 0px rgba(0,0,0, .1);
 	box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .1), 0px 1px 0px 0px rgba(0,0,0, .1);
 }
-.sub-menu li:nth-child(even) a {
+#accordion .sub-menu li:nth-child(even) a {
 	background: #f2f2f2;
 }
-.sub-menu li:hover a {
+#accordion .sub-menu li:hover a {
 	background: #eed;
 	color: #777 !important;
 }
 
-/* 숫자 (왼쪽, 오른쪽) */
-.sub-menu span.num {
+#accordion .sub-menu span.num {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -153,7 +82,7 @@ a:hover {
 	line-height: 33px;
 	font-style: normal;
 }
-.sub-menu span.val {
+#accordion .sub-menu span.val {
 	display: block;
 	position: absolute;
 	top: 0;
@@ -164,61 +93,13 @@ a:hover {
 	line-height: 33px;
 }
 
-/* 토글 */
-.accordion li > .sub-menu {
-	display: none;
-} 
-.accordion li:target > .sub-menu {
-	display: block;
-}
+/* Toggle */
+#accordion li > .sub-menu { display: none; } 
+#accordion li:target > .sub-menu { display: block; }
 
-/*=============
-	Projects
-  =============*/
-.projects li {
-	float: left;
-	width: 145px;
-	height: 72px;
-}
-
-.projects li:first-child {
-	margin: 0 5px 5px 0;
-}
-.projects li:nth-child(2) {
-	margin: 0 0 5px 5px;
-}
-.projects li:nth-child(3) {
-	margin: 5px 5px 0 0;
-}
-.projects li:last-child {
-	margin: 5px 0 0 5px;
-}
-
-.projects li:first-child, .projects li:last-child {
-	background: #57BAE8;
-}
-.projects li:nth-child(2), .projects li:nth-child(3) {
-	background: #50A9D2;
-}
-
-.projects a {
-	display: block;
-	width: 100%;
-	height: 100%;
-	color: #fff !important;
-	position: relative;
-}
-.projects span.alt {
-	font-size: 13px;
-	line-height: 20px;
-	position: absolute;
-	left: 8px;
-	bottom: 6px;
-}
-    
-/*=================
-	Components
-  =================*/
+/***********************
+ *	Component Box
+ ***********************/
 .component {
 	background: #fff;
 	margin-bottom: 10px;
@@ -259,14 +140,73 @@ a:hover {
 	padding: 5px 0;
 }
 
-/*=================
-	Createbox
-  =================*/
-/* 너비 fix */
-input.createboxInput {
-	width: 220px;
+/*****************
+ *	Projects
+ *****************/
+.projects li {
+	float: left;
+	width: 145px;
+	height: 72px;
 }
 
-/* 토글 */
+.projects li:first-child {
+	margin: 0 5px 5px 0;
+}
+.projects li:nth-child(2) {
+	margin: 0 0 5px 5px;
+}
+.projects li:nth-child(3) {
+	margin: 5px 5px 0 0;
+}
+.projects li:last-child {
+	margin: 5px 0 0 5px;
+}
+
+.projects li:first-child, .projects li:last-child {
+	background: #57BAE8;
+}
+.projects li:nth-child(2), .projects li:nth-child(3) {
+	background: #50A9D2;
+}
+
+.projects a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: #fff !important;
+	position: relative;
+}
+.projects span.alt {
+	font-size: 13px;
+	line-height: 20px;
+	position: absolute;
+	left: 8px;
+	bottom: 6px;
+}
+
+/********************
+ *	Create Form
+ ********************/
+input.createboxInput { width: 220px; }
 #createform-default { margin-bottom: 3px; }
 #createform-hidden { display: none; }
+
+/********************
+ *	Noti message
+ ********************/
+#notification {
+	position: absolute;
+	z-index: 65535;
+	top: 40px;
+	left: 0;
+	right: 0;
+	background: #FDE073;
+	text-align: center;
+	line-height: 2.5;
+	margin: 0 -10px;
+	overflow: hidden;
+	-webkit-transform: translateY(-50px);
+	-webkit-animation: slideDown 2.5s 1.0s 1 ease forwards;
+	-moz-transform: translateY(-50px);
+	-moz-animation: slideDown 2.5s 1.0s 1 ease forwards;
+}

@@ -1,98 +1,43 @@
-/*======================
-	아코디언 & 푸터 펼침
-======================*/
+/*************************
+ *	DOMReady Actions
+ *************************/
 $(function(){
-    	var
-    		accordionHead = $('.accordion > li > a'),
-    		accordionBody = $('.accordion > li > .sub-menu');
+	/************************
+	 *	Accordion Menu
+	 ************************/
+		var
+			ac_trigger = $('#accordion > li > a'),
+			ac_target = $('#accordion > li > ul.sub-menu'),
+			toggle_class = 'active';
 
-    	// 로드 시점에서 첫번째 아코디언을 오픈
-    	accordionHead.first().addClass('active').next().slideDown('normal');
+		// 로드 시점에서 첫번째 아코디언을 오픈
+		ac_trigger.first().addClass(toggle_class).next().slideDown();
 
-    	// 클릭하면
-    	accordionHead.on('click', function (event) {
+		// 클릭하면
+		ac_trigger.on('click', function (e) {
+			e.preventDefault();
 
-    		// 아코디언 헤드의 링크가 바보가 되고
-    		event.preventDefault();
+			// 토글한다
+			var $t  = $(this);
 
-    		// 토글이 작동함
-    		if ( !$(this).hasClass('active') ) {
-    			accordionBody.slideUp('normal');
-    			$(this).next().stop(true, true).slideToggle('normal');
-    			accordionHead.removeClass('active');
-    			$(this).addClass('active');
-    		}
-    	});
-});
+			if ( !$t.hasClass(toggle_class) ) {
+				ac_target.slideUp();
+				$t.next().stop(true, true).slideToggle();
+				ac_trigger.not($t).removeClass(toggle_class);
+				$t.addClass(toggle_class);
+			}
+		});
 
-/*================
-	단축키 일람
-=================*/
-function viewShortcuts() {
-	var root = $('body');
-	var shortcuts = 
-		'<div id="dialog">' + 
-		'<div class="head">단축키 목록<button class="close">×</button></div>' +
-		'<div class="body">'+
-		'<table style="width:100%"><tr>' +
-			'<td class="shortcut"><span>z</span></td><td class="shortcut-fn">대문으로</td>' +
-			'<td class="shortcut"><span>shift+e</span></td><td class="shortcut-fn">편집</td>' +
-		'</tr>' +
-		'<tr>' +
-			'<td class="shortcut"><span>x</span></td><td class="shortcut-fn">랜덤 읽기</td>' +
-			'<td class="shortcut"><span>shift+s</span></td><td class="shortcut-fn">저장</td>' +
-		'</tr>' +
-		'<tr>' +
-			'<td class="shortcut"><span>q</span></td><td class="shortcut-fn">연습장</td>' +
-			'<td class="shortcut"><span>shift+p</span></td><td class="shortcut-fn">미리 보기</td>' +
-		'</tr>' +
-		'<tr>' +
-			'<td class="shortcut"><span>r</span></td><td class="shortcut-fn">모든 문서의 바뀜</td>' +
-			'<td class="shortcut"><span>shift+v</span></td><td class="shortcut-fn">차이 보기</td>' +
-		'</tr>' +
-		'<tr>' +
-			'<td class="shortcut"><span>l</span></td><td class="shortcut-fn">주시 문서의 바뀜</td>' +
-			'<td class="shortcut"><span>h</span></td><td class="shortcut-fn">역사</td>' +
-		'</tr>' +
-		'<tr>' +
-			'<td class="shortcut"><span>b</span></td><td class="shortcut-fn">여기를 가리키는 문서</td>' +
-			'<td class="shortcut"><span>w</span></td><td class="shortcut-fn">주시</td>' +
-		'</tr></table>' +
-		'</div></div>';
+	/********************
+	 *	Create Form
+	 ********************/
+	var
+		cf_trigger = $('#createformToggle'),
+		cf_target = $('#createform-hidden');
 
-	root.append('<div class="blackout"></div>');
-	root.append(shortcuts);
-
-	destroy = function(){
-		$('.blackout').remove();
-		$('#dialog').remove();
-	}
-
-	$('.blackout').on('click', function(){
-		destroy();
-	});
-	$('#dialog .close').on('click', function(){
-		destroy();
-	});
-}
-$(function(){
-	$('#view-shortcuts a').click(function(){
-		$(this).toggleClass('active');
-		viewShortcuts();
-		return false;
-	});
-});
-
-/*=====================
-	새 문서 만들기 토글
-=====================*/
-$(function(){
-	var trigger = $('.createform a');
-	var target = $('.createform .hidden');
-
-	trigger.on('click', function (event) {
-		trigger.toggleClass('open');
-		event.preventDefault();
-		target.slideToggle();
+	cf_trigger.on('click', function (e) {
+		e.preventDefault();
+		cf_trigger.toggleClass('open');
+		cf_target.slideToggle();
 	});
 });

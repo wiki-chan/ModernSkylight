@@ -1422,14 +1422,16 @@ blockquote {
 	padding: 12px 15px;
 	margin: .5em .2em;
 }
-.messagebox.success {
+.messagebox.green {
 	background: #e9ffd9;
 	font-weight: bold;
 }
+.messagebox.orange,
 .messagebox.netabare {
 	background: #fff8c4;
 	color: #a88c4b;
 }
+.messagebox.red,
 .messagebox.mature {
 	background: #f2dede;
 	color: #b94a48;
