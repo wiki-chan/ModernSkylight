@@ -42,7 +42,6 @@ class SkinModernSkylight extends SkinTemplate {
 		$out->addModuleScripts( 'skins.modern-skylight' );
 		if ($out->getTitle()->isMainPage()) {
 			$out->addModuleScripts( 'skins.modern-skylight.mainpage' );
-			$out->addModuleScripts( 'skins.modern-skylight.sidebar' );
 		}
 
 		switch ($out->getTitle()->getNamespace()) {
@@ -68,7 +67,6 @@ class SkinModernSkylight extends SkinTemplate {
 		$out->addModuleStyles( 'skins.modern-skylight' );
 		if ($out->getTitle()->isMainPage()) {
 			$out->addModuleStyles( 'skins.modern-skylight.mainpage' );
-			$out->addModuleStyles( 'skins.modern-skylight.sidebar' );
 		}
 
 		switch ($out->getTitle()->getNamespace()) {

@@ -53,19 +53,6 @@
 				"modern-skylight-editwarning"
 			]
 		},
-		"skins.modern-skylight.sidebar": {
-			"scripts": [
-				"resources/modern-skylight.sidebar.js"
-			],
-			"styles": {
-				"resources/modern-skylight.sidebar.css": {
-					"media": "screen"
-				}
-			},
-			"dependencies": [
-				"jquery"
-			]
-		},
 		"skins.modern-skylight.mainpage": {
 			"scripts": [
 				"resources/modern-skylight.mainpage.js"
