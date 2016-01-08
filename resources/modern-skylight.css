@@ -1422,26 +1422,32 @@ blockquote {
 	padding: 12px 15px;
 	margin: .5em .2em;
 }
-.messagebox.green {
-	background: #e9ffd9;
-	font-weight: bold;
-}
-.messagebox.orange,
 .messagebox.netabare {
 	background: #fff8c4;
-	color: #a88c4b;
+	color: #84682a;
 }
-.messagebox.red,
-.messagebox.mature {
+.messagebox.warning {
 	background: #f2dede;
 	color: #b94a48;
 }
-.messagebox.netabare:not(.expired), .messagebox.mature:not(.expired) {
-	cursor: pointer;
+.messagebox.protected {
+	background: #5cb85c;
+	color: #fff;
 }
-.messagebox.expired span.clickme {
-	display: none;
+.messagebox.suspended {
+	background: #d9534f;
+	color: #fff;
 }
+.messagebox.protected a, .messagebox.suspended a {
+	color: #fff;
+	font-weight: bold;
+	text-decoration: underline;
+}
+/*
+.messagebox.netabare:not(.expired), .messagebox.mature:not(.expired) { cursor: pointer; }
+.messagebox.expired span.clickme { display: none; }
+*/
+
 
 /*===============
 	다이얼로그
