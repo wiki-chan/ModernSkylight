@@ -39,9 +39,9 @@ class SkinModernSkylight extends SkinTemplate {
 			'<!--[if IE]><style type="text/css">pre{font-family:굴림,Gulrim !important;}</style><![endif]-->'
 		);
 
-		$out->addModuleScripts( 'skins.modern-skylight' );
+		$out->addModuleScripts( 'skins.modern-skylight.js' );
 		if ($out->getTitle()->isMainPage()) {
-			$out->addModuleScripts( 'skins.modern-skylight.mainpage' );
+			$out->addModuleScripts( 'skins.modern-skylight.mainpage.js' );
 		}
 
 		switch ($out->getTitle()->getNamespace()) {
@@ -51,10 +51,7 @@ class SkinModernSkylight extends SkinTemplate {
 			case NS_TEMPLATE:
 			case NS_HELP:
 			case NS_CATEGORY:
-				$out->addModuleScripts( 'skins.modern-skylight.article' );
-				break;
-			case NS_USER:
-				$out->addModuleScripts( 'skins.modern-skylight.userpage' );
+				$out->addModuleScripts( 'skins.modern-skylight.article.js' );
 				break;
 		}
 	}
@@ -64,9 +61,9 @@ class SkinModernSkylight extends SkinTemplate {
 
 		parent::setupSkinUserCss( $out );
 
-		$out->addModuleStyles( 'skins.modern-skylight' );
+		$out->addModuleStyles( 'skins.modern-skylight.css' );
 		if ($out->getTitle()->isMainPage()) {
-			$out->addModuleStyles( 'skins.modern-skylight.mainpage' );
+			$out->addModuleStyles( 'skins.modern-skylight.mainpage.css' );
 		}
 
 		switch ($out->getTitle()->getNamespace()) {
@@ -75,11 +72,11 @@ class SkinModernSkylight extends SkinTemplate {
 			case NS_IMAGE:
 			case NS_TEMPLATE:
 			case NS_HELP:
-				$out->addModuleStyles( 'skins.modern-skylight.article' );
+				$out->addModuleStyles( 'skins.modern-skylight.article.css' );
 				break;
 			case NS_CATEGORY:
-				$out->addModuleStyles( 'skins.modern-skylight.article' );
-				$out->addModuleStyles( 'skins.modern-skylight.catpage' );
+				$out->addModuleStyles( 'skins.modern-skylight.article.css' );
+				$out->addModuleStyles( 'skins.modern-skylight.catpage.css' );
 				break;
 		}
 	}
