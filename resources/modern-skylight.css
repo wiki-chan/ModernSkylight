@@ -746,6 +746,12 @@ ul.top-menu > li:hover > a {
 	text-align: center;
 }
 
+/** noti **/
+#header-notification {
+	float: right;
+	margin: 0 0 0 15px;
+}
+
 /* 방명록 새 메시지, 새 친구신청 알림 */
 #header-account .top-menu #alarm-container .alarm-usermesg, .alarm-useradd {
 	display: inline-block;
