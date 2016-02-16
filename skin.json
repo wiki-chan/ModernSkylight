@@ -8,6 +8,7 @@
 	"url": "https://github.com/wiki-chan/modern-skylight",
 	"descriptionmsg": "modern-skylight-desc",
 	"namemsg": "skinname-modern-skylight",
+	"license-name": "BSD-2",
 	"type": "skin",
 	"ValidSkinNames": {
 		"modernskylight": "ModernSkylight"
@@ -17,26 +18,12 @@
 		"ModernSkylightTemplate": "ModernSkylightTemplate.php",
 		"ModernSkylightMenubar": "ModernSkylightMenubar.php"
 	},
-	"license-name": "BSD-2",
-	"MessagesDirs": {
-		"ModernSkylight": [
-			"i18n"
-		]
-	},
 	"ResourceModules": {
-		"skins.modern-skylight": {
+		"skins.modern-skylight.js": {
 			"scripts": [
 				"resources/modern-skylight.js",
 				"resources/editWarning.js"
 			],
-			"styles": {
-				"resources/font-awesome.css": {
-					"media": "screen"
-				},
-				"resources/modern-skylight.css": {
-					"media": "screen"
-				}
-			},
 			"dependencies": [
 				"mediawiki.util",
 				"jquery",
@@ -53,15 +40,20 @@
 				"modern-skylight-editwarning"
 			]
 		},
-		"skins.modern-skylight.mainpage": {
+		"skins.modern-skylight.css": {
+			"styles": {
+				"resources/font-awesome.css": {
+					"media": "screen"
+				},
+				"resources/modern-skylight.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"skins.modern-skylight.mainpage.js": {
 			"scripts": [
 				"resources/modern-skylight.mainpage.js"
 			],
-			"styles": {
-				"resources/modern-skylight.mainpage.css": {
-					"media": "screen"
-				}
-			},
 			"dependencies": [
 				"mediawiki.util",
 				"jquery",
@@ -69,17 +61,26 @@
 				"skins.modern-skylight.sidebar"
 			]
 		},
-		"skins.modern-skylight.article": {
+		"skins.modern-skylight.mainpage.css": {
+			"styles": {
+				"resources/modern-skylight.mainpage.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"skins.modern-skylight.article.js": {
 			"scripts": [
 				"resources/modern-skylight.article.js"
-			],
+			]
+		},
+		"skins.modern-skylight.article.css": {
 			"styles": {
 				"resources/modern-skylight.article.css": {
 					"media": "screen"
 				}
 			}
 		},
-		"skins.modern-skylight.catpage": {
+		"skins.modern-skylight.catpage.css": {
 			"styles": {
 				"resources/modern-skylight.catpage.css": {
 					"media": "screen"
@@ -102,5 +103,8 @@
 		"remoteSkinPath": "ModernSkylight"
 	},
 	"config": {
+		"MessageDirs": {
+			"ModernSkylight": "/var/www/html/skins/ModernSkylight/i18n"
+		}
 	}
 }
