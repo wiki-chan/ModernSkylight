@@ -141,6 +141,16 @@ class ModernSkylightTemplate extends BaseTemplate {
 						?>
 					</ul>
 				</div>
+				<?php if (array_key_exists('notifications', $PersonalTools)) : ?>
+				<!-- notification -->
+					<div id="header-notification">
+						<ul class="top-menu nolist clear">
+							<li>
+							<?php echo $this->makeLink( "notifications", $PersonalTools['notifications']['links'][0]); ?>
+							</li>
+						</ul>
+					</div>
+				<?php endif; ?>
 				<!-- search -->
 				<div id="header-search" role="search">
 					<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
@@ -220,8 +230,8 @@ class ModernSkylightTemplate extends BaseTemplate {
 				<!-- /bodyContent -->
 			</div>
 			
-			<!-- sidemenu -->
 			<?php if ( $this->data['useRightSidebar'] ) : ?>
+			<!-- sidemenu -->
 			<div class="sidebar">
 				<div class="sidetoc"></div>
 				<div class="sidesearch">
@@ -234,8 +244,8 @@ class ModernSkylightTemplate extends BaseTemplate {
 					</form>
 				</div>
 			</div>
-			<?php endif; ?>
 			<!-- /sidemenu -->
+			<?php endif; ?>
 		</div>
 		<div class="footer<?php if ($c_page->getNamespace() == 0 && !$c_page->isMainPage()) echo ' collapsed'; ?>" role="contentinfo" onclick="expandFooter()">
 			<div class="footer-collapse holder center">클릭하면 안내문이 나타납니다.</div>
