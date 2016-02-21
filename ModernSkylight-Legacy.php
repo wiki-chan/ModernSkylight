@@ -33,7 +33,7 @@ $wgAutoloadClasses['ModernSkylightTemplate'] = __DIR__ . '/ModernSkylightTemplat
 $wgAutoloadClasses['ModernSkylightMenubar'] = __DIR__ . '/ModernSkylightMenubar.php';
 
 // i18n setting
-$wgMessageDirs['ModernSkylight'] = __DIR__ . '/i18n';
+$wgMessagesDirs['ModernSkylight'] = __DIR__ . '/i18n';
 
 ##################################################################
 # 위키 전역에서 사용되는 module

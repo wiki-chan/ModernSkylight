@@ -13,6 +13,11 @@
 	"ValidSkinNames": {
 		"modernskylight": "ModernSkylight"
 	},
+	"MessagesDirs": {
+		"ModernSkylight": [
+			"i18n"
+		]
+	},
 	"AutoloadClasses": {
 		"SkinModernSkylight": "SkinModernSkylight.php",
 		"ModernSkylightTemplate": "ModernSkylightTemplate.php",
@@ -101,10 +106,5 @@
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
 		"remoteSkinPath": "ModernSkylight"
-	},
-	"config": {
-		"MessageDirs": {
-			"ModernSkylight": "/var/www/html/skins/ModernSkylight/i18n"
-		}
 	}
 }
