@@ -1,10 +1,8 @@
-/*************************
+/**
  *	DOMReady Actions
- *************************/
+ */
 $(function(){
-	/************************
-	 *	Accordion Menu
-	 ************************/
+	// Accordion Menu
 		var
 			ac_trigger = $('#accordion > li > a'),
 			ac_target = $('#accordion > li > ul.sub-menu'),
@@ -18,7 +16,7 @@ $(function(){
 			e.preventDefault();
 
 			// 토글한다
-			var $t  = $(this);
+			var $t = $(this);
 
 			if ( !$t.hasClass(toggle_class) ) {
 				ac_target.slideUp();
@@ -28,9 +26,7 @@ $(function(){
 			}
 		});
 
-	/********************
-	 *	Create Form
-	 ********************/
+	// Create Form
 	var
 		cf_trigger = $('#createformToggle'),
 		cf_target = $('#createform-hidden');
@@ -40,4 +36,7 @@ $(function(){
 		cf_trigger.toggleClass('open');
 		cf_target.slideToggle();
 	});
+
+	// Link to Sort Hack
+	$('#wikichan-sort').children('a').attr('href', '/sort/');
 });
