@@ -74,7 +74,7 @@ $wgHooks['ModernSkylightRightSidebar'][] = 'MyExtensionHooks::onRightSidebar';
 ```
 
 ### 하단 푸터 설정하기
-`미디어위키:ModernSidebarFooter` 문서를 사용하여 하단 푸터를 설정할 수 있습니다.  `column` class를 사용하여 3등분된 컬럼을 나눌 수 있으며, `column-head` class로 타이틀을, `column-body` class로 본문을 나타낼 수 있습니다. 본문 부분에는 `entry` class로 여러 내용을 적을 수 있습니다. 다음 예시를 참고하여 작성하시기 바랍니다.
+`미디어위키:ModernSkylightFooter` 문서를 사용하여 하단 푸터를 설정할 수 있습니다.  `column` class를 사용하여 3등분된 컬럼을 나눌 수 있으며, `column-head` class로 타이틀을, `column-body` class로 본문을 나타낼 수 있습니다. 본문 부분에는 `entry` class로 여러 내용을 적을 수 있습니다. 다음 예시를 참고하여 작성하시기 바랍니다.
 ```html
 <div class="column">
 	<div class="column-head">Title here</div>
