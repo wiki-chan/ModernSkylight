@@ -164,7 +164,6 @@ class ModernSkylightTemplate extends BaseTemplate {
 
 			</div>
 		</div>
-		</div>
 		<div class="content clear" role="main">
 			<div class="article<?php if ( !$this->data['useRightSidebar'] ) echo ' alpha'; ?>">
 				<div id="mw-js-message" style="display:none;"></div>
