@@ -716,11 +716,11 @@ textarea {
 
 /* 상단 메뉴 (로그인, 내비게이션) */
 ul.top-menu > li {
-	display: block;
 	float: left;
 }
 ul.top-menu > li > a {
-	display: block;
+	display: inline-block;
+	line-height: 20px;
 	padding: 15px;
 	color: #111;
 	text-decoration: none;
@@ -948,7 +948,7 @@ ul.top-menu > li:hover > a {
 /* 메뉴 안의 구분선 */
 .dropdown-menu hr {
 	margin: 1px 10px;
-	background: #d2d2d2;
+	background: #EAEAEA;
 }
 
 /* 메뉴가 드랍될 위치 */
