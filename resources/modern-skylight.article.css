@@ -1,72 +1,192 @@
-/*==================
-	가로로 긴 상자
-==================*/
-.plainbox {
-	width: 100%;
-	position: relative;
+﻿/**
+ * 위키쨩 ARTICLE PAGES
+ * For: NS_MAIN, NS_CATEGORY, NS_PROJECT, NS_IMAGE, NS_TEMPLATE, NS_HELP
+ * Author: 카페인러브, 2016
+ * Website: http://wiki-chan.net
+ * MIT and GPL licenses
+ */
+
+/** Fixes **/
+#article dl + ul, #article dl + ol { margin-top: -.5em; }
+
+/** Convinience Classes **/
+.text-left { text-align: left !important; }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+.text-small, .smaller { font-size: .923076923rem !important; }
+.indented { padding-left: .5em !important; }
+.discrete { color: #AAA !important; }
+
+/* 나열된 요소 사이에 쉼표 추가 */
+.item + .item:before {
+	display: inline;
+	content: ',\00a0';
+	white-space: normal;
 }
 
-.plainbox > .left {
-	float: left;
-	margin: 0 8px 0 0;
-}
-.plainbox > .right {
-	float: right;
+/** Gallery **/
+li.gallerybox div.thumb {
+	border: none !important;
+	background-color: transparent !important;
 }
 
-.plainbox p {
-	margin: .4em 0 0 !important;
-}
-.plainbox p + p {
-	margin: .8em 0 0 !important;
-}
-
-.plainbox .right ul {
-	list-style: none !important;
-	margin: .2em 0 .3em 1em !important;
-}
-.plainbox .right ul > li {
-	/* @embed */
-	background: url(images/arrow-right.png) no-repeat 2px 7px;
-	padding-left: 12px;
-	list-style: none !important; /* fallback */
+/** External Links **/
+#article a.external:after {
+	display: inline-block;
+	content: '\f118';
+	font: 12px/0 'icomoon';
+	vertical-align: super;
+	margin-left: .25em;
 }
 
-.plainbox .upload-file {
-	text-align: center;
+/** Tabs **/
+.tabs-container {
+	margin: 2em 3%;
+	overflow: hidden;
 }
-.plainbox .upload-file a:not(.new) {
-	display: block;
-	line-height: 0;
+.tabs-control {
+	padding: 0 !important;
+	margin: 0 0 1em !important;
+	text-align: center !important;
 }
+.tabs-control > * {
+	display: inline-block;
+	background-color: #FFF;
+	color: #767676;
+	border: 1px solid #E2E2E2;
+	line-height: 1;
+	padding: .55em .5em .35em;
+	margin: 2px;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: all .1s ease-in-out;
+}
+.tabs-control > *.active {
+	background-color: #00A6BC;
+	color: #FFF;
+	border-color: #00A6BC;
+}
+.tabs-control > *:not(.active):hover {
+	background-color: #ADADAD;
+	color: #FFF;
+	border-color: #ADADAD;
+}
+.tabs-content > *:not(.active) { display: none; }
 
-/*================
-	{{정보상자}}
-================*/
+/** Message Box {{알림}} {{안내}} {{참조}} **/
+blockquote.info {
+	background-color: #E3F7FC;
+	border: 0;
+	border-left: 5px solid #4CC8E4;
+	padding: .8em 1.3em;
+	margin: .3em 0 1em;
+}
+blockquote.info a { font-weight: bold; }
+
+blockquote.protected {
+	background-color: #F7E3FC;
+	border-left-color: #D5A3D4;
+}
+blockquote.protected a { color: #B051AE !important; }
+
+blockquote.suspended {
+	background-color: #FCE3E3;
+	border-left-color: #F37076;
+}
+blockquote.suspended a { color: #EE3A42 !important; }
+
+/** Infobox {{정보상자}} **/
 .infobox {
-	margin: 1em 0 2em;
+	clear: left;
+	margin: 1em 0 1.5em;
 }
 
-/* 그림 영역 */
 .infobox .img {
+	float: left;
 	width: 200px;
-	/* border: 1px solid #ddd; */
-	text-align: center;
+	max-height: 350px;
 	overflow: hidden;
-	position: relative;
 }
-.infobox .img a:not(.new) {
-	overflow: hidden;
-	height: auto;
-	max-height: 350px; /* 정보상자에 첨부되는 그림은 세로 350px가 최대 */
+.infobox .info {
+	margin-left: calc(200px + 1em);
+}
+.infobox .upload > a.new {
+	height: 250px;
+	line-height: 250px;
 }
 
-/* 그림 밑에 영역을 추가 */
-.infobox .left .ext {
+.infobox .heading {
+	background-color: #EEEFF2;
+	padding: .7em 15px .6em;
+	margin: .3rem 0;
+}
+.infobox .heading:first-child { margin-top: 0; }
+.infobox .subheading {
+	background-color: #EEEFF2;
+	padding: .3em 15px .2em;
+	margin: .3rem 0;
+}
+
+.infobox .heading strong { display: block; }
+.infobox .heading .title { font-size: 1.38461538rem; }
+.infobox .subtitle { font-size: .923076923rem; }
+.infobox .subtitle,
+.infobox .interlang { line-height: 1.2; }
+
+.infobox .heading span + span:before {
+	content: '/';
+	font-size: 1rem;
+	font-weight: normal;
+	line-height: 1;
+	color: #BBB;
+	margin-left: .3em;
+	margin-right: .35em;
+}
+.infobox .title span + span:before,
+.infobox span:lang(en) + span:lang(ja):before { /* 성우의 본명, 명의 구분자 */
+	color: inherit;
+	content: '・';
+	margin-left: .2em;
+	margin-right: .25em;
+}
+
+.infobox dl {
+	margin: 0;
+	line-height: 1.7 !important	;
+}
+.infobox dl:after {
+	content: '';
+	display: table;
+}
+.infobox dt {
+	float: left;
+	width: 7em;
+	padding: 0 .5em;
+	text-align: right;
+	font-weight: normal !important;
+}
+.infobox dd {
+	padding: 0 .5em;
+	margin: 0 0 0 8.5em !important;
+}
+.infobox dd a.external { /* truncate long links */
+	display: block;
+	white-space: nowrap;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+.infobox dd ul {
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
+}
+
+/* 섬네일 밑에 확장 영역 추가 */
+.infobox .ext {
 	margin-top: 10px;
 	text-align: center;
 }
-.infobox .left .ext + .ext {
+.infobox .ext + .ext {
 	margin-top: 5px;
 }
 
@@ -97,394 +217,119 @@
 .bookmark.youtube-inactive img { margin: -96px 0 0 -32px; }
 .bookmark.wikipedia-inactive img { margin: -128px 0 0 -32px; }
 
-.bookmark a {
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	transition: all 200ms ease;
-}
-.bookmark a:hover {
-	-moz-opacity: 0.8;
-	opacity: 0.8;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha"(Opacity=80);
-	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=80);
-}
+.bookmark a { transition: all .2s; }
+.bookmark a:hover { opacity: 0.8; }
 
-/* 프로필 영역 */
-.infobox .right {
-	width: 500px; /* 710 - left(212) - margin(8) */
-	border-top: 1px solid #dadada;
-	border-bottom: 1px solid #dadada;
-	padding: 2px 0;
+/** Multi-purpose box {{단행본}} {{블루레이}} **/
+.multibox {
+	clear: left;
+	margin: 0 3% 1em;
 }
-
-/* 프로필 헤더 */
-.infobox .right .header {
-	background: #f0f0f0;
-	padding: 5px 8px;
-	text-align: center;
-	margin-bottom: 2px;
-}
-.infobox .right .header .title {
-	font-size: 17px;
-	line-height: 19px;
-	font-weight: bold;
-	padding: 2px 0 4px;
-}
-.infobox .right .header .subtitle {
-	font-size: 12px;
-	line-height: 140%;
-}
-.infobox .right .header span.category + span.genre:before {
-	display: inline;
-	content: "\00a0\00a0|\00a0\00a0";
-	color: #c9c9c9;
-}
-
-/* 프로필 내용 */
-.infobox .right .rows {
-}
-.infobox .right .info {
-	clear: both;
-	line-height: 170%;
-}
-.infobox .right .info .param {
+.multibox .img {
 	float: left;
-	text-align: right;
-	padding-right: 5px;
-	width: 100px;
-	font-weight: bold;
-}
-.infobox .right .info .value {
-	float: left;
-	width: 390px;
-	word-wrap: break-word;
-	word-break: break-all;
-}
-.infobox .right .section-title {
-	background: #f0f0f0;
-	text-align: center;
-	font-weight: bold;
-	font-size: 12px;
-	line-height: 180%;
-	margin: 2px 0;
-}
-.infobox .right .info .value ul {
-	margin: 0 !important;
-}
-
-/* 스테이터스칸 */
-.status-bar {
-	overflow: visible;
-}
-.status-bar .cap {
-	float: left;
-	width: 60px;
-	margin-right: 5px;
-	text-align: right;
-	font-size: 12px;
-	line-height: 22px;
-}
-.status-bar .track {
-	float: left;
-	background: url(images/status-bar-bg.gif) repeat-x left center;
-	width: 110px;
-	height: 22px;
-	text-align: left;
-	white-space: nowrap;
-	overflow: visible;
-}
-.status-bar .bar {
-	display: inline-block;
-	background: url(images/status-bar.gif) repeat-x left center;
-	width: 1px; /* 틀에서 HTML 태그로 크기 조절 */
-	height: 100%;
-}
-.status-bar .val {
-	display: inline-block;
-	font-family: '맑은 고딕';
-	font-size: 12px;
-	line-height: 22px;
-	margin-left: 3px;
-	max-width: 32px;
-	white-space: nowrap;
+	min-width: auto !important;
+	min-height: auto !important;
 	overflow: hidden;
-	padding-right: 1px;
 }
-.status-caption {
-	padding: 0 5px;
-	font-size: 12px;
-	line-height: 18px;
-	text-align: center;
-	margin-top: 5px;
+.multibox .desc {
+	margin-top: .5em;
 }
 
-/* 음반 상자 */
-.infobox.discography .left {
+.multibox dl { margin: 0; }
+.multibox p { margin: .5em 0; }
+.multibox p:first-child { margin-top: 0; }
 
+/** Characters {{등장인물}} **/
+.multibox.chara {
+	margin-left: 0;
+	margin-right: 0;
 }
-.infobox.discography .right {
-	min-height: 200px;
-}
-
-/* 슬라이더와 병용할 때 */
-.infobox.switchable .left {
-	width: 200px;
-}
-.infobox.switchable .right {
-	width: 475px;
-}
-.infobox.switchable .right .info .value {
-	width: 367px;
-}
-.infobox.switchable .slider-control {
-	position: absolute;
-	top: 0;
-	left: 208px;
-}
-
-/* 최소 크기 */
-.infobox.min-height .right {
-	min-height: 240px;
-}
-
-/*=================
-	각종 정보 틀
-=================*/
-.simplebox {
-	margin: .3em auto 1em;
-}
-.simplebox .title {
-	font-weight: bold;
-}
-.simplebox .subtitle {
-	margin-left: 1em;
-}
-.simplebox .text {
-	margin: .4em 0 .5em;
-}
-
-/* 틀:등장인물 */
-.simplebox.character .left {
+.multibox.chara .img > a.new {
 	width: 100px;
 	height: 100px;
 	line-height: 100px;
-	/* border: 1px solid #ddd; */
 }
-.simplebox.character .right {
-	width: 600px;
-	min-height: 100px;
-}
-.simplebox.character .text {
-	margin: .2em 0 0;
-}
+.multibox.chara .info { margin-left: calc(100px + 1em); }
+.multibox .desc { margin-top: 0; }
 
-/* 틀:등장인물/하위 */
-.simplebox.character.indent {
-	width: 676px;
-	margin-left: 24px;
-	border-left: 3px solid #eee;
-	padding-left: 7px;
-}
-.simplebox.character.indent .right {
-	width: 566px; /* 600 - 34px */
-}
+/** Books {{단행본}} **/
+.multibox.book .img { width: 150px; }
+.multibox.book .info { margin-left: calc(150px + 1em); }
 
-/* 틀:단행본 */
-.simplebox.book {
-	width: 690px;
-}
-.simplebox.book .left {
-	width: 150px;
-	min-height: 200px;
-	/* border: 1px solid #ddd; */
-}
-.simplebox.book .right {
-	width: 530px;
-}
+/** Drama CD {{드라마 CD}} **/
+.multibox.dramacd .img { width: 170px; }
+.multibox.dramacd .info { margin-left: calc(170px + 1em); }
 
-/* 틀:드라마 CD */
-.simplebox.dramacd {
-	width: 690px;
-	margin: 0 auto;
-}
-.simplebox.dramacd .left {
-	width: 170px;
-	min-height: 120px;
-	/* border: 1px solid #ddd; */
-}
-.simplebox.dramacd .right {
-	width: 510px;
-}
+/** Bluray {{블루레이}} **/
+.multibox.bluray .img { width: 150px; }
+.multibox.bluray .info { margin-left: calc(150px + 1em); }
 
-/* 틀:블루레이 */
-.simplebox.bluray {
-	width: 700px;
-	margin-bottom: 0.5em !important;
-}
-.simplebox.bluray .left {
-	width: 152px;
-}
-.simplebox.bluray .left .img {
-	width: 150px;
-	min-height: 150px;
-	/* border: 1px solid #ddd; */
-}
-.simplebox.bluray .left  .img + .img {
-	margin-left: 0;
-}
-.simplebox.bluray .right {
-	width: 512px;
-}
-.simplebox.bluray .slider-control {
-	position: absolute;
-	top: 0;
-	left: 160px;
-}
-
-/* 틀:에피소드 */
-.episode {
-	width: 630px;
-	margin: 0 auto 10px;
-}
-.episode .upper {
-	padding: 0px 25px;
-	margin-bottom: 10px;
-}
-.episode .upper .img {
-	float: left;
-	width: 280px;
-	text-align: center;
-	line-height: 0;
-	/* border: 1px solid #ddd; */
-}
-.episode .img + .img {
-	margin-left: 16px;
-}
-.episode > .lower {
-	clear: both;
-}
-.episode .info .title {
-	font-weight: bold;
-	margin-bottom: .6em;
-}
-.episode .info p {
-	margin: 0 !important;
-}
-.episode .info p + p {
-	margin: .5em 0 0 0 !important;
-}
-
-/*=================
-	슬라이더, 탭
-=================*/
-/* 컨테이터 */
-.slider-container, .tabs-container {
-	width: 700px;
-	margin: 0 auto 10px;
-	overflow: hidden;
-}
-
-/* 바디 */
-.slider {
-	width: 100000px;
-	list-style: none !important;
-	margin: 0 !important;
-	position: relative;
-}
-.slider li {
-	display: block;
-	float: left;
-	margin: 0;
-}
-.slider.docs li { width: 700px; }
-.slider.pics li { width: 320px; text-align: center; line-height: 0; }
-.slider.pics li:first-child { margin-left: 190px; }
-.slider.pics li img { border: 2px solid #dadada; }
-.slider.pics li.active img { border-color: #60b9e2; }
-.slider.pics li div { padding: 2px 0 4px; line-height: 24px; }
-.slider.pics .upload-file > a.new {
-	position: relative;
-	display: block;
-	height: 100px;
-	margin: 0 15px;
-}
-
-/* 컨트롤 */
-.slider-control, .tabs-control {
-	text-align: center !important;
-}
-.slider-control li, .tabs-control div {
-	display: inline-block;
-	font-family: '맑은 고딕';
-	background: #e0e0e0;
-	color: #111;
-	padding: 4px 6px 5px;
-	margin: 0 0 3px;
-	cursor: pointer;
-	-webkit-transition: all .1s linear;
-	-moz-transition: all .1s linear;
-	transition: all .1s linear;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	user-select: none;
-}
-.tabs-control {
-	margin-bottom: 10px;
-}
-.tabs-content > div:not(:first-child) {
-	display: none;
-}
-
-.slider-control li.selected, .slider-control li:hover,
-.tabs-control div.selected, .tabs-control div:hover {
-	background: #444;
-	color: #fff;
-}
-.slider-control li + li, .tabs-control div + div {
-	margin-left: 2px;
-}
-
-/* plainbox에 쓰일 때 */
-.switchable .slider-control li {
-	display: block;
-	width: 18px;
+/** Infobox or Multibox WITH TABS
+ * Discography {{정보상자/음반}}
+ * Bluray {{블루레이}
+ **/
+.switchable .tabs-control > * {
+	width: 12px;
+	height: 12px;
 	padding: 0;
-	margin: 1px 0 3px;
-}
-
-/*================
-	TEMPLATES
-  ================*/
-/* 틀:인용 */
-#quotation {
+	margin: 0 3px;
+	border-radius: 50%;
 	border: none;
-	background: transparent;
-	padding: 0;
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-	quotes: "\201C" "\201D";
 }
-#quotation p { text-indent: 0 !important; }
-#quotation p:before, #quotation p:after {
-	font: bold 24px/1px Times, serif;
-	position:absolute;
+.switchable .tabs-control > *:not(.active) { background-color: #E0E2E4; }
+.switchable .tabs-control > *:not(.active):hover { background-color: #ADADAD; }
+
+.switchable .tabs-content { margin: 0 !important; }
+
+/** Episodes {{에피소드}} **/
+.episode .upper {
+	margin-bottom: 1em;
+	text-align: center;
 }
-#quotation p:first-child:before { content: open-quote; }
-#quotation p:last-child:after { content: close-quote; }
+.episode .img {
+	display: inline-block;
+	margin: 0 .2em;
+}
+.episode .img > a.new {
+	width: 240px;
+	height: 160px;
+	line-height: 160px;
+}
 
-#quotation.double p { quotes: "“" "”"; }
-#quotation.single p { quotes: "‘" "’"; }
-
-#quotation.double p:first-child:before { margin: 8px 0 0 -15px; }
-#quotation.double p:last-child:after { margin: 18px 0 0 5px; }
-
-#quotation.single p:first-child:before { margin: 8px 0 0 -11px; }
-#quotation.single p:last-child:after { margin: 18px 0 0 3px; }
-
-/* <poem /> */
-.poem p {
-	text-indent: 0 !important;
-	margin: 0 !important;
+/* Status {{스테이터스}} */
+.statusbar {
+	clear: both;
+	width: 200px;
+	padding: 0 10px;
+	margin: .25em 0;
+	overflow: visible;
+}
+.statusbar .param {
+	font-size: .923076923rem;
+	color: #808284;
+}
+.statusbar .track {
+	height: 17px;
+	text-align: left;
+	white-space: nowrap;
+	overflow: visible;
+	background-color: #EAECEF;
+	box-shadow: inset 0 0 2px rgba(100,100,100,.1);
+}
+.statusbar .track > * {
+	display: inline-block;
+	vertical-align: top;
+}
+.statusbar .bar {
+	width: 0; /* 틀에서 HTML 태그로 크기 조절 */
+	max-width: 150%;
+	height: 100%;
+	background-color: #F37076;
+}
+.statusbar .value {
+	margin-left: .3em;
+	font-size: .923076923rem;
+	line-height: 17px;
 }
 
 /* 틀:접기 */
@@ -541,34 +386,7 @@ span.netabare.show *:not(.alt) {
 	visibility: visible;
 }
 
-/* 틀:안내 */
-.information {
-	margin: .8em .5em;
-	padding-left: 21px;
-	position: relative;
-}
-.information + .information {
-	margin-top: -.6em;
-}
-.information:before {
-	display: inline-block;
-	content: "";
-	background: url(images/ui-menu-ico.png) no-repeat 0 -96px;
-	width: 16px;
-	height: 16px;
-	position: absolute;
-	top: 2px;
-	left: 0;
-}
-
-/* 나열된 요소 사이마다 쉼표를 찍음 */
-span.item + span.item:before {
-	display: inline;
-	content: ",\00a0";
-	white-space: normal;
-}
-
-/* 틀:단행본의 국기 부분 */
+/* Flag {{국기}} */
 .flag {
 	padding: 0 12px;
 	margin-right: 5px;
@@ -581,7 +399,7 @@ span.item + span.item:before {
 	left: 0;
 }
 
-/* 틀:덧 */
+/* Media Tag {{덧}} */
 .media-tag {
 	font-size: 12px;
 	color: #34ac98;
@@ -589,14 +407,30 @@ span.item + span.item:before {
 }
 .media-tag:before {
 	content: '[';
-	padding-right: 1px;
+	margin-right: .1em;
 }
 .media-tag:after {
 	content: ']';
-	padding-left: 1px;
+	margin-left: .1em;
 }
 
-/* 틀:명의 */
+/* Link Tag {{이벤트}} */
+.link-tag a {
+	font-size: .923076923rem;
+	line-height: 1;
+	color: #888;
+	background-color: #e5e5e5;
+	padding: .15em .25em 0 .2em;
+	white-space: nowrap;
+}
+.link-tag a:hover {
+	text-decoration: none;
+	color: #FFF;
+	background-color: #444;
+}
+.link-tag a:after { display: none; }
+
+/* Alias Tag {{명의}} */
 .name-tag {
 	background: #e5e5e5;
 	padding: 0 4px 0 3px;
@@ -607,89 +441,45 @@ span.item + span.item:before {
 	cursor: help;
 }
 
-/* 링크 아이콘 | 틀:이벤트 */
-.link-tag a {
-	background: #e5e5e5;
-	padding: 0 4px 0 3px;
-	font-size: 12px;
-	line-height: 0;
-	color: #333 !important;
-	position: relative;
-	top: -1px;
-	white-space: nowrap;
-	text-shadow: none;
-}
-.link-tag a:hover {
-	color: #fff !important;
-	background: #444;
-}
-.link-tag a:after {
-	display: none !important;
-}
-
-/* 틀:노래, 틀:타이업 */
-.listlike ul {
-	list-style: none !important;
+/* Imitation List : in {{타이업}} */
+.fakelist ul {
+	display: block;
+	padding: 0 !important;
 	margin: 0 !important;
 }
-.listlike p, .listlike li {
-	background: url(images/arrow-right.png) no-repeat 2px 7px;
-	padding-left: 12px;
-	text-indent: 0 !important;
-	text-align: left !important;
-}
-.listlike.padded p, .listlike.padded li {
-	margin: 0 0 0 15px;
-}
-
-/* 작은 들여쓰기 */
-.ind {
-	margin-left: 5px;
-}
-
-/* 텍스트 정렬 */
-.text-left {
+.fakelist p, .fakelist li {
+	display: block !important;
+	padding-left: .5em;
+	margin: 0;
 	text-align: left;
 }
-.text-center {
-	text-align: center;
-}
-.text-right {
-	text-align: right;
-}
-.text-justify {
-	text-align: justify;
-}
+.fakelist p:before, .fakelist li:before { content: '・'; }
 
-/* 틀:별점 */
-.rating {
-	background: url(images/star.png) repeat-x 0 0;
-	display: inline-block;
-	width: 18px;
-	height: 16px;
-	vertical-align: text-top;
-	margin-right: 2px;
-}
-.rating + .value {
-	font: normal 14px/16px '맑은 고딕';
-	letter-spacing: 0;
-	margin: 0 2px;
-}
-
-/* 틀:제목 */
-.copipe {
-	cursor: pointer;
-}
-
-/* 연습장:봇쨩을 대문처럼 alpha 스타일로 */
-body.page-연습장_봇쨩 .article {
-	width: 100%;
-	padding: 0;
+/* Quotation {{인용}} */
+.quotation {
 	border: none;
+	background: transparent;
+	padding: 0;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	quotes: '\201C' '\201D';
 }
-body.page-연습장_봇쨩 h1#firstheading {
-	margin-top: 0;
+.quotation p { text-indent: 0 !important; }
+.quotation p:before, .quotation p:after {
+	font: bold 24px/1px Times, serif;
+	position: absolute;
 }
-body.page-연습장_봇쨩 .sidebar, body.page-연습장_봇쨩 #toc {
-	display: none;
-}
+.quotation p:first-child:before { content: open-quote; }
+.quotation p:last-child:after { content: close-quote; }
+
+.quotation.double p { quotes: "“" "”"; }
+.quotation.single p { quotes: "‘" "’"; }
+
+.quotation.double p:first-child:before { margin: 8px 0 0 -15px; }
+.quotation.double p:last-child:after { margin: 18px 0 0 5px; }
+
+.quotation.single p:first-child:before { margin: 8px 0 0 -11px; }
+.quotation.single p:last-child:after { margin: 18px 0 0 3px; }
+
+/* <poem /> */
+.poem p { margin: 0 !important; }

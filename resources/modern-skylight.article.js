@@ -1,5 +1,35 @@
+/**
+ * Tabs
+ * Author: 카페인러브, 2016
+ * MIT License
+ */
+function tabs(elem) {
+	var tabs = elem.getElementsByClassName('tabs-control')[0].children;
+	var classname = 'active';
+
+	for (var i=0, j=tabs.length; i<j; i++) {
+		(function(index){
+			tabs[i].onclick = function() {
+				var t = this;
+				t.parentNode.querySelector('.' + classname).classList.remove(classname);
+				t.classList.add(classname);
+
+				var content = t.parentNode.parentNode.getElementsByClassName('tabs-content')[0];
+				content.querySelector('.' + classname).classList.remove(classname);
+				content.children[index].classList.add(classname);
+			}
+		})(i);
+	}
+}
+
+var hasTabs = document.getElementsByClassName('tabs-container');
+
+Array.prototype.forEach.call(hasTabs, function(elem) {
+	tabs(elem);
+});
+
 /*************************
-*	Tab and Slider
+*	Slider
 *	Author : 카페인러브
 *************************/
 $(function(){
@@ -16,17 +46,6 @@ $(function(){
 			$(this).addClass('selected').siblings('li').removeClass('selected');
 			container.stop(true,false).animate({'left':'-'+ imgWidth*index +'px'},400);
 			container.find('li:nth-child(' + newIndex + ')').addClass('active').siblings().removeClass('active');
-		}
-	});
-	$('.tabs-control div').on('click', function() {
-		if ( !$(this).hasClass('selected') ) {
-			var
-				index = $(this).index() + 1,
-				contents = $(this).parent().next('.tabs-content'),
-				target = contents.children('div:nth-child(' + index + ')');
-
-			$(this).addClass('selected').siblings().removeClass('selected');
-			target.show().siblings('div').hide();
 		}
 	});
 });

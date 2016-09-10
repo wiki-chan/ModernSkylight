@@ -73,8 +73,6 @@ textarea:focus, input:focus, select:focus {
 .warm .clr4 { background: #008ccf }
 
 .hover-shadow:hover {
-	-webkit-box-shadow: inset 0px 0px 4px rgba(255, 255, 255, 0.9);
-	-moz-box-shadow: inset 0px 0px 4px rgba(255,255,255,.9);
 	box-shadow: inset 0px 0px 4px rgba(255, 255, 255, 0.9);
 }
 
@@ -242,8 +240,6 @@ pre {
 	word-wrap: break-word;
 	margin: 0;
 	padding-right: 60px !important;
-	-webkit-text-shadow: none;
-	-moz-text-shadow: none;
 	text-shadow: none;
 }
 .selectable > input {
@@ -302,8 +298,6 @@ input[type="button"]:hover, input[type="submit"]:hover, button:not(.ui-button):h
 input[type="button"]:active, input[type="submit"]:active, button:not(.ui-button):active,
 input[type="button"]:focus, input[type="submit"]:focus, button:not(.ui-button):focus,
 a.button:hover, .buttons > a:hover {
-	-moz-box-shadow: inset 0px 0px 4px rgba(255,255,255,.9);
-	-webkit-box-shadow: inset 0px 0px 4px rgba(255, 255, 255, 0.9);
 	box-shadow: inset 0px 0px 4px rgba(255, 255, 255, 0.9);
 	text-decoration: none !important;
 }
@@ -374,8 +368,7 @@ input[disabled] + label {
 .article h2, .article h3, .article h4, .article h5, .article h6 {
 	clear: both;
 	font-weight: bold;
-	padding-bottom: 3px;
-	overflow: hidden;
+	line-height: normal;
 	margin-top: 1.5em;
 	margin-bottom: .4em;
 	position: relative;
@@ -383,7 +376,6 @@ input[disabled] + label {
 
 .article h2 {
 	font-size: 21px;
-	line-height: 23px;
 	margin-top: 1.6em;
 	padding-left: 15px;
 }
@@ -393,7 +385,6 @@ input[disabled] + label {
 
 .article h3 {
 	font-size: 17px;
-	line-height: 19px;
 	padding-left: 14px;
 }
 .article h2 + h3 {
@@ -402,7 +393,6 @@ input[disabled] + label {
 
 .article h4 {
 	font-size: 15px;
-	line-height: 17px;
 	padding-left: 13px;
 }
 .article h3 + h4 {
@@ -411,7 +401,6 @@ input[disabled] + label {
 
 .article h5, .article h6 {
 	font-size: 13px;
-	line-height: 12px;
 	padding-left: 13px;
 }
 
@@ -421,45 +410,26 @@ input[disabled] + label {
 	display: block;
 	position: absolute;
 	top: 0;
-	background: #529cff;
+	bottom: 0;
+	background: #4CC8E4;
 }
 .article h2:before {
 	width: 8px;
-	height: 26px;
 	left: 0;
 }
 .article h3:before {
 	width: 5px;
-	height: 20px;
 	left: 1px;
 }
 .article h4:before {
 	width: 3px;
-	height: 19px;
 	left: 2px;
 }
 .article h5:before, .article h6:before {
 	width: 3px;
-	height: 16px;
 	left: 2px;
 }
-
-.editsection {
-	font-weight: normal;
-	font-size: 13px;
-}
-.editsection:before {
-	content: "";
-	display: inline-block;
-	/* @embed */
-	background: url(images/edit.png) no-repeat top left;
-	width: 16px;
-	height: 16px;
-	margin-right: 3px;
-	vertical-align: text-top;
-	position: relative;
-	top: 2px;
-}
+.article .mw-editsection-bracket { display: none; }
 
 /*===============
 	미디어 파일
@@ -471,27 +441,49 @@ a img {
 }
 
 /* 썸네일 */
-.tleft {
-	margin: 10px 16px 16px 0;
+.thumb {
+	margin-top: .5em;
+	margin-bottom: .8em;
+	padding: 5px;
+	background-color: #F4F6F8;
+	border: 1px solid #EEE;
 }
-.tright {
+.thumb.tright {
+	float: right;
+	clear: right;
 	margin: 10px 0 16px 16px;
 }
-.thumbinner .thumbimage {
-	background: #fff;
+.thumb.tleft {
+	float: left;
+	clear: left;
+	margin: 10px 16px 16px 0;
 }
-.thumbcaption {
-	padding: 0 5px;
-	font-size: 12px;
-	line-height: 18px;
+.thumb.tnone {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
 }
-.thumbcaption .magnify {
-	display: none;
+
+.thumbinner {
+	text-align: center;
+	overflow: hidden;
 }
-.thumbborder {
-	border: 1px solid #dadada;
+.thumbinner a.image {
+	display: block;
+	line-height: 0; /* fix */
 }
+
+.thumbimage { }
+.thumbborder { border: 1px solid #EEE; }
+
+.thumbcaption {
+	padding: ;
+	margin-top: .5em;
+	color: #606264;
+}
+.thumb:not(.tnone) .thumbcaption { text-align: left !important; }
+.thumbcaption .magnify { display: none; }
 
 /* 갤러리 */
 ul.gallery {
@@ -504,12 +496,13 @@ li.callerycaption {
 li.gallerybox {
 	border: none;
 }
-li.gallerybox .thumb {
+li.gallerybox div.thumb {
 	border: none;
 	background: none;
-	margin: 1px;
+	margin: 0;
+	padding: 0;
 }
-li.gallerybox .thumb a.new {
+li.gallerybox div.thumb a.new {
 	padding: 2px 12px;
 	font-size: 12px;
 	line-height: 20px;
@@ -518,31 +511,19 @@ li.gallerybox .thumb a.new {
 	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
 	vertical-align: middle;
 	background-color: #F5F5F5;
-	background-image: -moz-linear-gradient(top,#FFF,#E6E6E6);
-	background-image: -webkit-gradient(linear,0 0,0 100%,from(#FFF),to(#E6E6E6));
-	background-image: -webkit-linear-gradient(top,#FFF,#E6E6E6);
-	background-image: -o-linear-gradient(top,#FFF,#E6E6E6);
 	background-image: linear-gradient(to bottom,#FFF,#E6E6E6);
 	background-repeat: repeat-x;
 	border: 1px solid #CCC;
 	border-color: #E6E6E6 #E6E6E6 #BFBFBF;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 	border-bottom-color: #B3B3B3;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
 	line-height: 130px;
 }
 li.gallerybox .thumb a.new:active {
 	background-image: none;
 	outline: 0;
-	-webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
-	-moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
 	box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
 	background-color: #e0e0e0;
 }
@@ -555,19 +536,6 @@ div.gallerytext p {
 	margin: 0;
 	text-align: center !important;
 	text-indent : 0 !important;
-}
-
-/* 썸네일에 섀도우, 불투명도 효과 */
-.thumb img {
-	-webkit-box-shadow: 2px 1px 2px 1px rgba(0,0,0,0.2);
-	-moz-box-shadow: 2px 1px 2px 1px rgba(0,0,0,0.2);
-	box-shadow: 2px 1px 2px 1px rgba(0,0,0,0.2);
-	-webkit-transition: opacity 0.1s linear;
-	-moz-transition: opacity 0.1s linear;
-	transition: opacity 0.1s linear;
-}
-.thumb img:hover {
-	opacity: 0.7;
 }
 
 /*===============
@@ -694,8 +662,6 @@ textarea {
 	position: relative;
 	background: #fff;
 	border-bottom: 1px solid #ddd;
-	-webkit-box-shadow: 0 2px 5px rgba(50,50,50,0.1);
-	-moz-box-shadow: 0 2px 5px rgba(50,50,50,0.1);
 	box-shadow: 0 2px 5px rgba(50,50,50,0.1);
 	overflow: visible;
 	z-index: 1;
@@ -716,18 +682,18 @@ textarea {
 
 /* 상단 메뉴 (로그인, 내비게이션) */
 ul.top-menu > li {
-	display: block;
 	float: left;
 }
 ul.top-menu > li > a {
-	display: block;
+	display: inline-block;
+	line-height: 20px;
 	padding: 15px;
 	color: #111;
 	text-decoration: none;
 	position: relative;
 }
 ul.top-menu > li:hover > a {
-	background: #efefef;
+	background: #F2F4F6;
 }
 
 /** 내비게이션 메뉴 **/
@@ -761,28 +727,14 @@ ul.top-menu > li:hover > a {
 	font-weight: bold;
 	text-shadow: 0 -1px 0 #ca3e2e;
 	background: #e8a09a;
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8a09a', endColorstr='#ca3e2e',GradientType=0 );
-	background: -moz-linear-gradient(top,  #e8a09a 0%, #ca3e2e 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8a09a), color-stop(100%,#ca3e2e));
-	background: -webkit-linear-gradient(top,  #e8a09a 0%,#ca3e2e 100%);
-	background: -o-linear-gradient(top,  #e8a09a 0%,#ca3e2e 100%);
-	background: -ms-linear-gradient(top,  #e8a09a 0%,#ca3e2e 100%);
-	background: linear-gradient(to bottom,  #e8a09a 0%,#ca3e2e 100%);
+	background: linear-gradient(to bottom, #e8a09a 0%, #ca3e2e 100%);
 	border: 1px solid #ca3e2e;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
 	padding: 0 2px 0 1px;
 	margin-left: 3px;
 	vertical-align: text-top;
 }
 #header-account .top-menu:hover #alarm-container .alarm-usermesg, .alarm-useradd {
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f89c8c', endColorstr='#d5290a',GradientType=0 );
-	background: -moz-linear-gradient(top,  #f89c8c 0%, #d5290a 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f89c8c), color-stop(100%,#d5290a));
-	background: -webkit-linear-gradient(top,  #f89c8c 0%,#d5290a 100%);
-	background: -o-linear-gradient(top,  #f89c8c 0%,#d5290a 100%);
-	background: -ms-linear-gradient(top,  #f89c8c 0%,#d5290a 100%);
 	background: linear-gradient(to bottom,  #f89c8c 0%,#d5290a 100%);
 	border-color: #d5290a;
 }
@@ -791,12 +743,6 @@ ul.top-menu > li:hover > a {
 .alarm-useradd {
 	text-shadow: 0 -1px 0 #342eca;
 	background: #9aa0e8;
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9aa0e8', endColorstr='#342eca',GradientType=0 );
-	background: -moz-linear-gradient(top,  #9aa0e8 0%, #342eca 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9aa0e8), color-stop(100%,#342eca));
-	background: -webkit-linear-gradient(top,  #9aa0e8 0%,#342eca 100%);
-	background: -o-linear-gradient(top,  #9aa0e8 0%,#342eca 100%);
-	background: -ms-linear-gradient(top,  #9aa0e8 0%,#342eca 100%);
 	background: linear-gradient(to bottom,  #9aa0e8 0%,#342eca 100%);
 	border: 1px solid #342eca;
 }
@@ -825,15 +771,11 @@ ul.top-menu > li:hover > a {
 	vertical-align: baseline;
 	top: 0;
 	border: 1px solid #ccc;
-	-webkit-transition: width 0.2s ease-in-out;
-	-moz-transition: width 0.2s ease-in-out;
 	transition: width 0.2s ease-in-out;
 }
 #searchInput:focus {
 	outline: 0;
 	border-color: #aaa;
-	-webkit-box-shadow: 0 1px 1px #bbb inset;
-	-moz-box-shadow: 0 1px 1px #bbb inset;
 	box-shadow: 0 1px 1px #bbb inset;
 	width: 220px;
 }
@@ -906,13 +848,10 @@ ul.top-menu > li:hover > a {
 	min-width: 80px;
 	max-width: 180px;
 	height: auto;
-	list-style: none;
 	margin: 0;
-	padding: 0;
-	background: #efefef;
-	-webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15);
-	box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15);
+	padding: 5px 0;
+	background: #F2F4F6;
+	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.12);
 	z-index: 10000;
 }
 
@@ -933,22 +872,23 @@ ul.top-menu > li:hover > a {
 /* 메뉴 안의 링크 */
 .dropdown-menu a {
 	display: block;
-	line-height: 32px;
+	line-height: normal;
 	margin: 0;
-	padding: 0 20px 0 15px;
+	padding: .5em 20px .35em 15px;
 	position: static;
 	color: #111 !important;
 	text-decoration: none;
 	white-space: nowrap;
 }
 .dropdown-menu a:hover, .dropdown-menu-lv a:hover {
-	background-color: #ddd;
+	background-color: #E5E9ED;
 }
 
 /* 메뉴 안의 구분선 */
 .dropdown-menu hr {
-	margin: 1px 10px;
-	background: #d2d2d2;
+	margin: 5px 15px 4px;
+	background: none;
+	border-top: 1px dotted #E0E0E0;
 }
 
 /* 메뉴가 드랍될 위치 */
@@ -973,8 +913,6 @@ ul.top-menu > li:hover > a {
 	color: #999;
 	border: 1px solid #d8d8d8;
 	padding: 0 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font-size: 11px;
 	letter-spacing: 0;
@@ -1024,8 +962,6 @@ ul.top-menu > li:hover > a {
 	margin: 5px 0 10px;
 	border: 1px solid #d4d4d4;
 	color: #999;
-	-webkit-box-shadow: 3px 3px 0 0 rgba(135, 135, 135, 0.1);
-	-moz-box-shadow: 3px 3px 0 0 rgba(135, 135, 135, 0.1);
 	box-shadow: 3px 3px 0 0 rgba(135, 135, 135, 0.1);
 	/* @embed */
 	background: url(images/tags.png) no-repeat 8px 7px;
@@ -1099,8 +1035,6 @@ h1#firstheading {
 }
 #cactions li a:active {
 	outline: 0;
-	-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-	-moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
 	box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
 }
 
@@ -1247,18 +1181,9 @@ div#siteNotice,  div#mw-js-message, .previewnote {
 	background-color: #ffeaa8;
 	border: 1px solid #ffc237;
 	color: #826200;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
 	border-radius: 5px;
 	background-size: 40px 40px;
-	background-image: -webkit-gradient(linear,left top,right bottom,color-stop(.25,rgba(255, 255, 255, 0.15)),color-stop(.25,rgba(0, 0, 0, 0)),color-stop(.5,rgba(0, 0, 0, 0)),color-stop(.5,rgba(255, 255, 255, 0.15)),color-stop(.75,rgba(255, 255, 255, 0.15)),color-stop(.75,rgba(0, 0, 0, 0)),to(rgba(0, 0, 0, 0)));
-	background-image: -webkit-linear-gradient(135deg,rgba(255, 255, 255, 0.15) 25%,rgba(0, 0, 0, 0) 25%,rgba(0, 0, 0, 0) 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,rgba(0, 0, 0, 0) 75%,rgba(0, 0, 0, 0));
-	background-image: -moz-linear-gradient(135deg,rgba(255, 255, 255, 0.15) 25%,rgba(0, 0, 0, 0) 25%,rgba(0, 0, 0, 0) 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,rgba(0, 0, 0, 0) 75%,rgba(0, 0, 0, 0));
-	background-image: -ms-linear-gradient(135deg,rgba(255, 255, 255, 0.15) 25%,rgba(0, 0, 0, 0) 25%,rgba(0, 0, 0, 0) 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,rgba(0, 0, 0, 0) 75%,rgba(0, 0, 0, 0));
-	background-image: -o-linear-gradient(135deg,rgba(255, 255, 255, 0.15) 25%,rgba(0, 0, 0, 0) 25%,rgba(0, 0, 0, 0) 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,rgba(0, 0, 0, 0) 75%,rgba(0, 0, 0, 0));
 	background-image: linear-gradient(135deg,rgba(255, 255, 255, 0.15) 25%,rgba(0, 0, 0, 0) 25%,rgba(0, 0, 0, 0) 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,rgba(0, 0, 0, 0) 75%,rgba(0, 0, 0, 0));
-	-webkit-box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.4);
-	-moz-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
 	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.4);
 	padding: 0 2.5%;
 	margin-bottom: 10px;
@@ -1335,8 +1260,6 @@ td.mw-label {
 	color: #888 !important;
 	padding: 0 3px;
 	margin: 0 2px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
 	-moz-ext-shadow: none;
 	text-shadow: none;
@@ -1350,65 +1273,32 @@ td.mw-label {
 	이미지 첨부 버튼
 ===================*/
 /* 정보상자 | 등장인물 | 단행본 | 드라마 CD | 블루레이 | 에피소드 | 방영 | 발매... */
-.upload-file {
-	position: relative;
+.upload > a.new {
+	display: block;
 	min-width: 100px;
-	min-height: 80px;
-}
-.upload-file > a.new {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: #5bc0de;
-	border: 1px solid #46b8da;
-	color: transparent !important;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
-	user-select: none;
-	-webkit-transition: all .1s linear;
-	-moz-transition: all .1s linear;
-	-ms-transition: all .1s linear;
-	-o-transition: all .1s linear;
-	transition: all .1s linear;
-}
-.upload-file > a.new:before {
-	content: '';
-	display: inline-block;
-	/* @embed */
-	background: url(images/upload-file.png) no-repeat;
-	width: 32px;
-	height: 32px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -24px 0 0 -16px;
-}
-.upload-file > a.new:after {
-	content: '첨부';
-	display: inline-block;
+	min-height: 100px;
+	line-height: 100px;
+	position: relative;
+	background: #5BC0DE;
+	border: 1px solid #46B8DA;
+	color: #FFF !important;
 	text-align: center;
-	width: 32px;
-	font-size: 0.9em;
-	line-height: 20px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: 8px 0 0 -16px;
-	color: #fff !important;
+	transition-property: background-color, border-color;
+	transition-duration: .1s;
+	transition-timing-function: linear;
 }
-.upload-file > a.new:hover {
-	background-color: #39b3d7;
-	border-color: #269abc;
+.upload > a.new:hover {
+	text-decoration: none;
+	background-color: #39B3D7;
+	border-color: #269ABC;
 }
-.upload-file > a.new:active {
-	outline: 0;
-	-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-	-moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-	box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+.upload > a.new:active {
+	outline-width: 0;
+	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+.upload > a.image {
+	display: block;
+	line-height: 0;
 }
 
 /*===============
@@ -1467,11 +1357,7 @@ blockquote {
 	background: #fff;
 	border: 1px solid #ccc;
 	padding-bottom: 10px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
 	border-radius: 5px;
-	-webkit-box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 	box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 	z-index: 9999;
 }
@@ -1524,18 +1410,12 @@ blockquote {
 #preftoc a {
 	border: 1px solid #AAA;
 	background: #eee;
-	background: -o-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
-	background: -ms-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
-	background: -moz-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
-	background: -webkit-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
 	background: linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
 	display: inline-block;
 	position: relative;
 	z-index: 0;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
-	-webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
-	-moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
 	text-shadow: 0 1px #FFF;
 	margin: 0 -5px;
@@ -1563,35 +1443,21 @@ blockquote {
 
 #preftoc li:before {
 	left: -6px;
-	-webkit-border-bottom-right-radius: 6px;
-	-moz-border-radius-bottomright: 6px;
 	border-bottom-right-radius: 6px;
 	border-width: 0 1px 1px 0;
-	-webkit-box-shadow: 2px 2px 0 #D1D1D1;
-	-moz-box-shadow: 2px 2px 0 #D1D1D1;
 	box-shadow: 2px 2px 0 #D1D1D1;
 }
-
 #preftoc li:after {
 	right: -6px;
-	-webkit-border-bottom-left-radius: 6px;
-	-moz-border-radius-bottomleft: 6px;
 	border-bottom-left-radius: 6px;
 	border-width: 0 0 1px 1px;
-	-webkit-box-shadow: 2px 2px 0 #D1D1D1;
-	-moz-box-shadow: 2px 2px 0 #D1D1D1;
 	box-shadow: -2px 2px 0 #D1D1D1;
 }
 
 #preftoc li.selected:before {
-	-webkit-box-shadow: 2px 2px 0 #FFF;
-	-moz-box-shadow: 2px 2px 0 #FFF;
 	box-shadow: 2px 2px 0 #FFF;
 }
-
 #preftoc li.selected:after {
-	-webkit-box-shadow: -2px 2px 0 #FFF;
-	-moz-box-shadow: -2px 2px 0 #FFF;
 	box-shadow: -2px 2px 0 #FFF;
 }
 
@@ -1659,8 +1525,6 @@ span.ui-empty {
 	margin: 0 auto;
 	background: #fff;
 	position: relative;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
 	border-radius: 6px;
 }
 .modal .head {
@@ -1706,8 +1570,6 @@ body.modal-open { overflow: hidden; }
 	background-color: rgba(0, 140, 207,0.7);
 	text-decoration: none;
 	text-align: center;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
 	border-radius: 50%;
 	cursor: pointer;
 	display: none;
@@ -1739,19 +1601,9 @@ td.shortcut span {
 	text-align: center;
 	background-color: #eee;
 	background-repeat: repeat-x;
-	background-image: -moz-linear-gradient(top,#f5f5f5 0,#eee 100%);
-	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#F5F5F5),color-stop(100%,#EEE));
-	background-image: -webkit-linear-gradient(top,#F5F5F5 0,#EEE 100%);
-	background-image: -ms-linear-gradient(top,#f5f5f5 0,#eee 100%);
-	background-image: -o-linear-gradient(top,#f5f5f5 0,#eee 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5',endColorstr='#eeeeee',GradientType=0);
 	background-image: linear-gradient(top,#f5f5f5 0,#eee 100%);
 	border: 1px solid #ccc;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
-	-webkit-box-shadow: 1px 1px 1px #ddd;
-	-moz-box-shadow: 1px 1px 1px #ddd;
 	box-shadow: 1px 1px 1px #ddd;
 }
 td.shortcut span:before {
@@ -1831,11 +1683,7 @@ div#tooltip {
 	padding: 10px 8px;
 	margin: 0px;
 	background-color: #fbf8be;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
-	-webkit-box-shadow: 0 3px 8px rgba(0,0,0,0.25);
-	-moz-box-shadow: 0 3px 8px rgba(0,0,0,0.25);
 	box-shadow: 0 3px 8px rgba(0,0,0,0.25);
 }
 .referencetooltip li+li {
@@ -1847,8 +1695,6 @@ div#tooltip {
 	width: 0px;
 	background-color: transparent;
 	box-shadow: none;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
 	border-top: 10px #f7e991 solid;
 	border-right: 10px transparent solid;
 	border-left: 10px transparent solid;
@@ -1880,8 +1726,6 @@ div#tooltip {
 .client-js body .referencetooltip li li {
 	border: none;
 	box-shadow: none;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
 	height: auto;
 	width: auto;
 	margin: auto;
@@ -1922,34 +1766,22 @@ table.wikitable {
 	-moz-text-shadow: 1px 1px 0px #fff;
 	background: #fefefe;
 	border: #ccc 1px solid;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
-	-webkit-box-shadow: 0 1px 2px #d1d1d1;
-	-moz-box-shadow: 0 1px 2px #d1d1d1;
 	box-shadow: 0 1px 2px #d1d1d1;
 	border-collapse: separate;
 	border-spacing: 0;
 }
 
 table.wikitable tr:first-child th:first-child {
-	-webkit-border-top-left-radius: 3px;
-	-moz-border-radius-topleft: 3px;
 	border-top-left-radius: 3px;
 }
 table.wikitable tr:first-child th:last-child {
-	-webkit-border-top-right-radius: 3px;
-	-moz-border-radius-topright: 3px;
 	border-top-right-radius: 3px;
 }
 table.wikitable tr:last-child th:first-child {
-	-webkit-border-bottom-left-radius: 3px;
-	-moz-border-radius-bottomleft: 3px;
 	border-bottom-left-radius: 3px;
 }
 table.wikitable tr:last-child th:last-child {
-	-webkit-border-bottom-right-radius: 3px;
-	-moz-border-radius-bottomright: 3px;
 	border-bottom-right-radius: 3px;
 }
 
@@ -1960,11 +1792,6 @@ table.wikitable th, table.wikitable > tr > th, table.wikitable > * > tr > th {
 	border-top: 1px solid #fafafa;
 	border-bottom: 1px solid #e0e0e0;
 	background-color: #ededed !important;
-	background: -moz-linear-gradient(top,  #ededed 0%, #ebebeb 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#ebebeb));
-	background: -webkit-linear-gradient(top,  #ededed 0%,#ebebeb 100%);
-	background: -o-linear-gradient(top,  #ededed 0%,#ebebeb 100%);
-	background: -ms-linear-gradient(top,  #ededed 0%,#ebebeb 100%);
 	background: linear-gradient(to bottom,  #ededed 0%,#ebebeb 100%);
 	text-shadow: 1px 1px 0px #fff;
 }
@@ -1975,11 +1802,6 @@ table.wikitable td, table.wikitable > tr > td, table.wikitable > * > tr > td {
 	border-bottom: 1px solid #e0e0e0;
 	border-left: 1px solid #e0e0e0;
 	background-color: #fdfdfd;
-	background: -moz-linear-gradient(top,  #fdfdfd 0%, #fefefe 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfdfd), color-stop(100%,#fefefe));
-	background: -webkit-linear-gradient(top,  #fdfdfd 0%,#fefefe 100%);
-	background: -o-linear-gradient(top,  #fdfdfd 0%,#fefefe 100%);
-	background: -ms-linear-gradient(top,  #fdfdfd 0%,#fefefe 100%);
 	background: linear-gradient(to bottom,  #fdfdfd 0%,#fefefe 100%);
 }
 table.wikitable td:first-child {
@@ -2002,11 +1824,6 @@ th[rowspan]:after, td[rowspan]:after {
 
 table.wikitable > tbody > tr:nth-child(odd) > td {
 	background-color: #f8f8f8;
-	background: -moz-linear-gradient(top,  #f8f8f8 0%, #f6f6f6 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#f6f6f6));
-	background: -webkit-linear-gradient(top,  #f8f8f8 0%,#f6f6f6 100%);
-	background: -o-linear-gradient(top,  #f8f8f8 0%,#f6f6f6 100%);
-	background: -ms-linear-gradient(top,  #f8f8f8 0%,#f6f6f6 100%);
 	background: linear-gradient(to bottom,  #f8f8f8 0%,#f6f6f6 100%);
 }
 table.wikitable caption {
@@ -2029,8 +1846,7 @@ table.jquery-tablesorter th.headerSort {
 
 table.wikitable.focusable tr:hover td {
 	background: #f2f2f2;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
-	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
+	background: linear-gradient(to bottom,  #f2f2f2 0%,#f0f0f0 100%);
 }
 
 span.kbd {
@@ -2041,11 +1857,7 @@ span.kbd {
 	font-family: Arial,sans-serif;
 	background-color: #f7f7f7;
 	color: #333;
-	-moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
-	-webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
 	box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
 	border-radius: 3px;
 	text-shadow: 0 1px 0 #fff;
 	line-height: 1.4;
