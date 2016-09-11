@@ -167,7 +167,7 @@ textarea#wpTextbox1 {
 /*** 링크 ***/
 .content a,
 .content a,
-.footer a { color: #00A6BC; }
+.footer a { color: #1DADE2; }
 
 .content a.new { color: #EC6635; }
 
@@ -1354,13 +1354,13 @@ span.ui-empty {
 .modal {
 	max-width: 550px;
 	margin: 0 auto;
-	background-color: #fff;
+	background-color: #FFF;
 	position: relative;
 	border-radius: 6px;
 }
 .modal .head {
 	padding: 20px 50px 10px;
-	border-bottom: 1px dotted #eaeaea;
+	border-bottom: 1px dotted #EAEAEA;
 	text-align: center;
 }
 .modal .body {
@@ -1368,7 +1368,7 @@ span.ui-empty {
 }
 .modal .foot {
 	padding: 10px 30px 15px;
-	border-top: 1px dotted #eaeaea;
+	border-top: 1px dotted #EAEAEA;
 	text-align: center;
 }
 
@@ -1397,7 +1397,7 @@ body.modal-open { overflow: hidden; }
 	height: 3.2rem;
 	line-height: 3.2rem;
 	font-size: 1.4rem;
-	color: #fff;
+	color: #FFF;
 	background-color: rgba(0, 140, 207,0.7);
 	text-decoration: none;
 	text-align: center;
@@ -1407,7 +1407,7 @@ body.modal-open { overflow: hidden; }
 }
 #toTop:hover {
 	background-color: rgba(0, 140, 207,0.5);
-	color: #fff !important;
+	color: #FFF !important;
 }
 
 /* Blackout */
@@ -1432,10 +1432,10 @@ td.shortcut span {
 	text-align: center;
 	background-color: #eee;
 	background-repeat: repeat-x;
-	background-image: linear-gradient(top,#f5f5f5 0,#eee 100%);
+	background-image: linear-gradient(top,#F5F5F5 0,#EEE 100%);
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	box-shadow: 1px 1px 1px #ddd;
+	box-shadow: 1px 1px 1px #DDD;
 }
 td.shortcut span:before {
 	content: 'alt+';
@@ -1492,7 +1492,7 @@ div#tooltip {
 .tooltip-inner {
 	max-width: 200px;
 	padding: 5px 8px;
-	color: #fff;
+	color: #FFF;
 	background-color: #222;
 	text-align: center;
 	border-radius: 4px;
@@ -1509,11 +1509,11 @@ div#tooltip {
 	padding: 0;
 }
 .referencetooltip li {
-	border: #f7e991 2px solid;
+	border: #F7E991 2px solid;
 	max-width: 260px;
 	padding: 10px 8px;
 	margin: 0px;
-	background-color: #fbf8be;
+	background-color: #FBF8BE;
 	border-radius: 3px;
 	box-shadow: 0 3px 8px rgba(0,0,0,0.25);
 }
@@ -1526,7 +1526,7 @@ div#tooltip {
 	width: 0px;
 	background-color: transparent;
 	box-shadow: none;
-	border-top: 10px #f7e991 solid;
+	border-top: 10px #F7E991 solid;
 	border-right: 10px transparent solid;
 	border-left: 10px transparent solid;
 }
@@ -1542,17 +1542,13 @@ div#tooltip {
 	width: 0px;
 	display: block;
 }
-.referencetooltip a:link, .referencetooltip a:visited {
+.referencetooltip a {
 	cursor: pointer;
-	color: #00a6bc;
+	color: #1DADE2;
 	text-decoration: none;
 }
-.referencetooltip a:link:hover, .referencetooltip a:visited:hover {
-	color: #aaa;
-}
-.referencetooltip a.new {
-	color: #ec6635;
-}
+.referencetooltip a:hover { color: #AAA; }
+.referencetooltip a.new { color: #EC6635; }
 
 .client-js body .referencetooltip li li {
 	border: none;
@@ -1570,22 +1566,20 @@ div#tooltip {
 	position: absolute;
 	top: 5px;
 	border-top: 0;
-	border-bottom: 10px #f7e991 solid;
+	border-bottom: 10px #F7E991 solid;
 }
 .referencetooltip.RTflipped li+li::after {
 	border-top: 0;
-	border-bottom: 8px #fbf8be solid;
+	border-bottom: 8px #FEF8BE solid;
 	position: absolute;
 	margin-top: 5px;
 }
-.RTTarget {
-	background-color: #e0e0e0;
-}
+.RTTarget { background-color: #E0E0E0; }
 
 /*================
 	표 서식
 ================*/
-table caption{
+table caption {
 	font-weight: bold;
 	text-align: left;
 }
@@ -1594,55 +1588,44 @@ table caption{
 table.wikitable {
 	margin: 0.5em 0;
 	color: #333;
-	-moz-text-shadow: 1px 1px 0px #fff;
-	background-color: #fefefe;
-	border: #ccc 1px solid;
+	-moz-text-shadow: 1px 1px 0px #FFF;
+	background-color: #FEFEFE;
+	border: #CCC 1px solid;
 	border-radius: 3px;
-	box-shadow: 0 1px 2px #d1d1d1;
+	box-shadow: 0 1px 2px #D1D1D1;
 	border-collapse: separate;
 	border-spacing: 0;
 }
 
-table.wikitable tr:first-child th:first-child {
-	border-top-left-radius: 3px;
-}
-table.wikitable tr:first-child th:last-child {
-	border-top-right-radius: 3px;
-}
-table.wikitable tr:last-child th:first-child {
-	border-bottom-left-radius: 3px;
-}
-table.wikitable tr:last-child th:last-child {
-	border-bottom-right-radius: 3px;
-}
+table.wikitable tr:first-child th:first-child { border-top-left-radius: 3px; }
+table.wikitable tr:first-child th:last-child { border-top-right-radius: 3px; }
+table.wikitable tr:last-child th:first-child { border-bottom-left-radius: 3px; }
+table.wikitable tr:last-child th:last-child { border-bottom-right-radius: 3px; }
 
 table.wikitable th, table.wikitable > tr > th, table.wikitable > * > tr > th {
 	padding: 0.3em;
 	border-left: none;
 	border-right: none;
-	border-top: 1px solid #fafafa;
-	border-bottom: 1px solid #e0e0e0;
-	background-color: #ededed !important;
-	background-color: linear-gradient(to bottom,  #ededed 0%,#ebebeb 100%);
-	text-shadow: 1px 1px 0px #fff;
+	border-top: 1px solid #FAFAFA;
+	border-bottom: 1px solid #E0E0E0;
+	background-color: #EDEDED !important;
+	background-color: linear-gradient(to bottom, #EDEDED 0%, #EBEBEB 100%);
+	text-shadow: 1px 1px 0px #FFF;
 }
 table.wikitable td, table.wikitable > tr > td, table.wikitable > * > tr > td {
 	padding: .1em .3em;
 	border-right: none;
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #e0e0e0;
-	border-left: 1px solid #e0e0e0;
-	background-color: #fdfdfd;
-	background-color: linear-gradient(to bottom,  #fdfdfd 0%,#fefefe 100%);
-}
-table.wikitable td:first-child {
-	border-left: 0;
-}
+	border-top: 1px solid #FFF;
+	border-bottom: 1px solid #E0E0E0;
+	border-left: 1px solid #E0E0E0;
+	background-color: #FDFDFD;
+	background-color: linear-gradient(to bottom, #FDFDFD 0%, #FEFEFE 100%);
+} 
+table.wikitable td:first-child { border-left: 0; }
 
 /* rowspan fix. Yuk!! */
-th[rowspan], td[rowspan] {
-	position: relative;
-}
+th[rowspan], td[rowspan] { position: relative; }
+
 th[rowspan]:after, td[rowspan]:after {
 	content: '';
 	position: absolute;
@@ -1650,25 +1633,22 @@ th[rowspan]:after, td[rowspan]:after {
 	right: -1px;
 	width: 1px;
 	height: 100%;
-	background-color: #e0e0e0;
+	background-color: #E0E0E0;
 }
 
 table.wikitable > tbody > tr:nth-child(odd) > td {
-	background-color: #f8f8f8;
-	background-color: linear-gradient(to bottom,  #f8f8f8 0%,#f6f6f6 100%);
+	background-color: #F8F8F8;
+	background-color: linear-gradient(to bottom, #F8F8F8 0%, #F6F6F6 100%);
 }
 table.wikitable caption {
 	text-align: left;
 	font-size: 14px;
 	line-height: 26px;
 }
-table.wikitable + table.wikitable {
-	margin-top: 1em;
-}
+table.wikitable + table.wikitable { margin-top: 1em; }
 
-table.jquery-tablesorter th.headerSort {
-	background-color: #ededed;
-}
+table.jquery-tablesorter th.headerSort { background-color: #EDEDED; }
+
 .mw-collapsible-toggle {
 	font-weight: normal !important;
 	font-size: .9em;
@@ -1676,8 +1656,8 @@ table.jquery-tablesorter th.headerSort {
 }
 
 table.wikitable.focusable tr:hover td {
-	background-color: #f2f2f2;
-	background-color: linear-gradient(to bottom,  #f2f2f2 0%,#f0f0f0 100%);
+	background-color: #F2F2F2;
+	background-color: linear-gradient(to bottom, #F2F2F2 0%, #F0F0F0 100%);
 }
 
 span.kbd {
@@ -1686,22 +1666,18 @@ span.kbd {
 	margin: 0 0.1em;
 	border: 1px solid #ccc;
 	font-family: Arial,sans-serif;
-	background-color: #f7f7f7;
+	background-color: #F7F7F7;
 	color: #333;
-	box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+	box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #FFF inset;
 	border-radius: 3px;
-	text-shadow: 0 1px 0 #fff;
+	text-shadow: 0 1px 0 #FFF;
 	line-height: 1.4;
 	white-space: nowrap;
 }
 
 /* ReCaptcha */
-#recaptcha_area {
-	margin: auto;
-}
-form#editform > p {
-	margin: 0 auto !important;
-}
+#recaptcha_area { margin: auto; }
+form#editform > p { margin: 0 auto !important; }
 
 /* Miscellaneous */
 @media screen {
