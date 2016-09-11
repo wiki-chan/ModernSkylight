@@ -353,7 +353,7 @@ input[disabled] + label {
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	background-color: #4CC8E4;
+	background-color: #50A8E1;
 }
 .article h2:before {
 	width: 8px;
@@ -480,8 +480,8 @@ div.gallerytext p {
 	min-height: 100px;
 	line-height: 100px;
 	position: relative;
-	background-color: #5BC0DE;
-	border: 1px solid #46B8DA;
+	background-color: #50A8E1;
+	border: 1px solid #3C9EDD;
 	color: #FFF !important;
 	text-align: center;
 	transition-property: background-color, border-color;
@@ -490,8 +490,8 @@ div.gallerytext p {
 }
 .upload > a.new:hover {
 	text-decoration: none;
-	background-color: #39B3D7;
-	border-color: #269ABC;
+	background-color: #449ED8;
+	border-color: #3791CC;
 }
 .upload > a.new:active {
 	outline-width: 0;
@@ -932,85 +932,63 @@ h1#firstheading {
 #cactions {
 	float: right;
 	margin: 15px 0 5px 30px;
+	font-size: 0; /* margin fix */
 }
-#cactions li { display: inline-block; }
+#cactions li {
+	display: inline-block;
+	padding: 1px;
+}
 
 /* 버튼의 색상과 형태 */
 #cactions li a {
 	display: inline-block;
-	background-color: #50A8E1;
-	border: 1px solid #3C9EDD;
-	color: #FFF !important;
+	position: relative;
 	font-size: 1rem;
-	width: 38px;
+	width: 48px;
+	height: 38px;
 	line-height: 38px;
+    border-radius: 4px;
 	text-align: center;
 	white-space: nowrap;
-	position: relative;
 	text-decoration: none !important;
+	color: #FFF !important;
+	background-color: #6EC8F8;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
-	-o-user-select: none;
-	user-select: none;
 }
-#cactions.inactive li a {
-	background-color: #DDD !important;
-	border-color: #D4D4D4 !important;
-}
-
 #cactions li a:hover {
-	background-color: #449ED8;
-	border-color: #3791CC;
+	background-color: #56B8F3;
 }
 #cactions li a:active {
 	outline-width: 0;
-	box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-}
-
-#cactions li#ca-delete a,
-#cactions li#ca-undelete a {
-	background-color: #D9534F;
-	border-color: #D43F3A;
-}
-#cactions li#ca-delete a:hover,
-#cactions li#ca-undelete a:hover {
-	background-color: #D2322D;
-	border-color: #AC2925;
-}
-
-#cactions li#ca-move a {
-	background-color: #F0AD4E;
-	border-color: #EEA236;
-}
-#cactions li#ca-move a:hover {
-	background-color: #ED9C28;
-	border-color: #D58512;
-}
-
-#cactions li#ca-protect a,
-#cactions li#ca-unprotect a {
-	background-color: #5CB85C;
-	border-color: #4CAE4C;
-}
-#cactions li#ca-protect a:hover,
-#cactions li#ca-unprotect a:hover {
-	background-color: #47A447;
-	border-color: #398439;
+	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 }
 
 #cactions li#ca-edit a,
 #cactions li#ca-viewsource a,
-#cactions li#ca-unwatch a {
-	background-color: #428BCA;
-	border-color: #357EBD;
-}
+#cactions li#ca-watch a { background-color: #50A8E1; }
 #cactions li#ca-edit a:hover,
 #cactions li#ca-viewsource a:hover,
-#cactions li#ca-unwatch a:hover {
-	background-color: #3276b1;
-	border-color: #285e8e;
-}
+#cactions li#ca-watch a:hover { background-color: #3796D5; }
+
+#cactions li#ca-delete a,
+#cactions li#ca-undelete a { background-color: #ED7161; }
+#cactions li#ca-delete a:hover,
+#cactions li#ca-undelete a:hover { background-color: #E45A49; }
+
+#cactions li#ca-move a { background-color: #EEAF4b; }
+#cactions li#ca-move a:hover { background-color: #E59D31; }
+
+#cactions li#ca-protect a,
+#cactions li#ca-unprotect a { background-color: #88C057; }
+#cactions li#ca-protect a:hover,
+#cactions li#ca-unprotect a:hover { background-color: #73Af3E; }
+
+#cactions li#ca-unwatch a { background-color: #9777A8; }
+#cactions li#ca-unwatch a:hover { background-color: #846096; }
+
+#cactions.inactive li a { background-color: #DDD !important; }
 
 /* 버튼의 그림 */
 #cactions a:before {
