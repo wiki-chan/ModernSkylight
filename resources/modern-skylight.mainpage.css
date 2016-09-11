@@ -1,35 +1,30 @@
+/**
+ * Main Page Style for 위키쨩
+ * Author: 카페인러브
+ * Website: http://wiki-chan.net
+ * License: MIT License
+ */
+
+/* Fix */
+a:hover { text-decoration: none !important; }
+
 .content .article.alpha {
 	width: auto !important;
 	border: none !important;
 	padding: 0 !important;
 }
 
-/* Fix */
+/*** Logo ***/
 .action-view h1#firstheading,
-.action-submit h1#firstheading,
-.catlinks { display: none !important; }
-
-a:hover { text-decoration: none !important; }
-
-/**************
- *	Logo
- **************/
-#logo {
-	width: auto;
-	height: 35px;
-}
-#logo a {
-	display: block;
-	line-height: 0; /* fix */
+.action-submit h1#firstheading {
+	text-indent: -9999px;
 	width: 320px;
 	height: 80px;
-	position: absolute;
-	top: -50px;
+	background: url('/images/f/fb/Wikichan.png') no-repeat 0 0;
+	margin: 10px 0;
 }
 
-/***********************
- *	Accordion Menu
- ***********************/
+/*** Accordion Menu ***/
 #accordion {
 	list-style: none !important;
 	padding: 0 !important;
@@ -98,9 +93,7 @@ a:hover { text-decoration: none !important; }
 #accordion li > .sub-menu { display: none; } 
 #accordion li:target > .sub-menu { display: block; }
 
-/***********************
- *	Component Box
- ***********************/
+/*** Component Box ***/
 .component {
 	background-color: #FFF;
 	margin-bottom: 10px;
@@ -155,9 +148,7 @@ a:hover { text-decoration: none !important; }
 	margin-bottom: .5em;
 }
 
-/*****************
- *	Projects
- *****************/
+/*** Projects ***/
 .projects li {
 	float: left;
 	width: 145px;
@@ -187,16 +178,12 @@ a:hover { text-decoration: none !important; }
 	bottom: 6px;
 }
 
-/********************
- *	Create Form
- ********************/
+/*** Create Form ***/
 input.createboxInput { width: 220px; }
 #createform-default { margin-bottom: 3px; }
 #createform-hidden { display: none; }
 
-/********************
- *	Noti message
- ********************/
+/*** Noti message ***/
 #notification {
 	position: absolute;
 	z-index: 65535;
