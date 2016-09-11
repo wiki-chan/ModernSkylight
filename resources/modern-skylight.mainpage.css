@@ -5,7 +5,10 @@
 }
 
 /* Fix */
-.action-view h1#firstheading, .action-submit h1#firstheading, .catlinks { display: none !important; }
+.action-view h1#firstheading,
+.action-submit h1#firstheading,
+.catlinks { display: none !important; }
+
 a:hover { text-decoration: none !important; }
 
 /**************
@@ -40,13 +43,13 @@ a:hover { text-decoration: none !important; }
 	height: 40px;
 	font-size: 14px;
 	line-height: 40px;
-	background: #529cff;
-	-webkit-box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .2), 0px 1px 0px 0px rgba(0,0,0, .2);
-	-moz-box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .2), 0px 1px 0px 0px rgba(0,0,0, .2);
+	background-color: #50A8E1;
 	box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .2), 0px 1px 0px 0px rgba(0,0,0, .2);
 }
-#accordion > li > a { color: #fdfdfd !important; }
-#accordion > li:hover > a, #accordion > li:target > a, #accordion > li > a.active { background: #008ccf; }
+#accordion > li > a { color: #FDFDFD !important; }
+#accordion > li:hover > a,
+#accordion > li:target > a,
+#accordion > li > a.active { background-color: #238FD4; }
 
 /* Collapsible items */
 #accordion .sub-menu {
@@ -56,19 +59,17 @@ a:hover { text-decoration: none !important; }
 }
 #accordion .sub-menu a {
 	padding: 0 10px 0 40px;
-	background: #fff;
+	background-color: #FFF;
 	height: 33px;
 	font-size: 13px;
 	line-height: 33px;
-	-webkit-box-shadow: inset 0px 1px 0px 0px #f3f3f3, 0px 1px 0px 0px rgba(0,0,0, .1);
-	-moz-box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .1), 0px 1px 0px 0px rgba(0,0,0, .1);
 	box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .1), 0px 1px 0px 0px rgba(0,0,0, .1);
 }
 #accordion .sub-menu li:nth-child(even) a {
-	background: #f2f2f2;
+	background-color: #F2F5F9;
 }
 #accordion .sub-menu li:hover a {
-	background: #eed;
+	background-color: #2493DA;
 	color: #777 !important;
 }
 
@@ -77,7 +78,7 @@ a:hover { text-decoration: none !important; }
 	top: 0;
 	left: 0;
 	margin-left: 14px;
-	color: #a6a6a6;
+	color: #A6A6A6;
 	font-size: 13px;
 	line-height: 33px;
 	font-style: normal;
@@ -101,43 +102,57 @@ a:hover { text-decoration: none !important; }
  *	Component Box
  ***********************/
 .component {
-	background: #fff;
+	background-color: #FFF;
 	margin-bottom: 10px;
 }
 .component-head {
-	line-height: 40px;
 	position: relative;
+	height: 40px;
 }
-.component-head span.title {
+.component-head .title {
+	display: block;
 	color: #202020;
 	font-size: 20px;
+	line-height: 40px;
 }
-.component-head span.more {
-	position: absolute;
-	right: 0;
-	top: 8px;
-}
-.component-head span.more a {
+.component-head .more {
 	display: block;
 	width: 24px;
 	height: 24px;
-	text-indent: -9999px;
-	line-height: 0;
+	position: absolute;
+	top: 8px;
+	right: 0;
 }
-.component-head span.more a:after {
-	font: normal normal 18px/1 'FontAwesome';
-	content: '\f067';
-	color: #373737;
-	text-indent: 0px;
+.component-head .more > a {
 	display: block;
-	line-height: 24px;
-	text-align: center;
+	width: 23px;
+	height: 23px;
+	color: transparent;
 }
-.component-head span.more a.open:after {
-	content: '\f068';
+.component-head .more > a:before, .component-head .more > a:after {
+	content: '';
+	display: block;
+	position: absolute;
+	background-color: #555;
+}
+.component-head .more > a:before {
+	width: 14px;
+	height: 1px;
+	top: 11px;
+	right: 5px;
+}
+.component-head .more > a:after {
+	width: 1px;
+	height: 14px;
+	top: 5px;
+	right: 11px;
+}
+.component-head .more.open > a:after {
+	display: none;
 }
 .component-body {
 	padding: 5px 0;
+	margin-bottom: .5em;
 }
 
 /*****************
@@ -149,31 +164,19 @@ a:hover { text-decoration: none !important; }
 	height: 72px;
 }
 
-.projects li:first-child {
-	margin: 0 5px 5px 0;
-}
-.projects li:nth-child(2) {
-	margin: 0 0 5px 5px;
-}
-.projects li:nth-child(3) {
-	margin: 5px 5px 0 0;
-}
-.projects li:last-child {
-	margin: 5px 0 0 5px;
-}
+.projects li:first-child { margin: 0 5px 5px 0; }
+.projects li:nth-child(2) { margin: 0 0 5px 5px; }
+.projects li:nth-child(3) { margin: 5px 5px 0 0; }
+.projects li:nth-child(4) { margin: 5px 0 0 5px; }
 
-.projects li:first-child, .projects li:last-child {
-	background: #57BAE8;
-}
-.projects li:nth-child(2), .projects li:nth-child(3) {
-	background: #50A9D2;
-}
+.projects li:first-child, .projects li:nth-child(4) { background-color: #50A8E1; }
+.projects li:nth-child(2), .projects li:nth-child(3) { 	background-color: #6EC8F8; }
 
 .projects a {
 	display: block;
 	width: 100%;
 	height: 100%;
-	color: #fff !important;
+	color: #FFF !important;
 	position: relative;
 }
 .projects span.alt {
@@ -200,13 +203,15 @@ input.createboxInput { width: 220px; }
 	top: 40px;
 	left: 0;
 	right: 0;
-	background: #FDE073;
+	background-color: #FDE073;
 	text-align: center;
 	line-height: 2.5;
 	margin: 0 -10px;
 	overflow: hidden;
 	-webkit-transform: translateY(-50px);
 	-webkit-animation: slideDown 2.5s 1.0s 1 ease forwards;
-	-moz-transform: translateY(-50px);
-	-moz-animation: slideDown 2.5s 1.0s 1 ease forwards;
+	-ms-transform: translateY(-50px);
+	-ms-animation: slideDown 2.5s 1.0s 1 ease forwards;
+	transform: translateY(-50px);
+	animation: slideDown 2.5s 1.0s 1 ease forwards;
 }
