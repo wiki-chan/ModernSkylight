@@ -68,7 +68,7 @@ li.gallerybox div.thumb {
 blockquote.info {
 	background-color: #E3F7FC;
 	border: 0;
-	border-left: 5px solid #4CC8E4;
+	border: 1px solid #95E3FF;
 	padding: .8em 1.3em;
 	margin: .3em 0 1em;
 }
@@ -76,28 +76,33 @@ blockquote.info a { font-weight: bold; }
 
 blockquote.protected {
 	background-color: #F7E3FC;
-	border-left-color: #D5A3D4;
+	border-color: #E8B1E7;
 }
 blockquote.protected a { color: #B051AE !important; }
 
 blockquote.suspended {
 	background-color: #FCE3E3;
-	border-left-color: #F37076;
+	border-color: #FFA7AB;
 }
 blockquote.suspended a { color: #EE3A42 !important; }
 
 blockquote.info ul {
-	margin: 0 0 0 .5em;
+	margin: 0 0 0 1em;
 }
 blockquote.info li {
 	list-style-type: none;
 	position: relative;
-	padding-left: .3em;
 }
 blockquote.info li:before {
-	content: '-';
+	content: '';
+	display: block;
+	width: 3px;
+	height: 3px;
+	border-radius: 50%;
+	background-color: #1DADE2;
 	position: absolute;
-	left: -.5em;
+	top: 9px;
+	left: -1em;
 }
 
 /** Infobox {{정보상자}} **/
