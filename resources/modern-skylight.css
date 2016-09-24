@@ -175,13 +175,13 @@ textarea#wpTextbox1 {
 
 .content a.external:after {
 	/* @embed */
-	background-color: url(images/external_link.png) no-repeat center center;
+	background: url(images/external_link.png) no-repeat center center;
 	content: "";
 	display: inline-block;
 	width: 12px;
 	height: 12px;
 	vertical-align: text-top;
-	margin-left: 3px;
+	margin-left: 1px;
 }
 
 /*** 목록 ***/
@@ -528,13 +528,12 @@ div.gallerytext p {
 
 /*** 목차 ***/
 #toc {
-	width: 230px;
 	position: fixed;
 	top: 61px;
 	margin-left: 735px;
+	width: 230px;
 	padding: 10px;
-	background-color: #f4f4f4;
-	text-shadow: 0 .08em #fff;
+	background-color: #F0F1F5;
 }
 #toctitle {
 	display: none;
@@ -544,16 +543,20 @@ div.gallerytext p {
 	text-align: center;
 	font-size: 14px;
 }
-#toc ul, #toc li {
-	list-style: none;
+#toc ul {
 	margin: 0;
 	padding: 0;
-	line-height: 160% !important;
+}
+#toc li {
+	margin: 0;
+	display: block;
+	line-height: 1.7;
 }
 #toc ul ul {
+	padding: 0;
 	margin: 0 0 0 1.6em;
 }
-#toctitle + ul {
+#toc > ul {
 	width: 210px;
 	overflow-x: hidden;
 }
@@ -565,14 +568,14 @@ div.gallerytext p {
 	text-decoration: none;
 }
 #toc li a:hover {
-	background-color: #e4e4e4;
+	background-color: #E2E4EF;
 }
 #toc .tocnumber {
-	color: #888;
+	color: #9DA0AB;
 	margin-right: .2em;
 }
 #toc .toctext {
-	color: #333 !important;
+	color: #181818;
 	white-space: nowrap;
 }
 
@@ -581,30 +584,30 @@ div.gallerytext p {
 	width: 11px;
 }
 #toc ul::-webkit-scrollbar-track {
-	background-color: #f4f4f4;
-	border: 1px solid #dbdbdb;
+	background-color: #F4F4F4;
+	border: 1px solid #DBDBDB;
 	border-radius: 2px;
 }
 #toc ul::-webkit-scrollbar-thumb {
-	background-color: #d9d9d9;
-	border: 1px solid #bdbdbd;
+	background-color: #D9D9D9;
+	border: 1px solid #BDBDBD;
 	border-radius: 2px;
 }
 #toc ul::-webkit-scrollbar-thumb:hover {
-	background-color: #c0c0c0;
-	border-color: #a6a6a6;
+	background-color: #C0C0C0;
+	border-color: #A6A6A6;
 }
 #toc ul::-webkit-scrollbar-thumb:active {
 	background-color: #919191;
-	border-color: #7c7c7c;
+	border-color: #7C7C7C;
 }
 
 /*** 레이아웃 ***/
 /* 헤더 */
 #header, #rsp-header {
 	position: relative;
-	background-color: #fff;
-	border-bottom: 1px solid #ddd;
+	background-color: #FFF;
+	border-bottom: 1px solid #DDD;
 	box-shadow: 0 2px 5px rgba(50,50,50,0.1);
 	overflow: visible;
 	z-index: 1;
@@ -1363,8 +1366,6 @@ span.ui-empty {
 	cursor: pointer;
 }
 .modal-close:hover { color: rgba(0,0,0, .4); }
-
-body.modal-open { overflow: hidden; }
 
 /* Scroll to top */
 #toTop {

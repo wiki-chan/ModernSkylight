@@ -30,15 +30,6 @@ li.gallerybox div.thumb {
 	background-color: transparent !important;
 }
 
-/** External Links **/
-#article a.external:after {
-	display: inline-block;
-	content: '\f118';
-	font: 12px/0 'icomoon';
-	vertical-align: super;
-	margin-left: .25em;
-}
-
 /** Tabs **/
 .tabs-container {
 	margin: 2em 3%;
