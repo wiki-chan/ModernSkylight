@@ -104,31 +104,32 @@ blockquote.suspended a { color: #EE3A42 !important; }
 .infobox .img {
 	float: left;
 	width: 200px;
-	max-height: 350px;
+}
+.infobox .img > .upload {
+	overflow: auto;
+}
+.infobox .img a.image {
+	display: block;
+	max-height: 320px;
 	overflow: hidden;
 }
-.infobox .img > a.image {
-	float: left;
-	width: 200px;
-	max-height: 300px;
-	overflow: hidden;
-}
-.infobox .upload > a.new {
+.infobox .img a.new {
 	height: 250px;
 	line-height: 250px;
 }
+
 .infobox .info {
 	margin-left: calc(200px + 1em);
 }
 
 .infobox .heading {
-	background-color: #EEEFF2;
+	background-color: #F0F1F5;
 	padding: .7em 15px .6em;
 	margin: .3rem 0;
 }
 .infobox .heading:first-child { margin-top: 0; }
 .infobox .subheading {
-	background-color: #EEEFF2;
+	background-color: #F0F1F5;
 	padding: .3em 15px .2em;
 	margin: .3rem 0;
 }
@@ -339,32 +340,26 @@ blockquote.suspended a { color: #EE3A42 !important; }
 }
 
 /* 틀:접기 */
-.toggle {
-	cursor: pointer;
-	margin-bottom: .2em;
-}
-.toggle-caption {
+.toggleable > div:first-child {
 	position: relative;
-	padding-right: 24px;
+	padding-right: 4em;
 }
-.toggle-caption:hover {
-	background: #efefef;
-}
-.toggle-caption:after {
-	display: block;
-	content: ' ';
+.toggleable > div:first-child:after {
+	display: inline-block;
 	position: absolute;
-	top: 1px;
 	right: 2px;
-	width: 16px;
-	height: 16px;
-	background-image: url('images/ui-expand-collapse-empty.png');
-	background-repeat: no-repeat;
-	background-position: 0 0px;
+	font-size: 12px;
+	color: #1DADE2;
+	cursor: pointer;
 }
-.toggle.visible:after {
-	background-position: 0 -16px;
+.toggleable > div:first-child:after:hover {
+	text-decoration: underline;
 }
+
+.toggleable > div:first-child:after { content: '펼치기'; }
+.toggleable.open > div:first-child:after { content: '숨기기'; }
+
+.toggleable:not(.open) > div:nth-child(2) { display: none; }
 
 /* 틀:네타 시작, 틀:네타 끝 */
 span.netabare {

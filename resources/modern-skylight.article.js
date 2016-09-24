@@ -22,64 +22,27 @@ function tabs(elem) {
 	}
 }
 
-var hasTabs = document.getElementsByClassName('tabs-container');
-
-Array.prototype.forEach.call(hasTabs, function(elem) {
+[].forEach.call(document.getElementsByClassName('tabs-container'), function(elem) {
 	tabs(elem);
 });
 
-/*************************
-*	Slider
-*	Author : 카페인러브
-*************************/
-$(function(){
-	// 탭 & 슬라이더
-	$('.slider-control li').on('click', function() {
-		if ( !$(this).hasClass('selected') ) {
-			var
-				index = $(this).index(),
-				newIndex = index + 1,
-				container = $(this).parent().siblings('.slider'),
-				images = container.children(),
-				imgWidth = images.outerWidth();
+/**
+ * Simple Toggle
+ * {{접기}}
+ * Author: 카페인러브, 2016
+ * MIT License
+ */
+function simpleToggle() {
+	var targets = document.getElementsByClassName('toggleable');
 
-			$(this).addClass('selected').siblings('li').removeClass('selected');
-			container.stop(true,false).animate({'left':'-'+ imgWidth*index +'px'},400);
-			container.find('li:nth-child(' + newIndex + ')').addClass('active').siblings().removeClass('active');
-		}
-	});
-});
+	for (var i = 0, j = targets.length; i < j; i++) {
+		targets[i].addEventListener('click', function() {
+			this.classList.toggle('open');
+		});
+	}
+}
 
-/**************************************************
-*	Infobox fix
-*	(Reduces image if larger in height than profile area)
-*	Author : 카페인러브
-**************************************************/
-// 정보상자에서 프로필 세로보다 그림의 세로가 클 때 자동으로 리사이즈
-$(function(){
-	$('.infobox').each(function(){
-		var
-			$left = $(this).find('a.image').eq(0),
-			$right = $(this).children('.right'),
-			leftHeight = $(this).find('a.image:first-child').outerHeight(),
-			rightHeight = $right.outerHeight();
-
-		if ( leftHeight > rightHeight ){
-			$left.css('height', rightHeight ); // 그림을 리사이즈
-		}
-	});
-});
-
-/*************************
-*	{{접기}}
-*	Author : 카페인러브
-*************************/
-$(function(){
-	$('.toggle').on('click', function() {
-		$(this).toggleClass('visible');
-		$(this).children('.toggle-content').slideToggle();
-	});
-});
+simpleToggle();
 
 /*************************
 *	오토 셀렉트
@@ -151,7 +114,7 @@ $(function(){
 *	( http://dev.wikia.com/wiki/SpoilerAlert )
 *	Personalization : 카페인러브
 ****************************************/
-jQuery(function(){
+$(function(){
 	window.Censor = (function(){
 
 		// Get current page's Id
