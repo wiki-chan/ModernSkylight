@@ -107,12 +107,18 @@ blockquote.suspended a { color: #EE3A42 !important; }
 	max-height: 350px;
 	overflow: hidden;
 }
-.infobox .info {
-	margin-left: calc(200px + 1em);
+.infobox .img > a.image {
+	float: left;
+	width: 200px;
+	max-height: 300px;
+	overflow: hidden;
 }
 .infobox .upload > a.new {
 	height: 250px;
 	line-height: 250px;
+}
+.infobox .info {
+	margin-left: calc(200px + 1em);
 }
 
 .infobox .heading {
