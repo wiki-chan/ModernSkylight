@@ -72,6 +72,7 @@ class SkinModernSkylight extends SkinTemplate {
 			case NS_IMAGE:
 			case NS_TEMPLATE:
 			case NS_HELP:
+			case NS_SANDBOX:
 				$out->addModuleStyles( 'skins.modern-skylight.article.css' );
 				break;
 			case NS_CATEGORY:
