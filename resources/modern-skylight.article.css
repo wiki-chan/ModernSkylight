@@ -86,6 +86,20 @@ blockquote.suspended {
 }
 blockquote.suspended a { color: #EE3A42 !important; }
 
+blockquote.info ul {
+	margin: 0 0 0 .5em;
+}
+blockquote.info li {
+	list-style-type: none;
+	position: relative;
+	padding-left: .3em;
+}
+blockquote.info li:before {
+	content: '-';
+	position: absolute;
+	left: -.5em;
+}
+
 /** Infobox {{정보상자}} **/
 .infobox {
 	clear: left;
@@ -424,13 +438,9 @@ span.netabare.show *:not(.alt) {
 
 /* Alias Tag {{명의}} */
 .name-tag {
-	background: #e5e5e5;
-	padding: 0 4px 0 3px;
 	font-size: 12px;
-	line-height: 0;
-	position: relative;
-	top: -1px;
-	cursor: help;
+	color: #BABCBF;
+	margin-left: .25em;
 }
 
 /* Imitation List : in {{타이업}} */

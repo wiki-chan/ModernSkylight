@@ -557,18 +557,19 @@ div.gallerytext p {
 	margin: 0 0 0 1.6em;
 }
 #toc > ul {
-	width: 210px;
+	width: 212px;
 	overflow-x: hidden;
 }
 #toc li a {
 	display: block;
+	padding: 0 3px;
 	white-space: nowrap;
 	overflow-x: hidden;
 	text-overflow: ellipsis;
 	text-decoration: none;
 }
 #toc li a:hover {
-	background-color: #E2E4EF;
+	background-color: #E8E9EF;
 }
 #toc .tocnumber {
 	color: #9DA0AB;
