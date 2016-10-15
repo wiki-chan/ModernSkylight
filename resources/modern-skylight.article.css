@@ -87,22 +87,8 @@ blockquote.suspended {
 blockquote.suspended a { color: #EE3A42 !important; }
 
 blockquote.info ul {
-	margin: 0 0 0 1em;
-}
-blockquote.info li {
+	margin: 0 .5em;
 	list-style-type: none;
-	position: relative;
-}
-blockquote.info li:before {
-	content: '';
-	display: block;
-	width: 3px;
-	height: 3px;
-	border-radius: 50%;
-	background-color: #1DADE2;
-	position: absolute;
-	top: 9px;
-	left: -1em;
 }
 
 /** Infobox {{정보상자}} **/
@@ -114,6 +100,7 @@ blockquote.info li:before {
 .infobox .img {
 	float: left;
 	width: 200px;
+	margin: 0; /* tabs container fix */
 }
 .infobox .img > .upload {
 	overflow: auto;
