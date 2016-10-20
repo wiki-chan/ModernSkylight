@@ -603,6 +603,9 @@ div.gallerytext p {
 	border-color: #7C7C7C;
 }
 
+/* 알파 레이아웃에서는 목차를 감춤 */
+.article.alpha #toc { display: none !important; }
+
 /*** 레이아웃 ***/
 /* 헤더 */
 #header, #rsp-header {
@@ -874,7 +877,8 @@ ul.top-menu > li:hover > a {
 	overflow: visible;
 	position: relative;
 }
-.content .article {
+.content .article,
+#wikiPreview {
 	width: 710px;
 	padding: 10px 14px;
 	border: 1px solid #dedede;
