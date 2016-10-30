@@ -4,23 +4,23 @@
  * License: GPL and MIT Licenses
  */
 function accordionNav() {
-	var trigger = $("#accordion > li > a"),
-		content = $("#accordion > li > ul.sub-menu"),
-		toggler = "active",
+	var $trigger = $("#accordion > li > a"),
+		$content = $("#accordion > li > ul.sub-menu"),
+		toggler = "active";
 
 	// Expand first block on page load
-	trigger[0].addClass(toggler).next().slideDown();
+	$trigger.first().addClass(toggler).next().slideDown();
 
 	// Toggle on clicking
-	trigger[i].on("click", function(e) {
+	$trigger.on("click", function(e) {
 		// Prevent flickering
 		e.preventDefault();
 
 		var $t = $(this);
 
 		if ( !$t.hasClass(toggler) ) {
-			target.slideUp();
-			trigger.not($t).removeClass(toggler);
+			$target.slideUp();
+			$trigger.not($t).removeClass(toggler);
 
 			$t.next().stop(true, true).slideToggle();
 			$t.addClass(toggler);
