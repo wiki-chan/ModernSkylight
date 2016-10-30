@@ -955,7 +955,7 @@ h1#firstheading {
 	width: 48px;
 	height: 38px;
 	line-height: 38px;
-    border-radius: 4px;
+	border-radius: 4px;
 	text-align: center;
 	white-space: nowrap;
 	text-decoration: none !important;
@@ -1658,6 +1658,52 @@ span.kbd {
 	line-height: 1.4;
 	white-space: nowrap;
 }
+
+/* Recent Changes */
+.mw-changeslist .comment {
+	color: #909398;
+	font-style: normal;
+}
+
+.mw-changeslist-separator { display: none; }
+.mw-changeslist-separator + .mw-userlink,
+.mw-changeslist-separator + .changedby { margin-left: .5em; }
+
+.mw-plusminus-neg { color: #F37076; }
+.mw-plusminus-pos { color: #74b535; }
+
+.mw-usertoollinks a,
+.mw-rollback-link a,
+.mw-history-undo a {
+	background-color: #e8e8e8;
+	border-radius: 2px;
+	color: #888;
+	font-size: 12px;
+	line-height: 1;
+	margin: 0 1px;
+	padding: 0 3px 0 2px;
+}
+.mw-usertoollinks a:hover,
+.mw-rollback-link a:hover,
+.mw-history-undo a:hover {
+	background-color: #1DADE2;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.mw-usertoollinks,
+.mw-rollback-link { font-size: 0; }
+
+.rcoptions hr,
+.rcoptions form { display: none; }
+
+table.mw-enhanced-rc th,
+table.mw-enhanced-rc td {
+	color: #606276;
+	vertical-align: middle;
+}
+
+td.mw-enhanced-rc { letter-spacing: 0; }
 
 /* ReCaptcha */
 #recaptcha_area { margin: auto; }
