@@ -180,8 +180,32 @@ a:hover { text-decoration: none !important; }
 
 /*** Create Form ***/
 input.createboxInput { width: 220px; }
-#createform-default { margin-bottom: 3px; }
-#createform-hidden { display: none; }
+
+ul#create-control {
+	text-align: center;
+}
+ul#create-control li {
+	display: inline-block;
+	background-color: #FFF;
+	color: #767676;
+	border: 1px solid #E2E2E2;
+	line-height: 1;
+	padding: .55em .5em .35em;
+	margin: 2px;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: all .1s ease-in-out;
+}
+ul#create-control li:not(.selected):hover {
+	background-color: #ADADAD;
+	color: #FFF;
+	border-color: #ADADAD;
+}
+ul#create-control li.selected {
+	background-color: #00A6BC;
+	color: #FFF;
+	border-color: #00A6BC;
+}
 
 /*** Noti message ***/
 #notification {

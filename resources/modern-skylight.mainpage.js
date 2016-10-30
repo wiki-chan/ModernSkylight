@@ -1,42 +1,80 @@
 /**
- *	DOMReady Actions
+ * Accordion Menu
+ * Author: 카페인러브, 2016
+ * License: GPL and MIT Licenses
  */
-$(function(){
-	// Accordion Menu
-		var
-			ac_trigger = $('#accordion > li > a'),
-			ac_target = $('#accordion > li > ul.sub-menu'),
-			toggle_class = 'active';
+function accordionNav() {
+	var trigger = $("#accordion > li > a"),
+		content = $("#accordion > li > ul.sub-menu"),
+		toggler = "active",
 
-		// 로드 시점에서 첫번째 아코디언을 오픈
-		ac_trigger.first().addClass(toggle_class).next().slideDown();
+	// Expand first block on page load
+	trigger[0].addClass(toggler).next().slideDown();
 
-		// 클릭하면
-		ac_trigger.on('click', function (e) {
-			e.preventDefault();
-
-			// 토글한다
-			var $t = $(this);
-
-			if ( !$t.hasClass(toggle_class) ) {
-				ac_target.slideUp();
-				$t.next().stop(true, true).slideToggle();
-				ac_trigger.not($t).removeClass(toggle_class);
-				$t.addClass(toggle_class);
-			}
-		});
-
-	// Create Form
-	var
-		cf_trigger = $('#createformToggle'),
-		cf_target = $('#createform-hidden');
-
-	cf_trigger.on('click', function (e) {
+	// Toggle on clicking
+	trigger[i].on("click", function(e) {
+		// Prevent flickering
 		e.preventDefault();
-		cf_trigger.toggleClass('open');
-		cf_target.slideToggle();
-	});
 
-	// Link to Sort Hack
-	$('#wikichan-sort').children('a').attr('href', '/sort/');
-});
+		var $t = $(this);
+
+		if ( !$t.hasClass(toggler) ) {
+			target.slideUp();
+			trigger.not($t).removeClass(toggler);
+
+			$t.next().stop(true, true).slideToggle();
+			$t.addClass(toggler);
+		}
+	});
+}
+
+/**
+ * Toggle Create Form
+ * Author: 카페인러브, 2016
+ * License: GPL and MIT Licenses
+ */
+function toggleCreateForm() {
+	if (!document.getElementById("create-control")) return;
+	
+	var select = document.getElementById("create-control").children,
+		select_length = select.length,
+		form = document.getElementById("create-form"),
+		prefix = form.querySelector("input[name='prefix']"),
+		placeholder = form.querySelector("input[name='title']"),
+		data = [
+			{ template:"", placeholder:"문서의 제목"},
+			{ template:"틀:서식/작품", placeholder:"작품의 제목"},
+			{ template:"틀:서식/캐릭터", placeholder:"캐릭터의 이름"},
+			{ template:"틀:서식/성우", placeholder:"성우의 이름"},
+			{ template:"틀:서식/에로게 성우", placeholder:"에로게 성우의 이름"},
+			{ template:"틀:서식/가수", placeholder:"가수의 이름"},
+			{ template:"틀:서식/제작사", placeholder:"제작사의 이름"}
+		];
+
+	var toggle = function(index) {
+		for (var i=0; i<select_length; i++) {
+			select[i].className = (i !== index) ? "" : "selected";
+		}
+
+		prefix.value = data[index].template;
+		placeholder.placeholder = data[index].placeholder + "을 입력해 주세요.";
+	};
+
+	Array.prototype.forEach.call(select, function(elem) {
+		elem.addEventListener("click", function() {
+			toggle( getIndex(elem) );
+		});
+	});
+}
+
+/* Call functions on DOM Ready */
+(function(){
+	// Activate accordion menu
+	accordionNav();
+
+	// Activate "createform" toggle
+	toggleCreateForm();
+
+	// Hack "Wikichan sort" Link
+	document.getElementById("wikichan-sort").children[0].setAttribute("href", "/sort/");
+})();
