@@ -179,10 +179,9 @@ a:hover { text-decoration: none !important; }
 }
 
 /*** Create Form ***/
-input.createboxInput { width: 225px; }
-
 ul#create-control {
 	text-align: center;
+	margin-bottom: 10px;
 }
 ul#create-control li {
 	display: inline-block;
@@ -191,7 +190,7 @@ ul#create-control li {
 	font-size: 12px;
 	line-height: 14px;
 	padding: .55em .7em .55em;
-	margin: 2px;
+	margin: 1px;
 	cursor: pointer;
 	transition: all .1s ease-in-out;
 }
@@ -200,6 +199,14 @@ ul#create-control li.selected {
 	color: #FFF;
 }
 
+input.createboxInput {
+	width: 292px;
+	margin: 0 auto;
+	float: none;
+}
+input.createboxButton {
+	display: none;
+}
 
 /*** Noti message ***/
 #notification {
