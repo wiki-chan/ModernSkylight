@@ -125,3 +125,13 @@ function selectCode(trigger) {
 }
 
 $('.selectable').prepend('<input type="button" value="선택" onclick="selectCode(this); return false;" />');
+
+/**
+ * Get element index as child
+ * Author: mikemaccana, 2016
+ * Reference: http://stackoverflow.com/questions/5913927/get-child-node-index
+ * CC-BY-SA 3.0
+ */
+function getIndex(element) {
+	return Array.prototype.indexOf.call(element.parentNode.children, element);
+}
