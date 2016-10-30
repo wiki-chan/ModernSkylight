@@ -57,7 +57,7 @@ function toggleCreateForm() {
 		}
 
 		prefix.value = data[index].template;
-		placeholder.placeholder = data[index].placeholder + "을 입력해 주세요.";
+		placeholder.placeholder = data[index].placeholder + "을 입력하고 엔터를 눌러 주세요.";
 	};
 
 	Array.prototype.forEach.call(select, function(elem) {
