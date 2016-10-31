@@ -1,106 +1,174 @@
-/************************
-*	Smooth Scroll
-*	Author: 카페인러브
-************************/
+/*!
+ * Wikichan: JavaScript
+ * Used globally on http://wiki-chan.net
+ * Refer to each section for license and author
+ */
+
+// On Document Ready ------------------------------
+
 $(function() {
-	// 링크를 클릭했을 때 스무스 스크롤
-	var $root = $('html, body');
 
-	$('a[href^="#"]').click(function (e) {
-		event.preventDefault();
+	// Activate main functions
+	smoothScroll();
+	scrollToTop();
+	resizeToc();
+	wikiTip();
 
-		var href = $(this).attr('href');
-		var h = href.replace(/\./g, '\\.');
+	// Make all <pre> having "selectble" class easily selectable
+	var selectable = document.getElementsByTagName("selectable");
 
-		$root.animate({ scrollTop: $(h).offset().top }, 300);
-		location.hash = href;
-	});
+	for ( var i = 0, j = selectable.length; i < j; i++ ) {
+		var input = document.createElement("input");
 
-	// 맨 위로 스크롤
-	if (mw.config.get("wgNamespaceNumber") != 2) {
-		$('body').append('<a id="toTop">↑</a>');
-		$(window).scroll(function() {
-			if($(this).scrollTop() > 400) {
-				$('#toTop').fadeIn();
-				$('#cactions').addClass('inactive');
-			} else {
-				$('#toTop').fadeOut();
-				$('#cactions').removeClass('inactive');
-			}
+		input.type = "button";
+		input.value = "선택";
+		input.addEventListener("click", function() {
+			selectCode(input);
+			return false;
 		});
- 		$('#toTop').click(function() {
-			$('body,html').animate({ scrollTop: 0 },100);
-		});
+
+		selectable[i].insertBefore( input, selectable.firstChild );
 	}
+
 });
 
-/*********************
-*	Site Details
-*	Author: 카페인러브
-*********************/
-function expandFooter() {
-	$('.footer-collapse:visible').slideUp();
-	$('.footer-expand:hidden').slideDown();
-	// 먼저 stop()하고 animate를 한다 by 페네트-
-	$('body, html').stop().animate({ scrollTop: $(document).height() }, 800 );
+// MAIN FUNCTIONS ------------------------------
+
+/**
+ * Smooth Scroll
+ * Author: 카페인러브
+ * License: MIT and GPL licenses
+ */
+function smoothScroll() {
+	// store related DOM elements into variable
+	var $root = $("html, body");
+	var $anchors = $("a[href^='#']");
+
+	// add scroll event to all anchors
+	$anchors.on("click", function(e) {
+
+		e.preventDefault();
+
+		var href = $(this).hash;
+
+		// Change URL hash without page jump
+		// Author: Lea Verou, 2011
+		// http://lea.verou.me/2011/05/change-url-hash-without-page-jump/
+		if (history.pushState) {
+			history.pushState(null, null, href);
+		} else {
+			location.hash = href;
+		}
+		// end
+
+		// insert escape(\\) before all dots
+		// only required for non-alphabetic sites
+		href = href.replace(/\./g, "\\.");
+
+		$root.animate({
+			scrollTop: $(href).offset().top
+		}, 300);
+
+	});
 }
 
-/******************************
-*	Resize TOC to fit window
-*	Author: 카페인러브
-******************************/
-if ( $('#toc') )
-	var tocInitHeight = $('#toc').outerHeight();
+/**
+ * Scroll To Top
+ * Author: 카페인러브
+ * License: MIT and GPL licenses
+ */
+function scrollToTop() {
+	// if ( mw.config.get("wgNamespaceNumber") === 2 ) return;
 
+	// Create ↑ button and append it to body
+	var toTop = document.createElement("a");
+
+	toTop.id = "toTop";
+	toTop.appendChild( document.createTextNode("↑") );
+
+	document.body.appendChild(toTop);
+
+	// Toggle ↑ button on page scroll
+	$(window).on("scroll", function() {
+		if($(this).scrollTop() > 400) {
+			$('#toTop').fadeIn();
+		} else {
+			$('#toTop').fadeOut();
+		}
+	});
+
+	// Scroll to topmost position when user clicks on ↑ button
+	var $root = $("body, html");
+
+	$('#toTop').on("click", function() {
+		$root.animate({ scrollTop: 0 }, 100);
+	});
+}
+
+/**
+ * Resize Table of Contents
+ * Author: 카페인러브
+ * License: MIT and GPL licenses
+ */
 function resizeToc(){
-	if ( !$('#toc') ) return;
+	if ( !$("#toc") ) return;
+
+	var $toc = $("#toc");
 	var windowHeight = window.innerHeight;
 	
-	if ( tocInitHeight + 67 > windowHeight ) {
-		$('#toc').find('ul:first').height(windowHeight - 105);
+	if ( $toc.outerHeight() + 67 > windowHeight ) {
+		$toc.children('ul').height( windowHeight - 105 );
 	}
 }
-$(document).on('ready', resizeToc);
-/* $(window).on('resize', resizeToc); */
 
-/******************************
-*	Tooltip
-*	Author: vertigo-project (vtip)
-*	Arr by: 카페인러브
-******************************/
-this.tip = function() { 
-	$('.tooltip').hover(function() {
-		$('.tooltip').find('a').removeAttr('title'); // remove child elem's ajax tooltip
+/**
+ * Tooltip
+ * Author: vertigo-project (vtip)
+ * Arranged by: 카페인러브
+ * License: MIT and GPL licenses
+ */
+function wikiTip() {
+	var $targets = $(".tooltip");
+
+	$targets.on("mouseenter", function() {
+		$targets.find("a").removeAttr("title");
 
 		this.t = this.title;
-		this.title = '';
+		this.title = "";
+
+		var $offsets = $(this).offset();
 		var $containerWidth = $(this).width();
-		var $offset = $(this).offset();
 
-		if ( $(this).is('[title]') ){
- 			$('body').append( '<div id="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner">' +this.t+ '</div></div>' );
+		if ( $(this).is("[title]") ) {
+ 			$("body").append(
+ 				"<div id='tooltip'><div class='tooltip-arrow'></div><div class='tooltip-inner'>" + this.t + "</div></div>"
+ 			);
 		}
-		var $tipWidth = $('#tooltip').width();
-		var $tipHeight = $('#tooltip').height();
 
-		$('#tooltip').css({
-			'top': $offset.top - ($tipHeight  +6),
-			'left': $offset.left - ($tipWidth - $containerWidth) /2,
-		}).fadeIn('fast');
-	},
-	function() {
+		var $tipWidth = $("#tooltip").width();
+		var $tipHeight = $("#tooltip").height();
+
+		$("#tooltip")
+			.css({
+				"top": $offsets.top - ( $tipHeight + 6 ),
+				"left": $offsets.left - ( $tipWidth - $containerWidth ) /2,
+			})
+			.fadeIn("fast");
+	};
+
+	$targets.on("mouseleave", function() {
 		this.title = this.t;
-		$('div#tooltip').remove();
+		$("#tooltip").remove();
 	});
-};
-$(document).ready(function(){ tip(); });
+}
 
 /******************************
 *	Select text in pre
 *	Author: unknown
 ******************************/
 function selectCode(trigger) {
-	var e = trigger.parentNode.getElementsByTagName('pre')[0];
+	var e = trigger.parentNode.getElementsByTagName("pre")[0];
+
 	if (window.getSelection) {
 		var s = window.getSelection();
 		if (s.setBaseAndExtent) {
@@ -124,14 +192,35 @@ function selectCode(trigger) {
 	}
 }
 
-$('.selectable').prepend('<input type="button" value="선택" onclick="selectCode(this); return false;" />');
+
+// HELPER FUNCTIONS ------------------------------
 
 /**
  * Get element index as child
  * Author: mikemaccana, 2016
  * Reference: http://stackoverflow.com/questions/5913927/get-child-node-index
- * CC-BY-SA 3.0
+ * License: CC-BY-SA 3.0
  */
 function getIndex(element) {
 	return Array.prototype.indexOf.call(element.parentNode.children, element);
+}
+
+/**
+ * Get horizontal/vertical offset of an element
+ * Author: 카페인러브, 2016
+ * License: MIT and GPL Licenses
+ */
+function getOffset(element) {
+	var style = element.currentStyle || window.getComputedStyle(element);
+
+	return {
+		"top": element.getBoundingClientRect().top
+			+ (document.documentElement.scrollTop || document.body.scrollTop)
+			- parseInt(style.paddingTop)
+			- parseInt(style.marginTop),
+		"left": element.getBoundingClientRect().left
+			+ (document.documentElement.scrollLeft || document.body.scrollLeft)
+			- parseInt(style.paddingLeft)
+			- parseInt(style.marginLeft)
+	};
 }
