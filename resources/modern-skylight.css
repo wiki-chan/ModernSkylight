@@ -1056,45 +1056,29 @@ div#bodyContent{
 	position: relative;
 	margin: 0 auto;
 	min-width: 1000px;
-	color: #9099a3;
+	background-color: #ECEEF1;
+	color: #9099A3;
 }
 
-.footer-collapse {
-	background-color: #eceef1;
-	padding: 5px 0;
-	cursor: pointer;
-	display: none;
-}
-
-.footer-expand {
-	background-color: #eceef1;
-}
-.footer-expand .column-head {
+.footer .column-head {
 	font-size: 14px;
 	line-height: 17px;
 	color: #55606e;
 	padding: 15px 15px 5px 0;
 }
-.footer-expand .column-body {
+.footer .column-body {
 	padding: 5px 15px 10px 5px;
 }
 
-.footer-expand .entry {
+.footer .entry {
 	margin-bottom: 10px;
 }
-.footer-expand p {
+.footer p {
 	font-size: 12px;
 	text-align: justify;
 	line-height: 170%;
 	margin-top: 5px;
 	margin-bottom: 3px;
-}
-
-.footer.collapsed .footer-collapse {
-	display: block;
-}
-.footer.collapsed .footer-expand {
-	display: none;
 }
 
 /* Layout Fix */
@@ -1660,10 +1644,13 @@ span.kbd {
 }
 
 /* Recent Changes */
-.mw-changeslist .comment {
-	color: #909398;
-	font-style: normal;
+table.mw-enhanced-rc { margin-bottom: 3px; }
+table.mw-enhanced-rc th,
+table.mw-enhanced-rc td {
+	vertical-align: top;
+	color: #606276;
 }
+td.mw-enhanced-rc { letter-spacing: 0; }
 
 .mw-changeslist-separator { display: none; }
 .mw-changeslist-separator + .mw-userlink,
@@ -1675,18 +1662,19 @@ span.kbd {
 .mw-usertoollinks a,
 .mw-rollback-link a,
 .mw-history-undo a {
-	background-color: #e8e8e8;
-	border-radius: 2px;
-	color: #888;
 	font-size: 12px;
 	line-height: 1;
+	white-space: nowrap;
 	margin: 0 1px;
-	padding: 0 3px 0 2px;
+	padding: 2px 4px 1px 3px;
+	background-color: #E8E8E8;
+	color: #888;
+	border-radius: 2px;
 }
 .mw-usertoollinks a:hover,
 .mw-rollback-link a:hover,
 .mw-history-undo a:hover {
-	background-color: #1DADE2;
+	background-color: #464E54;
 	color: #FFF;
 	text-decoration: none;
 }
@@ -1697,13 +1685,10 @@ span.kbd {
 .rcoptions hr,
 .rcoptions form { display: none; }
 
-table.mw-enhanced-rc th,
-table.mw-enhanced-rc td {
-	color: #606276;
-	vertical-align: middle;
+.mw-changeslist .comment {
+	color: #909398;
+	font-style: normal;
 }
-
-td.mw-enhanced-rc { letter-spacing: 0; }
 
 /* ReCaptcha */
 #recaptcha_area { margin: auto; }

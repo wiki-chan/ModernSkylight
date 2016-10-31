@@ -247,11 +247,8 @@ class ModernSkylightTemplate extends BaseTemplate {
 			<?php endif; ?>
 		</div>
 		<div class="footer<?php if ($c_page->getNamespace() == 0 && !$c_page->isMainPage()) echo ' collapsed'; ?>" role="contentinfo" onclick="expandFooter()">
-			<div class="footer-collapse holder center">클릭하면 안내문이 나타납니다.</div>
-			<div class="footer-expand">
-				<div class="holder clear">
-					<?=wfMessage( 'ModernSkylightFooter' )->parse()?>
-				</div>
+			<div class="holder clear">
+				<?=wfMessage( 'ModernSkylightFooter' )->parse()?>
 			</div>
 		</div>
 		<?php $this->printTrail(); ?>
