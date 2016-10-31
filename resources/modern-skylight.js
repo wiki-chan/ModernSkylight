@@ -49,7 +49,7 @@ function smoothScroll() {
 
 		e.preventDefault();
 
-		var href = $(this).hash;
+		var href = this.hash;
 
 		// Change URL hash without page jump
 		// Author: Lea Verou, 2011
@@ -60,10 +60,6 @@ function smoothScroll() {
 			location.hash = href;
 		}
 		// end
-
-		// insert escape(\\) before all dots
-		// only required for non-alphabetic sites
-		href = href.replace(/\./g, "\\.");
 
 		$root.animate({
 			scrollTop: $(href).offset().top
