@@ -62,7 +62,7 @@ function smoothScroll() {
 		// end
 
 		$root.animate({
-			scrollTop: $(href).offset().top
+			scrollTop: $(document.getElementById( href.substr(1) )).offset().top
 		}, 300);
 
 	});
