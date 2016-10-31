@@ -37,10 +37,8 @@ function toggleCreateForm() {
 	if (!document.getElementById("create-control")) return;
 	
 	var select = document.getElementById("create-control").children,
-		select_length = select.length,
-		form = document.getElementById("create-form"),
-		prefix = form.querySelector("input[name='prefix']"),
-		placeholder = form.querySelector("input[name='title']"),
+		preload = document.querySelector("#create-form input[name='preload']"),
+		placeholder = document.querySelector("#create-form input[name='title']"),
 		data = [
 			{ template:"", placeholder:"문서의 제목"},
 			{ template:"틀:서식/작품", placeholder:"작품의 제목"},
@@ -52,18 +50,20 @@ function toggleCreateForm() {
 		];
 
 	var toggle = function(index) {
-		for (var i=0; i<select_length; i++) {
+		for ( var i = 0; i < select.length; i++ ) {
 			select[i].className = (i !== index) ? "" : "selected";
 		}
 
-		prefix.value = data[index].template;
+		preload.value = data[index].template;
 		placeholder.placeholder = data[index].placeholder + "을 입력하고 엔터를 눌러 주세요.";
 	};
 
 	Array.prototype.forEach.call(select, function(elem) {
+
 		elem.addEventListener("click", function() {
 			toggle( getIndex(elem) );
 		});
+
 	});
 }
 

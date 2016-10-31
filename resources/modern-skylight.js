@@ -150,7 +150,7 @@ function wikiTip() {
 				"left": $offsets.left - ( $tipWidth - $containerWidth ) /2,
 			})
 			.fadeIn("fast");
-	};
+	});
 
 	$targets.on("mouseleave", function() {
 		this.title = this.t;
