@@ -19,10 +19,10 @@ function accordionNav() {
 		var $t = $(this);
 
 		if ( !$t.hasClass(toggler) ) {
-			$target.slideUp();
+			$content.slideUp();
 			$trigger.not($t).removeClass(toggler);
 
-			$t.next().stop(true, true).slideToggle();
+			$t.next().stop(true, true).slideDown();
 			$t.addClass(toggler);
 		}
 	});
