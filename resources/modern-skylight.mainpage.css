@@ -98,6 +98,7 @@ a:hover { text-decoration: none !important; }
 	background-color: #FFF;
 	margin-bottom: 10px;
 }
+
 .component-head {
 	position: relative;
 	height: 40px;
@@ -108,41 +109,19 @@ a:hover { text-decoration: none !important; }
 	font-size: 20px;
 	line-height: 40px;
 }
+
 .component-head .more {
-	display: block;
-	width: 24px;
-	height: 24px;
 	position: absolute;
 	top: 8px;
 	right: 0;
 }
 .component-head .more > a {
-	display: block;
-	width: 23px;
-	height: 23px;
-	color: transparent;
+	display: inline-block;
+	font-size: 12px;
+	line-height: 17px;
+	border-bottom: 1px solid #AEE6FB;
 }
-.component-head .more > a:before, .component-head .more > a:after {
-	content: '';
-	display: block;
-	position: absolute;
-	background-color: #555;
-}
-.component-head .more > a:before {
-	width: 14px;
-	height: 1px;
-	top: 11px;
-	right: 5px;
-}
-.component-head .more > a:after {
-	width: 1px;
-	height: 14px;
-	top: 5px;
-	right: 11px;
-}
-.component-head .more.open > a:after {
-	display: none;
-}
+
 .component-body {
 	padding: 5px 0;
 	margin-bottom: .5em;
