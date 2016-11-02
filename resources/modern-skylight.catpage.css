@@ -7,48 +7,55 @@
  * .content-section -> 하위 분류, 문서 박스의 inner wrapper
  */
 
-#mw-subcategories, #mw-pages, #mw-category-media {
-	border: 1px solid #dedede;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-box-shadow: 2px 2px 2px #ddd;
-	-moz-box-shadow: 2px 2px 2px #ddd;
-	box-shadow: 2px 2px 2px #ddd;
+#mw-subcategories,
+#mw-pages,
+#mw-category-media {
+	padding: 0 0 10px;
 	margin: 1em 0 1.5em;
+	border: 1px solid #dedede;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px #DDD;
 	overflow: hidden;
 }
-.content-section {
-	padding: 0 10px 10px;	
-}
 
-#mw-subcategories h2, #mw-pages h2, #mw-category-media h2 {
+#mw-subcategories > h2,
+#mw-pages > h2,
+#mw-category-media > h2 {
 	width: 100%;
 	background: #e5e5e5;
 	margin: 0;
 	padding: 7px 10px;
 	border: none;
 }
-#mw-subcategories h2:before, #mw-pages h2:before, #mw-category-media h2:before {
-	display: none !important;
-}
+#mw-subcategories > h2:before,
+#mw-pages > h2:before,
+#mw-category-media > h2:before { display: none !important; }
+
+#mw-subcategories > *:not(h2),
+#mw-pages > *:not(h2),
+#mw-category-media > *:not(h2) { padding: 0 10px; }
+
+.content-section { padding: 0 10px 10px; }
 
 h2 .count-message {
 	font-size: 12px;
 	font-weight: normal;
 }
 
-#mw-subcategories ul, #mw-pages ul {
+#mw-subcategories ul,
+#mw-pages ul {
 	list-style: none;
 	margin: 0;
 }
-#mw-subcategories li, #mw-pages li {
+#mw-subcategories li,
+#mw-pages li {
 	text-align: left !important;
 }
-#mw-subcategories ul + h3:before, #mw-pages ul + h3:before {
+#mw-subcategories ul + h3:before,
+#mw-pages ul + h3:before {
 	content: '';
 	display: block;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #DDD;
 	margin-bottom: 1em;
 }
 
@@ -69,6 +76,4 @@ h2 .count-message {
 }
 
 /* 갤러리 fix */
-#mw-category-media .gallery {
-	text-align: left;
-}
+#mw-category-media .gallery { text-align: left; }
