@@ -506,21 +506,21 @@ div.gallerytext p {
 /* 편집 옵션 */
 .editOptions {
 	position: relative;
-	margin: .5em 0;
+	margin: 1em 0;
 }
 
 /* 편집 요약 */
-#wpSummary {
+input#wpSummary {
 	font-family: inherit;
 	border-radius: 3px;
+	margin: .5em 0;
 }
 
 /* 편집 요약 미리 보기 */
-.mw-summary-preview {
-	float: left;
-	padding: 5px 0;
-	margin-left: 10px;
-}
+.mw-summary-preview span.comment { color: #909398; }
+
+/* 사소한 편집 & 문서 주시 체크박스 */
+.editCheckboxes { margin: 1em 0; }
 
 /* 각종 경고문의 여백 줄임 */
 #editpage-copywarn p, .hiddencats p { margin: 0; }
