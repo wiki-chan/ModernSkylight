@@ -44,7 +44,6 @@ function toggleCreateForm() {
 			{ template:"틀:서식/작품", placeholder:"작품의 제목"},
 			{ template:"틀:서식/캐릭터", placeholder:"캐릭터의 이름"},
 			{ template:"틀:서식/성우", placeholder:"성우의 이름"},
-			{ template:"틀:서식/에로게 성우", placeholder:"에로게 성우의 이름"},
 			{ template:"틀:서식/가수", placeholder:"가수의 이름"},
 			{ template:"틀:서식/제작사", placeholder:"제작사의 이름"}
 		];
