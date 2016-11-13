@@ -533,7 +533,7 @@ input#wpSummary {
 	margin-left: 735px;
 	width: 230px;
 	padding: 10px;
-	background-color: #F0F1F5;
+	background-color: #F2F3F5;
 }
 #toctitle {
 	display: none;
@@ -1108,45 +1108,64 @@ td.mw-label {
 	메시지 박스
   ===============*/
 blockquote {
-	border: 1px dashed #ccc;
-	background-color: #fafafa;
-	padding: .7em 1em;
+	border: 1px dashed #CCC;
+	background-color: #FAFAFA;
+	padding: .7em 1.2em;
+	margin: .3em 0 .5em;
 }
 
 .messagebox {
 	overflow: hidden;
-	background-color: #e3f7fc;
-	/* color: #3a87ad; */
+	background-color: #E3F7FC;
+	/* color: #3A87AD; */
 	border: none;
-	padding: 12px 15px;
-	margin: .5em .2em;
 }
 .messagebox.netabare {
-	background-color: #fff8c4;
-	color: #84682a;
+	background-color: #FFF8C4;
+	color: #84682A;
 }
 .messagebox.warning {
-	background-color: #f2dede;
-	color: #b94a48;
+	background-color: #F2DEDE;
+	color: #B94A48;
 }
 .messagebox.protected {
-	background-color: #5cb85c;
-	color: #fff;
+	background-color: #5CB85C;
+	color: #FFF;
 }
 .messagebox.suspended {
-	background-color: #d9534f;
-	color: #fff;
+	background-color: #D9534F;
+	color: #FFF;
 }
 .messagebox.protected a, .messagebox.suspended a {
-	color: #fff;
+	color: #FFF;
 	font-weight: bold;
 	text-decoration: underline;
 }
-/*
-.messagebox.netabare:not(.expired), .messagebox.mature:not(.expired) { cursor: pointer; }
-.messagebox.expired span.clickme { display: none; }
-*/
 
+/** Message Box {{알림}} {{안내}} {{참조}} **/
+blockquote.info {
+	background-color: #E7F7FF;
+	border-width: 0;
+	color: #494A4C;
+}
+blockquote.info a { font-weight: bold; }
+
+blockquote.protected {
+	background-color: #F7E3FC;
+	border: 1px solid #E8B1E7;
+}
+blockquote.protected a { color: #B051AE !important; }
+
+blockquote.suspended {
+	background-color: #FCE3E3;
+	border: 1px solid #FFA7AB;
+}
+blockquote.suspended a { color: #EE3A42 !important; }
+
+blockquote.info ul {
+	margin: 0 .5em;
+	list-style-type: none;
+}
 
 /*===============
 	다이얼로그

@@ -64,33 +64,6 @@ li.gallerybox div.thumb {
 }
 .tabs-content > *:not(.active) { display: none; }
 
-/** Message Box {{알림}} {{안내}} {{참조}} **/
-blockquote.info {
-	background-color: #E3F7FC;
-	border: 0;
-	border: 1px solid #95E3FF;
-	padding: .8em 1.3em;
-	margin: .3em 0 1em;
-}
-blockquote.info a { font-weight: bold; }
-
-blockquote.protected {
-	background-color: #F7E3FC;
-	border-color: #E8B1E7;
-}
-blockquote.protected a { color: #B051AE !important; }
-
-blockquote.suspended {
-	background-color: #FCE3E3;
-	border-color: #FFA7AB;
-}
-blockquote.suspended a { color: #EE3A42 !important; }
-
-blockquote.info ul {
-	margin: 0 .5em;
-	list-style-type: none;
-}
-
 /** Infobox {{정보상자}} **/
 .infobox {
 	clear: left;
@@ -227,7 +200,7 @@ blockquote.info ul {
 /** Multi-purpose box {{단행본}} {{블루레이}} **/
 .multibox {
 	clear: left;
-	margin: 0 3% 1em;
+	margin: 1em 3%;
 }
 .multibox .img {
 	float: left;
