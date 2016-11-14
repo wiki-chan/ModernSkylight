@@ -245,6 +245,10 @@ li.gallerybox div.thumb {
  * Discography {{정보상자/음반}}
  * Bluray {{블루레이}
  **/
+.switchable .tabs-control {
+	margin-top: .5em !important;
+	margin-bottom: 0 !important;
+}
 .switchable .tabs-control > * {
 	width: 12px;
 	height: 12px;
