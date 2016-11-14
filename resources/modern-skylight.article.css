@@ -48,14 +48,14 @@ li.gallerybox div.thumb {
 	line-height: 1;
 	padding: .55em .5em .35em;
 	margin: 2px;
-	border-radius: 3px;
+	border-radius: 2px;
 	cursor: pointer;
 	transition: all .1s ease-in-out;
 }
 .tabs-control > *.active {
-	background-color: #00A6BC;
+	background-color: #50A8E1;
 	color: #FFF;
-	border-color: #00A6BC;
+	border-color: #3C9EDD;
 }
 .tabs-control > *:not(.active):hover {
 	background-color: #ADADAD;
@@ -105,8 +105,8 @@ li.gallerybox div.thumb {
 }
 
 .infobox .heading strong { display: block; }
-.infobox .heading .title { font-size: 1.38461538rem; }
-.infobox .subtitle { font-size: .923076923rem; }
+.infobox .heading .title { font-size: 1.38461538rem; word-break: keep-all; }
+.infobox .subtitle { font-size: .923076923rem; word-break: keep-all; }
 .infobox .subtitle,
 .infobox .interlang { line-height: 1.2; }
 
@@ -253,7 +253,7 @@ li.gallerybox div.thumb {
 	border-radius: 50%;
 	border: none;
 }
-.switchable .tabs-control > *:not(.active) { background-color: #E0E2E4; }
+.switchable .tabs-control > *:not(.active) { background-color: #50A8E1; }
 .switchable .tabs-control > *:not(.active):hover { background-color: #ADADAD; }
 
 .switchable .tabs-content { margin: 0 !important; }
