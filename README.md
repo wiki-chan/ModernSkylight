@@ -41,7 +41,7 @@ $wgHooks['ModernSkylightNavigation'][] = 'MyExtensionHooks::onNavigation';
   오른쪽의 사이드바를 가릴 수 있습니다. `$use_sidebar` 변수에 사이드바 사용 여부를 나타내는 boolean 값을 사용할 수 있습니다. 다음 코드로 Hook을 추가할 수 있습니다.
   ```php
 public static function onRightSidebar( $c_page, $c_namespace, $c_mainpage, &$use_sidebar ) { ... }
-$wgHooks['ModernSkylightRightSidebar'][] = 'MyExtensionHooks::onRightSidebar';
+$wgHooks['ModernSkylightUseRightSidebar'][] = 'MyExtensionHooks::onRightSidebar';
 ```
 
 ### 상단 메뉴 설정하기
