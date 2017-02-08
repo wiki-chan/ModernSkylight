@@ -11,6 +11,11 @@ if( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
 }
 
+// 네임스페이스 체크
+if( !defined( 'NS_SANDBOX' ) ) {
+	define('NS_SANDBOX', -10000);
+}
+
 class SkinModernSkylight extends SkinTemplate {
 
 	var $skinname = 'modernskylight', $stylename = 'ModernSkylight',
