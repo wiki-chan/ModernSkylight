@@ -91,22 +91,6 @@ $wgResourceModules['skins.modern-skylight.mainpage.css'] = array(
 	'localBasePath' => __DIR__
 );
 
-# 일반 문서 페이지에서 작동
-$wgResourceModules['skins.modern-skylight.article.js'] = array(
-	'scripts' => array(
-			"resources/modern-skylight.article.js"
-		),
-	'remoteSkinPath' => 'ModernSkylight',
-	'localBasePath' => __DIR__
-);
-$wgResourceModules['skins.modern-skylight.article.css'] = array(
-	'styles' => array(
-			"resources/modern-skylight.article.css" => array('media' => 'screen'),
-		),
-	'remoteSkinPath' => 'ModernSkylight',
-	'localBasePath' => __DIR__
-);
-
 # 카테고리에서만 작동
 $wgResourceModules['skins.modern-skylight.catpage.css'] = array(
 	'styles' => array(

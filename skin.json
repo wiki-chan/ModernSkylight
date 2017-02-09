@@ -73,18 +73,6 @@
 				}
 			}
 		},
-		"skins.modern-skylight.article.js": {
-			"scripts": [
-				"resources/modern-skylight.article.js"
-			]
-		},
-		"skins.modern-skylight.article.css": {
-			"styles": {
-				"resources/modern-skylight.article.css": {
-					"media": "screen"
-				}
-			}
-		},
 		"skins.modern-skylight.catpage.css": {
 			"styles": {
 				"resources/modern-skylight.catpage.css": {
