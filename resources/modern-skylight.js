@@ -136,9 +136,11 @@ function wikiTip() {
 		var $containerWidth = $(this).width();
 
 		if ( $(this).is("[title]") ) {
- 			$("body").append(
- 				"<div id='tooltip'><div class='tooltip-arrow'></div><div class='tooltip-inner'>" + this.t + "</div></div>"
- 			);
+			$("body").append(
+				$("<div id='tooltip'><div class='tooltip-arrow'></div></div>").append(
+					$("<div class='tooltip-inner'></div>").text( this.t )
+				)
+			);
 		}
 
 		var $tipWidth = $("#tooltip").width();
