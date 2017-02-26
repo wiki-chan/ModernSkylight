@@ -1,40 +1,41 @@
-/*
- * 이 CSS는 wikichan 스킨의 분류 문서에서만 적용됩니다.
- * 다음은 간단한 섹션 구분법입니다.
- * #mw-subcategories -> 속해 있는 하위 분류
- * #mw-pages -> 속해 있는 문서
- * #mw-category-media -> 속해 있는 파일
- * .content-section -> 하위 분류, 문서 박스의 inner wrapper
- */
+/*----------------------------------------
+ * Modern Skylight: Category pages
+ * Author(s): cafeinlove at wiki-chan.net
+ * License: MIT License
+ ----------------------------------------*/
 
+/* #mw-subcategories -> Subcategories
+ * #mw-pages -> Pages in category "Foo"
+ * #mw-category-media -> Media in category "Foo" */
 #mw-subcategories,
 #mw-pages,
 #mw-category-media {
-	padding: 0 0 10px;
-	margin: 1em 0 1.5em;
 	border: 1px solid #dedede;
 	border-radius: 5px;
-	box-shadow: 2px 2px 2px #DDD;
+	box-shadow: 2px 2px 2px #ddd;
+	margin: 1em 0 1.5em;
 	overflow: hidden;
+	padding: 0 0 10px;
 }
 
 #mw-subcategories > h2,
 #mw-pages > h2,
 #mw-category-media > h2 {
-	width: 100%;
 	background: #e5e5e5;
+	border: 0;
+	width: 100%;
 	margin: 0;
 	padding: 7px 10px;
-	border: none;
 }
-#mw-subcategories > h2:before,
-#mw-pages > h2:before,
-#mw-category-media > h2:before { display: none !important; }
+#mw-subcategories > h2::before,
+#mw-pages > h2::before,
+#mw-category-media > h2::before { display: none !important; }
 
 #mw-subcategories > *:not(h2),
 #mw-pages > *:not(h2),
-#mw-category-media > *:not(h2) { padding: 0 10px; }
+#mw-category-media > *:not(h2) { padding: 0 10px; } /* need better solution */
 
+/* inner wrapper */
 .content-section { padding: 0 10px 10px; }
 
 h2 .count-message {
@@ -44,8 +45,8 @@ h2 .count-message {
 
 #mw-subcategories ul,
 #mw-pages ul {
-	list-style: none;
 	margin: 0;
+	list-style: none;
 }
 #mw-subcategories li,
 #mw-pages li {
@@ -53,27 +54,26 @@ h2 .count-message {
 }
 #mw-subcategories ul + h3:before,
 #mw-pages ul + h3:before {
-	content: '';
+	border-top: 1px solid #ddd;
 	display: block;
-	border-top: 1px solid #DDD;
 	margin-bottom: 1em;
+	content: "";
 }
 
-/* 포함 문서, 파일, 분류 갯수 */
+/* Media gallery fix */
+#mw-category-media .gallery { text-align: left; }
+
+/* Category Tree */
 .CategoryTreeItem > span:not([class]) {
-	font-size: 12px;
 	color: #999;
+	font-size: 12px;
 }
-/* 자식 트리에 bullet 붙임 */
 .CategoryTreeChildren .CategoryTreeItem:before {
-	content: "";
+	/* @embed */
+	background: url(images/arrow-right.png) no-repeat center left;
 	display: inline-block;
 	width: 6px;
 	height: 20px;
-	/* @embed */
-	background: url(images/arrow-right.png) no-repeat center left;
 	vertical-align: text-top;
+	content: "";
 }
-
-/* 갤러리 fix */
-#mw-category-media .gallery { text-align: left; }
