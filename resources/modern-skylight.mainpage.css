@@ -1,9 +1,8 @@
-/**
- * Main Page Style for 위키쨩
- * Author: 카페인러브
- * Website: http://wiki-chan.net
- * License: MIT License
- */
+/*----------------------------------------
+ * Modern Skylight: Main page styles
+ * Author: cafeinlove (at wiki-chan.net)
+ * License: CC BY-SA 3.0
+ ----------------------------------------*/
 
 /* Fix */
 a:hover { text-decoration: none !important; }
@@ -14,7 +13,7 @@ a:hover { text-decoration: none !important; }
 	padding: 0 !important;
 }
 
-/*** Logo ***/
+/* Logo */
 .action-view h1#firstheading,
 .action-submit h1#firstheading {
 	text-indent: -9999px;
@@ -24,90 +23,95 @@ a:hover { text-decoration: none !important; }
 	margin: 10px 0;
 }
 
-/*** Accordion Menu ***/
-#accordion {
-	list-style: none !important;
-	padding: 0 !important;
+/* Accordion Navigation */
+.accordion {
 	margin: 10px 0 !important;
-}
-
-#accordion li > a {
-	padding: 0 10px 0 14px;
-	display: block;
-	position: relative;
-	height: 40px;
-	font-size: 14px;
-	line-height: 40px;
-	background-color: #50A8E1;
-	box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .2), 0px 1px 0px 0px rgba(0,0,0, .2);
-}
-#accordion > li > a { color: #FDFDFD !important; }
-#accordion > li:hover > a,
-#accordion > li:target > a,
-#accordion > li > a.active { background-color: #238FD4; }
-
-/* Collapsible items */
-#accordion .sub-menu {
-	list-style: none !important;
 	padding: 0 !important;
+}
+.accordion a {
+	box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, .2), 0px 1px 0px 0px rgba(0, 0, 0, .2);
+	display: block;
+}
+
+.accordion-section {
+	display: block;
+}
+
+.accordion-section > a {
+	background: #50a8e1;
+	color: #fdfdfd !important;
+	display: block;
+	height: 40px;
+	padding: 0 10px 0 14px;
+	line-height: 40px;
+	font-size: 14px;
+}
+.accordion-section > a:focus,
+.accordion-section > a:hover,
+.accordion-section > a.active {
+	background: #238fd4;
+}
+
+.accordion-submenu {
+	display: none; /* hidden by default */
 	margin: 0 !important;
+	padding: 0 !important;
 }
-#accordion .sub-menu a {
-	padding: 0 10px 0 40px;
-	background-color: #FFF;
+.accordion-submenu > li {
+	display: block;
+}
+.accordion-submenu a {
+	background: white;
 	height: 33px;
-	font-size: 13px;
+	padding: 0 10px 0 40px;
+	position: relative;
 	line-height: 33px;
-	box-shadow: inset 0px 1px 0px 0px rgba(255,255,255, .1), 0px 1px 0px 0px rgba(0,0,0, .1);
+	font-size: 13px;
 }
-#accordion .sub-menu li:nth-child(even) a {
-	background-color: #F2F5F9;
+.accordion-submenu > li:nth-child(even) > a {
+	background: #f2f5f9;
 }
-#accordion .sub-menu li:hover a {
-	background-color: #E6F2F6;
+.accordion-submenu a:hover {
+	background: #e6f2f6;
 	color: #777 !important;
 }
 
-#accordion .sub-menu span.num {
+.accordion-submenu .num {
+	color: #a6a6a6;
+	margin-left: 14px;
 	position: absolute;
 	top: 0;
 	left: 0;
-	margin-left: 14px;
-	color: #A6A6A6;
-	font-size: 13px;
 	line-height: 33px;
+	font-size: 13px;
 	font-style: normal;
 }
-#accordion .sub-menu span.val {
+.accordion-submenu .val {
+	color: #797979;
 	display: block;
+	margin-right: 10px;
 	position: absolute;
 	top: 0;
 	right: 0;
-	margin-right: 10px;
-	color: #797979;
-	font-size: 13px;
 	line-height: 33px;
+	font-size: 13px;
 }
 
-/* Toggle */
-#accordion li > .sub-menu { display: none; } 
-#accordion li:target > .sub-menu { display: block; }
-
-/*** Component Box ***/
+/* Component Box */
 .component {
-	background-color: #FFF;
+	background: white;
 	margin-bottom: 10px;
 }
 
 .component-head {
-	position: relative;
 	height: 40px;
+	position: relative;
 }
 .component-head .title {
-	display: block;
 	color: #202020;
-	font-size: 20px;
+	display: block;
 	line-height: 40px;
+	font-size: 20px;
 }
 
 .component-head .more {
@@ -116,18 +120,18 @@ a:hover { text-decoration: none !important; }
 	right: 0;
 }
 .component-head .more > a {
+	border-bottom: 1px solid #aee6fb;
 	display: inline-block;
-	font-size: 12px;
 	line-height: 17px;
-	border-bottom: 1px solid #AEE6FB;
+	font-size: 12px;
 }
 
 .component-body {
-	padding: 5px 0;
 	margin-bottom: .5em;
+	padding: 5px 0;
 }
 
-/*** Projects ***/
+/* Projects */
 .projects li {
 	float: left;
 	width: 145px;
@@ -139,66 +143,70 @@ a:hover { text-decoration: none !important; }
 .projects li:nth-child(3) { margin: 5px 5px 0 0; }
 .projects li:nth-child(4) { margin: 5px 0 0 5px; }
 
-.projects li:first-child, .projects li:nth-child(4) { background-color: #50A8E1; }
-.projects li:nth-child(2), .projects li:nth-child(3) { 	background-color: #6EC8F8; }
+.projects li:first-child, .projects li:nth-child(4) { background: #50a8e1; }
+.projects li:nth-child(2), .projects li:nth-child(3) { 	background: #6ec8f8; }
 
 .projects a {
+	color: white !important;
 	display: block;
 	width: 100%;
 	height: 100%;
-	color: #FFF !important;
 	position: relative;
 }
 .projects span.alt {
-	font-size: 13px;
-	line-height: 20px;
 	position: absolute;
 	left: 8px;
 	bottom: 6px;
+	line-height: 20px;
+	font-size: 13px;
 }
 
-/*** Create Form ***/
-ul#create-control {
-	text-align: center;
+/* Create Form */
+#create-control {
 	margin-bottom: 10px;
+	padding: 0;
+	text-align: center;
 }
-ul#create-control li {
+#create-control > li {
 	display: inline-block;
-	background-color: #E1E3E5;
-	color: #838588;
-	font-size: 12px;
-	line-height: 14px;
-	padding: .55em .7em .55em;
 	margin: 1px;
-	cursor: pointer;
-	transition: all .1s ease-in-out;
 }
-ul#create-control li.selected {
-	background-color: #50A8E1;
-	color: #FFF;
+#create-control > li > a {
+	background: #e1e3e5;
+	color: #838588;
+	display: inline-block;
+	padding: .55em .7em .55em;
+	line-height: 14px;
+	font-size: 12px;
+	cursor: pointer;
+	transition: background .1s, color .1s;
+}
+#create-control > li > a.selected {
+	background: #50a8e1;
+	color: white;
 }
 
 input.createboxInput {
-	width: 292px;
-	margin: 0 auto;
 	float: none;
+	margin: 0 auto;
+	width: 292px;
 }
 input.createboxButton {
 	display: none;
 }
 
-/*** Noti message ***/
+/* Notification message box */
 #notification {
+	background: #fde073;
+	margin: 0 -10px;
+	overflow: hidden;
 	position: absolute;
-	z-index: 65535;
 	top: 40px;
 	left: 0;
 	right: 0;
-	background-color: #FDE073;
-	text-align: center;
+	z-index: 65535;
 	line-height: 2.5;
-	margin: 0 -10px;
-	overflow: hidden;
+	text-align: center;
 	-webkit-transform: translateY(-50px);
 	-webkit-animation: slideDown 2.5s 1.0s 1 ease forwards;
 	-ms-transform: translateY(-50px);

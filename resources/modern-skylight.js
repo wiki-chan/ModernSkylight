@@ -1,224 +1,169 @@
-/*!
- * Wikichan: JavaScript
- * Used globally on http://wiki-chan.net
- * Refer to each section for license and author
- */
+/*----------------------------------------
+ * Modern Skylight: Global scripts
+ * Author(s): cafeinlove (at wiki-chan.net)
+ * License: MIT License
+ ----------------------------------------*/
 
-// On Document Ready ------------------------------
+void function(window, document, mw, $, undefined) {
 
-$(function() {
+    var my = {
+        contentWrapper: document.getElementById("mw-content-text"),
+        scrollSpeed: 400, // in millisecond
+        toTopBreakpoint: 400 // in pixel
+    };
 
-	// Activate main functions
-	smoothScroll();
-	scrollToTop();
-	resizeToc();
-	wikiTip();
+    /**
+     * Smooth scroll
+     *
+     * @description   Make internal links smooth scroll instead of instantly jump.
+     *                Applied to all pages over the wiki.
+     */
+    void function smoothScroll() {
+        // don't apply smoothScroll to NS_SPECIAL pages
+        // otherwise it will break pages such as Special:Preferences
+        if (mw.config.get("wgNamespaceNumber") === -1) return;
 
-	// Make all <pre> having "selectble" class easily selectable
-	var selectable = document.getElementsByTagName("selectable");
+        var anchorPattern = /^#./;
 
-	for ( var i = 0, j = selectable.length; i < j; i++ ) {
-		var input = document.createElement("input");
+        my.contentWrapper.addEventListener("click", function(event) {
+            var target = event.target;
 
-		input.type = "button";
-		input.value = "선택";
-		input.addEventListener("click", function() {
-			selectCode(input);
-			return false;
-		});
+            if (target.tagName == "A" && anchorPattern.test(target.hash)) {
+                animate(target.hash);
+            }
+        });
 
-		selectable[i].insertBefore( input, selectable.firstChild );
-	}
+        function animate(hash) {
+            // hash value of anchors pointing to a heading with unicode text
+            // (e.g. == {Korean text} == ) contains dots and these should be
+            // escaped with 2 slashes.
+            var targetId = hash.replace(/\./g, "\\.");
+            var targetEl = document.getElementById(targetId);
 
-});
+            if (!targetEl) return;
 
-// MAIN FUNCTIONS ------------------------------
+            var $root = $("html, body");
 
-/**
- * Smooth Scroll
- * Author: 카페인러브
- * License: MIT and GPL licenses
- */
-function smoothScroll() {
-	// store related DOM elements into variable
-	var $root = $("html, body");
-	var $anchors = $("a[href^='#']");
+            $root.animate({
+                scrollTop: $(targetEl).offset().top
+            }, my.scrollSpeed);
 
-	// add scroll event to all anchors
-	$anchors.on("click", function(e) {
+            controlUrl("#" + hash);
 
-		e.preventDefault();
+            return false; // preveting default behaviour of <a href="#" />
+        }
 
-		var href = this.hash;
+        /**
+         * Change URL hash without page jump
+         * Author: Lea Verou, 2011
+         * http://lea.verou.me/2011/05/change-url-hash-without-page-jump/
+         */
+        function controlUrl(hash) {
+            if (history.pushState) {
+                history.pushState(null, null, hash);
+            } else {
+                location.hash = hash;
+            }
+        }
+    }();
 
-		// Change URL hash without page jump
-		// Author: Lea Verou, 2011
-		// http://lea.verou.me/2011/05/change-url-hash-without-page-jump/
-		if (history.pushState) {
-			history.pushState(null, null, href);
-		} else {
-			location.hash = href;
-		}
-		// end
+    /**
+     * To Top Button
+     *
+     * @description   Append a button that allows user to navigate back
+     *                to the top of the page.
+     */
+    void function toTopButton() {
+        var button = document.createElement("a");
 
-		$root.animate({
-			scrollTop: $(document.getElementById( href.substr(1) )).offset().top
-		}, 300);
+        button.id = "toTop";
+        button.appendChild(document.createTextNode("\u2191"));
 
-	});
-}
+        document.body.appendChild(button);
 
-/**
- * Scroll To Top
- * Author: 카페인러브
- * License: MIT and GPL licenses
- */
-function scrollToTop() {
-	// if ( mw.config.get("wgNamespaceNumber") === 2 ) return;
+        window.addEventListener("scroll", toggleButton);
 
-	// Create ↑ button and append it to body
-	var toTop = document.createElement("a");
+        function toggleButton() {
+            var scrollTop = window.scrollY || document.documentElement.scrollTop;
+            var button = document.getElementById("toTop");
+            button.className = scrollTop > my.toTopBreakpoint ? "is-visible" : "";
+        }
+    }();
 
-	toTop.id = "toTop";
-	toTop.appendChild( document.createTextNode("↑") );
+    /**
+     * Wiki Tooltip
+     *
+     * @description   Display a tooltip on elements with `tooltip` class
+     */
+    void function wikiTooltip() {
+        var tooltip, arrow, inner, text;
+        var tooltipClass = "tooltip";
+        var tooltipText;
+        var isActive = false;
 
-	document.body.appendChild(toTop);
+        document.body.addEventListener("mouseover", function(event) {
+            var target = event.target;
 
-	// Toggle ↑ button on page scroll
-	$(window).on("scroll", function() {
-		if($(this).scrollTop() > 400) {
-			$('#toTop').fadeIn();
-		} else {
-			$('#toTop').fadeOut();
-		}
-	});
+            if (!isActive && target.classList.contains(tooltipClass)) {
+                createTip(target);
+            }
+        });
 
-	// Scroll to topmost position when user clicks on ↑ button
-	var $root = $("body, html");
+        document.body.addEventListener("mouseout", function(event) {
+            var target = event.target;
 
-	$('#toTop').on("click", function() {
-		$root.animate({ scrollTop: 0 }, 100);
-	});
-}
+            if (isActive && target.classList.contains(tooltipClass)) {
+                removeTip(target);
+            }
+        });
 
-/**
- * Resize Table of Contents
- * Author: 카페인러브
- * License: MIT and GPL licenses
- */
-function resizeToc(){
-	if ( !$("#toc") ) return;
+        function createTip(sourceEl) {
+            if (!sourceEl.title) return;
 
-	var $toc = $("#toc");
-	var windowHeight = window.innerHeight;
-	
-	if ( $toc.outerHeight() + 67 > windowHeight ) {
-		$toc.children('ul').height( windowHeight - 105 );
-	}
-}
+            isActive = true;
 
-/**
- * Tooltip
- * Author: vertigo-project (vtip)
- * Arranged by: 카페인러브
- * License: MIT and GPL licenses
- */
-function wikiTip() {
-	var $targets = $(".tooltip");
+            tooltipText = sourceEl.title;
+            sourceEl.removeAttribute("title");
 
-	$targets.on("mouseenter", function() {
-		$targets.find("a").removeAttr("title");
+            tooltip = document.createElement("div");
+            arrow = document.createElement("div");
+            inner = document.createElement("div");
+            text = document.createTextNode(tooltipText);
 
-		this.t = this.title;
-		this.title = "";
+            document.body.appendChild(tooltip);
+            tooltip.appendChild(arrow);
+            tooltip.appendChild(inner);
+            inner.appendChild(text);
 
-		var $offsets = $(this).offset();
-		var $containerWidth = $(this).width();
+            tooltip.id = "wikiTooltip";
+            arrow.className = "arrow";
+            inner.className = "inner";
 
-		if ( $(this).is("[title]") ) {
-			$("body").append(
-				$("<div id='tooltip'><div class='tooltip-arrow'></div></div>").append(
-					$("<div class='tooltip-inner'></div>").text( this.t )
-				)
-			);
-		}
+            positionTip(sourceEl);
+        }
 
-		var $tipWidth = $("#tooltip").width();
-		var $tipHeight = $("#tooltip").height();
+        function positionTip(sourceEl) {
+            var offset = $(sourceEl).offset();
+            var pos = {
+                top: offset.top - tooltip.offsetHeight,
+                left: offset.left - (tooltip.offsetWidth - sourceEl.offsetWidth) / 2
+            };
 
-		$("#tooltip")
-			.css({
-				"top": $offsets.top - ( $tipHeight + 6 ),
-				"left": $offsets.left - ( $tipWidth - $containerWidth ) /2,
-			})
-			.fadeIn("fast");
-	});
+            tooltip.style.top = pos.top + "px";
+            tooltip.style.left = pos.left + "px";
 
-	$targets.on("mouseleave", function() {
-		this.title = this.t;
-		$("#tooltip").remove();
-	});
-}
+            tooltip.className = "is-visible";
+        }
 
-/******************************
-*	Select text in pre
-*	Author: unknown
-******************************/
-function selectCode(trigger) {
-	var e = trigger.parentNode.getElementsByTagName("pre")[0];
+        function removeTip(sourceEl) {
+            document.body.removeChild(tooltip);
+            sourceEl.setAttribute("title", tooltipText);
 
-	if (window.getSelection) {
-		var s = window.getSelection();
-		if (s.setBaseAndExtent) {
-			s.setBaseAndExtent(e, 0, e, e.innerText.length - 1);
-		} else {
-			var r = document.createRange();
-			r.selectNodeContents(e);
-			s.removeAllRanges();
-			s.addRange(r);
-		}
-	} else if (document.getSelection) {
-		var s = document.getSelection();
-		var r = document.createRange();
-		r.selectNodeContents(e);
-		s.removeAllRanges();
-		s.addRange(r);
-	} else if (document.selection) {
-		var r = document.body.createTextRange();
-		r.moveToElementText(e);
-		r.select();
-	}
-}
+            tooltip = undefined;
+            tooltipText = undefined;
 
+            isActive = false;
+        }
+    }();
 
-// HELPER FUNCTIONS ------------------------------
-
-/**
- * Get element index as child
- * Author: mikemaccana, 2016
- * Reference: http://stackoverflow.com/questions/5913927/get-child-node-index
- * License: CC-BY-SA 3.0
- */
-function getIndex(element) {
-	return Array.prototype.indexOf.call(element.parentNode.children, element);
-}
-
-/**
- * Get horizontal/vertical offset of an element
- * Author: 카페인러브, 2016
- * License: MIT and GPL Licenses
- */
-function getOffset(element) {
-	var style = element.currentStyle || window.getComputedStyle(element);
-
-	return {
-		"top": element.getBoundingClientRect().top
-			+ (document.documentElement.scrollTop || document.body.scrollTop)
-			- parseInt(style.paddingTop)
-			- parseInt(style.marginTop),
-		"left": element.getBoundingClientRect().left
-			+ (document.documentElement.scrollLeft || document.body.scrollLeft)
-			- parseInt(style.paddingLeft)
-			- parseInt(style.marginLeft)
-	};
-}
+}(window, document, window.mediaWiki, window.jQuery);
