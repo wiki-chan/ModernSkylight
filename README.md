@@ -34,14 +34,15 @@ require_once 'skins/ModernSkylight/ModernSkylight-Legacy.php';
 * ModernSkylightNavigation
 
   우측 상단의 내비게이션 메뉴를 수정할 수 있습니다. `$navi` 변수에 메뉴 정보가 배열로 들어 있습니다. 다음 코드로 Hook을 추가할 수 있습니다.
-  ```php
+```php
 public static function onNavigation( $namespace, &$navi ) { ... }
 $wgHooks['ModernSkylightNavigation'][] = 'MyExtensionHooks::onNavigation';
 ```
+
 * ModernSkylightUseRightSidebar
 
   오른쪽의 사이드바를 가릴 수 있습니다. `$use_sidebar` 변수에 사이드바 사용 여부를 나타내는 boolean 값을 사용할 수 있습니다. 다음 코드로 Hook을 추가할 수 있습니다.
-  ```php
+```php
 public static function onRightSidebar( $c_page, $c_namespace, $c_mainpage, &$use_sidebar ) { ... }
 $wgHooks['ModernSkylightUseRightSidebar'][] = 'MyExtensionHooks::onRightSidebar';
 ```
