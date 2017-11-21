@@ -94,5 +94,6 @@
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
 		"remoteSkinPath": "ModernSkylight"
-	}
+	},
+	"manifest_version": 1
 }
