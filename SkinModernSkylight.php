@@ -39,9 +39,9 @@ class SkinModernSkylight extends SkinTemplate {
 			'<!--[if IE]><style type="text/css">pre{font-family:굴림,Gulrim !important;}</style><![endif]-->'
 		);
 
-		$out->addModuleScripts( 'skins.modern-skylight.js' );
+		$out->addModules( 'skins.modern-skylight.js' );
 		if ($out->getTitle()->isMainPage()) {
-			$out->addModuleScripts( 'skins.modern-skylight.mainpage.js' );
+			$out->addModules( 'skins.modern-skylight.mainpage.js' );
 		}
 	}
 
