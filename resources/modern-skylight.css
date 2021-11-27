@@ -932,6 +932,9 @@ ul.top-menu > li:hover > a {
     padding: 0 6px 0 5px;
     content: "»";
 }
+.catlinks-allhidden {
+    display: none;
+}
 
 /* Page title */
 h1#firstheading {
