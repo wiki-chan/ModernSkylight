@@ -11,20 +11,21 @@ if( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
 }
 
-class SkinModernSkylight extends SkinTemplate {
+class ModernSkylightHooks {
 	/**
 	 * Initializes output page and sets up skin-specific parameters
 	 * @param $out OutputPage object to initialize
 	 */
-	public function initPage( OutputPage $out ) {
+	public static function onBeforePageDisplay( OutputPage $out, &$skin ) {
 		global $wgLocalStylePath;
-
-		parent::initPage( $out );
+		if ( $skin->getSkinName() !== 'modernskylight' ) {
+			return;
+		}
 
 		// Append CSS which includes IE only behavior fixes for hover support -
 		// this is better than including this in a CSS file since it doesn't
 		// wait for the CSS file to load before fetching the HTC file.
-		$min = $this->getRequest()->getFuzzyBool( 'debug' ) ? '' : '.min';
+		$min = $out->getRequest()->getFuzzyBool( 'debug' ) ? '' : '.min';
 		$out->addHeadItem( 'csshover',
 			'<!--[if lt IE 7]><style type="text/css">body{behavior:url("' .
 				htmlspecialchars( $wgLocalStylePath ) .

@@ -12,7 +12,7 @@
 	"type": "skin",
 	"ValidSkinNames": {
 		"modernskylight": {
-			"class": "SkinModernSkylight",
+			"class": "SkinTemplate",
 			"args": [
 				{
 					"name": "modernskylight",
@@ -34,9 +34,12 @@
 	},
 	"manifest_version": 2,
 	"AutoloadClasses": {
-		"SkinModernSkylight": "SkinModernSkylight.php",
+		"ModernSkylightHooks": "ModernSkylightHooks.php",
 		"ModernSkylightTemplate": "ModernSkylightTemplate.php",
 		"ModernSkylightMenubar": "ModernSkylightMenubar.php"
+	},
+	"Hooks": {
+		"BeforePageDisplay": "ModernSkylightHooks::onBeforePageDisplay"
 	},
 	"ResourceModules": {
 		"skins.modern-skylight.js": {
