@@ -20,6 +20,8 @@ if( !defined( 'NS_PORTAL' ) ) {
 	define('NS_PORTAL', -10000);
 }
 
+use MediaWiki\MediaWikiServices;
+
 class ModernSkylightTemplate extends BaseTemplate {
 
 	// Functions
@@ -103,7 +105,8 @@ class ModernSkylightTemplate extends BaseTemplate {
 			$this->data['title'] = substr($this->data['title'], strpos($this->data['title'], ':') + 1 );
 
 		# 현재 유저가 어드민 그룹에 속해있는지 검사
-		if ( in_array('sysop', $skin->getUser()->getEffectiveGroups() ) )
+		$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
+		if ( in_array('sysop', $userGroupManager->getUserEffectiveGroups( $skin->getUser() ) ) )
 			$this->data['isadmin'] = true;
 		else
 			$this->data['isadmin'] = false;
