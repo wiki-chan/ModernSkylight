@@ -98,7 +98,7 @@ class ModernSkylightTemplate extends BaseTemplate {
 		//$this->data['catlinks'] = str_replace("</li></ul>", "</li> / </ul>", $this->data['catlinks']);
 
 		# 메뉴를 위한 툴 리스트 받기
-		$toolList = $this->getToolbox();
+		$toolList = $this->data['sidebar']['TOOLBOX'];
 
 		# 대문 네임스페이스에서 제목에서 '대문:' 자 빼기
 		if ($c_namespace == NS_PORTAL && strpos($this->data['title'], ':') !== false)
