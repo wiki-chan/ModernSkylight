@@ -11,13 +11,28 @@
 	"license-name": "BSD-2",
 	"type": "skin",
 	"ValidSkinNames": {
-		"modernskylight": "ModernSkylight"
+		"modernskylight": {
+			"class": "SkinModernSkylight",
+			"args": [
+				{
+					"name": "modernskylight",
+					"template": "ModernSkylightTemplate",
+					"styles": [
+						"skins.modern-skylight.css"
+					],
+					"scripts": [
+						"skins.modern-skylight.js"
+					]
+				}
+			]
+		}
 	},
 	"MessagesDirs": {
 		"ModernSkylight": [
 			"i18n"
 		]
 	},
+	"manifest_version": 2,
 	"AutoloadClasses": {
 		"SkinModernSkylight": "SkinModernSkylight.php",
 		"ModernSkylightTemplate": "ModernSkylightTemplate.php",
