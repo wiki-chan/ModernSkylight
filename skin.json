@@ -11,17 +11,38 @@
 	"license-name": "BSD-2",
 	"type": "skin",
 	"ValidSkinNames": {
-		"modernskylight": "ModernSkylight"
+		"modernskylight": {
+			"class": "SkinTemplate",
+			"args": [
+				{
+					"name": "modernskylight",
+					"template": "ModernSkylightTemplate",
+					"styles": [
+						"skins.modern-skylight.css"
+					],
+					"scripts": [
+						"skins.modern-skylight.js"
+					]
+				}
+			]
+		}
 	},
 	"MessagesDirs": {
 		"ModernSkylight": [
 			"i18n"
 		]
 	},
+	"requires": {
+		"MediaWiki": ">= 1.41.0"
+	},
+	"manifest_version": 2,
 	"AutoloadClasses": {
-		"SkinModernSkylight": "SkinModernSkylight.php",
+		"ModernSkylightHooks": "ModernSkylightHooks.php",
 		"ModernSkylightTemplate": "ModernSkylightTemplate.php",
 		"ModernSkylightMenubar": "ModernSkylightMenubar.php"
+	},
+	"Hooks": {
+		"BeforePageDisplay": "ModernSkylightHooks::onBeforePageDisplay"
 	},
 	"ResourceModules": {
 		"skins.modern-skylight.js": {

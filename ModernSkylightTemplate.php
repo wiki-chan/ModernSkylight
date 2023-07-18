@@ -20,6 +20,8 @@ if( !defined( 'NS_PORTAL' ) ) {
 	define('NS_PORTAL', -10000);
 }
 
+use MediaWiki\MediaWikiServices;
+
 class ModernSkylightTemplate extends BaseTemplate {
 
 	// Functions
@@ -96,14 +98,15 @@ class ModernSkylightTemplate extends BaseTemplate {
 		//$this->data['catlinks'] = str_replace("</li></ul>", "</li> / </ul>", $this->data['catlinks']);
 
 		# 메뉴를 위한 툴 리스트 받기
-		$toolList = $this->getToolbox();
+		$toolList = $this->data['sidebar']['TOOLBOX'];
 
 		# 대문 네임스페이스에서 제목에서 '대문:' 자 빼기
 		if ($c_namespace == NS_PORTAL && strpos($this->data['title'], ':') !== false)
 			$this->data['title'] = substr($this->data['title'], strpos($this->data['title'], ':') + 1 );
 
 		# 현재 유저가 어드민 그룹에 속해있는지 검사
-		if ( in_array('sysop', $skin->getUser()->getEffectiveGroups() ) )
+		$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
+		if ( in_array('sysop', $userGroupManager->getUserEffectiveGroups( $skin->getUser() ) ) )
 			$this->data['isadmin'] = true;
 		else
 			$this->data['isadmin'] = false;
@@ -111,7 +114,6 @@ class ModernSkylightTemplate extends BaseTemplate {
 		# 메뉴바 데이터 가져오기
 		$this->data['menubar'] = ModernSkylightMenubar::getMenubar();
 ?>
-		<?php $this->html( 'headelement' ); ?>
 
 		<div id="header" role="header">
 			<div class="holder clear">
@@ -251,9 +253,6 @@ class ModernSkylightTemplate extends BaseTemplate {
 				<?=wfMessage( 'ModernSkylightFooter' )->parse()?>
 			</div>
 		</div>
-		<?php $this->printTrail(); ?>
-	</body>
-</html>
 <?php
 	}
 
