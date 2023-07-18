@@ -114,7 +114,6 @@ class ModernSkylightTemplate extends BaseTemplate {
 		# 메뉴바 데이터 가져오기
 		$this->data['menubar'] = ModernSkylightMenubar::getMenubar();
 ?>
-		<?php $this->html( 'headelement' ); ?>
 
 		<div id="header" role="header">
 			<div class="holder clear">
@@ -254,9 +253,6 @@ class ModernSkylightTemplate extends BaseTemplate {
 				<?=wfMessage( 'ModernSkylightFooter' )->parse()?>
 			</div>
 		</div>
-		<?php $this->printTrail(); ?>
-	</body>
-</html>
 <?php
 	}
 

@@ -32,6 +32,9 @@
 			"i18n"
 		]
 	},
+	"requires": {
+		"MediaWiki": ">= 1.41.0"
+	},
 	"manifest_version": 2,
 	"AutoloadClasses": {
 		"ModernSkylightHooks": "ModernSkylightHooks.php",
